@@ -174,9 +174,6 @@ body::after {
   border-bottom: 1px solid rgba(148, 163, 184, 0.08);
   overflow: visible;
 }
-/* Below 640px the bottom prev/next dock already provides navigation
-   and the active tab name is shown there too, so the top tab bar is
-   redundant chrome — hide it outright rather than just un-stick it. */
 @media (max-width: 640px) {
   .tab-nav-bar { display: none; }
 }
@@ -224,8 +221,6 @@ body::after {
   font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
   white-space: nowrap;
 }
-/* Badges built from a full sentence rather than a short label need to
-   wrap instead of forcing horizontal overflow on narrow screens. */
 .badge-wrap {
   white-space: normal; text-align: left; text-transform: none;
   letter-spacing: 0.02em; line-height: 1.5; border-radius: 12px;
@@ -410,20 +405,12 @@ body::after {
   padding-left: 16px;
 }
 
-/* ── Card-internal title ──
-   For headings that ARE the box's title (a card's own name, a
-   timeline's own name) rather than a small category label above
-   unrelated content — bigger, bolder, no eyebrow treatment. */
 .card-title {
   font-size: 17px; font-weight: 800; color: #fff;
   letter-spacing: -0.01em; line-height: 1.3; margin-bottom: 10px;
 }
 .card-title.lg { font-size: 20px; }
 
-/* ── Statement footer ──
-   A short closing line meant to land with weight — same visual
-   register as a pull-quote, but centered and slightly larger, for
-   the one or two sentences that summarize an entire tab or section. */
 .statement-footer {
   text-align: center; font-style: italic; font-weight: 600;
   font-size: 14px; line-height: 1.7; color: var(--text-secondary);
@@ -768,11 +755,6 @@ body::after {
     font-weight: 700; color: #e2e8f0; padding-top: 12px;
     font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
   }
-
-  /* ── Mobile density pass ──
-     Same content, tighter internal rhythm than desktop, but the
-     outer page gutters stay generous enough to breathe — content
-     should never feel edge-to-edge on a phone. Desktop untouched. */
   .px-4.sm\:px-8 { padding-left: 20px !important; padding-right: 20px !important; }
   .py-8 { padding-top: 24px !important; padding-bottom: 24px !important; }
   .py-10 { padding-top: 28px !important; padding-bottom: 28px !important; }
@@ -816,10 +798,6 @@ body::after {
   pointer-events: none;
 }
 
-/* ── Bottom dock: step dots + tap-to-jump label ──
-   The dock now shows, at a glance, how many sections exist and where
-   the reader is (dot row), and the label itself opens a menu to jump
-   directly to any section instead of only stepping one at a time. */
 .page-nav-dots {
   display: flex; align-items: center; justify-content: center; gap: 5px;
   padding: 6px 0 2px;
@@ -953,6 +931,7 @@ body::after {
     <div class="masthead">
       <div class="min-w-0">
         <h1 class="masthead-title">Why STORE / Why Now</h1>
+        <p class="text-sm sm:text-base text-slate-400 mt-2">L-zero governed cloud infrastructure. Democratic computing. Not a blockchain. Not a chain.</p>
       </div>
     </div>
 
@@ -964,7 +943,7 @@ body::after {
     <div class="tab-nav-scroll" role="tablist" id="tab-nav-scroll"><button id="tab-why" class="tab-btn active" role="tab" aria-selected="true" aria-controls="content-why" onclick="switchTab('why')">Why STORE / Why Now</button><button id="tab-vision" class="tab-btn" role="tab" aria-selected="false" aria-controls="content-vision" onclick="switchTab('vision')">The Vision</button><button id="tab-history" class="tab-btn" role="tab" aria-selected="false" aria-controls="content-history" onclick="switchTab('history')">History</button><button id="tab-math" class="tab-btn" role="tab" aria-selected="false" aria-controls="content-math" onclick="switchTab('math')">The Math</button><button id="tab-token" class="tab-btn" role="tab" aria-selected="false" aria-controls="content-token" onclick="switchTab('token')">The Token</button><button id="tab-roadmap" class="tab-btn" role="tab" aria-selected="false" aria-controls="content-roadmap" onclick="switchTab('roadmap')">Roadmap</button><button id="tab-launch" class="tab-btn" role="tab" aria-selected="false" aria-controls="content-launch" onclick="switchTab('launch')">Launch</button><button id="tab-join" class="tab-btn" role="tab" aria-selected="false" aria-controls="content-join" onclick="switchTab('join')">Join</button><button id="tab-who" class="tab-btn" role="tab" aria-selected="false" aria-controls="content-who" onclick="switchTab('who')">Who We Are</button></div>
   </div>
 </nav>
-<div class="px-4 sm:px-8 py-8"><div class="max-w-[900px] mx-auto"><section id="content-why" class="tab-content active" role="tabpanel" aria-labelledby="tab-why"><h2 class="text-2xl sm:text-[2rem] font-extrabold tracking-tight leading-[1.1] text-white mb-6">Why STORE</h2><div class="content-card mb-5" style="--content-accent:#5eead4;">
+<div class="px-4 sm:px-8 py-8"><div class="max-w-[900px] mx-auto"><section id="content-why" class="tab-content active" role="tabpanel" aria-labelledby="tab-why"><h2 class="text-2xl sm:text-[2rem] font-extrabold tracking-tight leading-[1.1] text-white mb-4">Why STORE</h2><div class="rounded-xl p-4 sm:p-5 mb-6" style="background:linear-gradient(135deg, rgba(20,184,166,0.10), rgba(16,185,129,0.04)); border:1px solid rgba(20,184,166,0.28);"><p class="text-sm sm:text-base font-semibold text-white leading-[1.7]">STORE Cloud is already live in five data centers. TREASURIES deposits fund the next ones under the same one-third constitutional ceiling.</p></div><div class="content-card mb-5" style="--content-accent:#5eead4;">
           <div class="content-card-head">
             <span class="content-card-num">01</span>
             <span class="content-card-title">The Problem</span>
@@ -981,14 +960,14 @@ body::after {
             <span class="content-card-num">03</span>
             <span class="content-card-title">The Moment</span>
           </div>
-          <p class="text-sm text-slate-300 leading-[1.85] mb-3">Congress wants a kill switch. Silicon Valley says that kills innovation. Both are right. Both are incomplete.</p><p class="text-sm text-slate-300 leading-[1.85] mb-3">The real solution is not a button held by one person. It is a mathematical law held by the architecture itself.</p><p class="text-sm text-slate-300 leading-[1.85] mb-3">The Kill Switch Act was introduced July 23, 2026 (bipartisan, publicly reported) – The EU AI Act reached full enforcement August 2, 2026. The CEOs of OpenAI, DeepMind, and Anthropic are publicly calling for independent governance. They are describing something that already exists.</p><p class="text-sm text-slate-300 leading-[1.85] mb-3">126 governors. 30+ countries. Zero violations. The threshold has held for 1,800+ consecutive days.</p><p class="text-lg sm:text-lg font-extrabold my-4" style="color:#5eead4;">STORE was nine years early. It is now right on time.</p><p class="text-sm text-slate-300 leading-[1.85] mb-3">Democratic AI. Democratic AI is computing infrastructure governed by an intelligence system (Hamilton AI and Triangle), which is governed by a constitutional democracy (126 governors, 30+ countries, zero violations in 1,800+ consecutive days), which is powered by the STORE token. The token funds the democracy. The democracy governs the intelligence. The intelligence governs the compute.</p><p class="text-sm text-slate-300 leading-[1.85] mb-3">The token powers the democracy that governs the intelligence that governs the compute. Constitutional math is the TCP/IP for AI trust. The democracy governs the envelope. Hamilton AI fills it.</p><p class="text-sm text-slate-300 leading-[1.85] mb-3">STORE tokens are paid to everyone who helps govern, grow, and secure the network. The more the network grows, the harder it is to capture. The question is not whether this gets built. The question is whether the people who understand it now are part of it.</p><p class="text-sm text-slate-300 leading-[1.85] mb-3">STORE governs compute. Once Triangle launches, STORE governs AI. The era of democratic cloud computing begins with STORE. The era of democratic AI begins with Triangle. One math. Two eras. No geographic ceiling.</p><p class="text-sm text-slate-300 leading-[1.85] mb-3">STORE Cloud is already live in five data centers. TREASURIES deposits fund the next ones under the same one-third constitutional ceiling.</p>
+          <p class="text-sm text-slate-300 leading-[1.85] mb-3">Congress wants a kill switch. Silicon Valley says that kills innovation. Both are right. Both are incomplete.</p><p class="text-sm text-slate-300 leading-[1.85] mb-3">The real solution is not a button held by one person. It is a mathematical law held by the architecture itself.</p><p class="text-sm text-slate-300 leading-[1.85] mb-3">The Kill Switch Act was introduced July 23, 2026 (bipartisan, publicly reported) – The EU AI Act reached full enforcement August 2, 2026. The CEOs of OpenAI, DeepMind, and Anthropic are publicly calling for independent governance. They are describing something that already exists.</p><p class="text-sm text-slate-300 leading-[1.85] mb-3">126 governors. 30+ countries. Zero violations. The threshold has held for 1,800+ consecutive days.</p><p class="text-lg sm:text-lg font-extrabold my-4" style="color:#5eead4;">STORE was nine years early. It is now right on time.</p><p class="text-sm text-slate-300 leading-[1.85] mb-3">Democratic AI. Democratic AI is computing infrastructure governed by an intelligence system (Hamilton AI and Triangle), which is governed by a constitutional democracy (126 governors, 30+ countries, zero violations in 1,800+ consecutive days), which is powered by the STORE token. The token funds the democracy. The democracy governs the intelligence. The intelligence governs the compute.</p><p class="text-sm text-slate-300 leading-[1.85] mb-3">The token powers the democracy that governs the intelligence that governs the compute. Constitutional math is the TCP/IP for AI trust. The democracy governs the envelope. Hamilton AI fills it.</p><p class="text-sm text-slate-300 leading-[1.85] mb-3">STORE tokens are paid to everyone who helps govern, grow, and secure the network. The more the network grows, the harder it is to capture. The question is not whether this gets built. The question is whether the people who understand it now are part of it.</p><p class="text-sm text-slate-300 leading-[1.85] mb-3">STORE governs compute. Once Triangle launches, STORE governs AI. The era of democratic cloud computing begins with STORE. The era of democratic AI begins with Triangle. One math. Two eras. No geographic ceiling.</p>
         </div><div class="content-card mb-5" style="--content-accent:#5eead4;">
           <div class="content-card-head">
             <span class="content-card-num">04</span>
             <span class="content-card-title">One Token</span>
           </div>
           <p class="text-sm text-slate-300 leading-[1.85] mb-3">STORE is simultaneously a governance token, a utility token, and a payment token. One object. Four functions. One ceiling.</p><p class="text-sm text-slate-300 leading-[1.85] mb-3">01 - GOVERNANCE: You vote with it. 02 - DENOMINATION: Every compute price is set in it. 03 - PAYMENT: Every transaction settles in it. 04 - DISTRIBUTION: Every reward pays in it.</p><p class="text-sm text-slate-300 leading-[1.85] mb-3">No prior system unified all four functions under a hard mathematical ceiling on concentration. STORE does. See the TOKEN tab for the full economic case.</p><p class="text-sm text-slate-300 leading-[1.85] mb-3">Nothing here is an offer to sell securities.</p>
-        </div><div class="card p-6 sm:p-8" style=""><div class="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-8"><div class="text-center sm:text-left"><div class="hero-num display-num text-4xl sm:text-5xl font-extrabold leading-none">126</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">governors</div></div><div class="text-center sm:text-left"><div class="hero-num display-num text-4xl sm:text-5xl font-extrabold leading-none">1,800+</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">days running</div></div><div class="text-center sm:text-left"><div class="hero-num display-num text-4xl sm:text-5xl font-extrabold leading-none">6</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">ballots</div></div><div class="text-center sm:text-left"><div class="hero-num display-num text-4xl sm:text-5xl font-extrabold leading-none">0</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">violations</div></div><div class="text-center sm:text-left"><div class="hero-num display-num text-4xl sm:text-5xl font-extrabold leading-none">76.95%</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">avg approval</div></div><div class="text-center sm:text-left"><div class="hero-num display-num text-4xl sm:text-5xl font-extrabold leading-none">2</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">granted patents</div></div><div class="text-center sm:text-left"><div class="hero-num display-num text-4xl sm:text-5xl font-extrabold leading-none">5</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">Fortune 500 citations</div></div></div></div><div class="mb-10"></div><div class="mb-8"><div class="section-eyebrow mb-3" style="color:#5eead4;">Why Now</div><h2 class="text-2xl sm:text-[2rem] font-extrabold tracking-tight leading-[1.1] text-white mb-3">The more powerful AI gets, the fewer people govern it.</h2></div><div class="card card-accent-red p-5 sm:p-6" style="border-left:3px solid #f87171;"><div class="card-title" style="color:#f87171;">The Scaling Law Problem</div><p class="text-sm text-slate-300 leading-[1.85] mb-3">Scaling laws describe how AI capability grows with compute and data. More compute means better models. Better models attract more users. More users generate more revenue. More revenue buys more compute. The loop closes and tightens.</p><p class="text-sm text-slate-300 leading-[1.85] mb-3">This is not a conspiracy. It is physics. The same Metcalfe's Law that produced Google from search, Facebook from social graphs, and Amazon from retail logistics is now running on AI infrastructure. Network value scales as n-squared. Concentration is the natural resting state of an unconstrained network.</p><p class="text-sm text-slate-300 leading-[1.85] mb-3">ChatGPT holds 53.9% of consumer AI traffic. Gemini holds 27.9%. Claude holds 9.2%. The top two together exceed the constitutional ceiling that The founders encoded it and Lamport proved it. No governance mechanism anywhere in the AI stack has triggered. No mechanism exists to trigger.</p></div><div class="mb-3"></div><div class="card card-accent-amber p-5 sm:p-6" style="border-left:3px solid #fbbf24;"><div class="card-title" style="color:#fbbf24;">The Coordination Problem</div><p class="text-sm text-slate-300 leading-[1.85] mb-3">Nation-states cannot coordinate on AI governance democratically. The EU AI Act requires self-reporting. NIST published a framework. The G7 issued principles. All of it describes what has already happened, after the concentration has set in and the network effects that make it sticky have already compounded.</p><p class="text-sm text-slate-300 leading-[1.85] mb-3">Legislation moves in years. AI moves in months. By the time a regulatory framework reaches a vote, the system it was designed to govern has already changed. This is not regulatory failure. It is a structural timing mismatch between the speed of democratic deliberation and the speed of machine learning.</p><p class="text-sm text-slate-300 leading-[1.85] mb-3">The CEOs of OpenAI, DeepMind, and Anthropic are now publicly calling for an independent governance body - FINRA-style, IAEA-style. They are describing an institution. Institutions require trust. Trust requires time. The models are not waiting.</p></div><div class="mb-3"></div><div class="card card-accent-teal p-5 sm:p-6" style="border-left:3px solid #5eead4;"><div class="card-title" style="color:#5eead4;">The Math Answer</div><p class="text-sm text-slate-300 leading-[1.85] mb-3">The only force capable of countering a mathematical inevitability is a stronger mathematical constraint. You cannot lobby gravity. You cannot regulate Metcalfe's Law. You can enforce Hamilton's Law at the layer where it cannot be bypassed: the database level, before any application decides anything.</p><p class="text-sm text-slate-300 leading-[1.85] mb-3">Hamilton's Law: max(Pc) &lt; 1/3 at every layer of the governed compute rail. The same threshold The American founders encoded it multiple times in 1787. The same threshold Lamport proved for distributed computing in 1982. STORE built the machine implementation. It has been running for zero constitutional violations since enrollment began.</p></div><div class="mb-3"></div><p class="statement-footer">The old model: trust the institution. The new model: trust the physics. <span style="color:#5eead4;">The physics has been running. The institution is still being proposed.</span></p>
+        </div><div class="card p-6 sm:p-8" style=""><div class="grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-8"><div class="text-center sm:text-left"><div class="hero-num display-num text-4xl sm:text-5xl font-extrabold leading-none">1,800+</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">consecutive days</div></div><div class="text-center sm:text-left"><div class="hero-num display-num text-4xl sm:text-5xl font-extrabold leading-none">126</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">governors</div></div><div class="text-center sm:text-left"><div class="hero-num display-num text-4xl sm:text-5xl font-extrabold leading-none">30+</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">countries</div></div><div class="text-center sm:text-left"><div class="hero-num display-num text-4xl sm:text-5xl font-extrabold leading-none">6</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">ballots</div></div><div class="text-center sm:text-left"><div class="hero-num display-num text-4xl sm:text-5xl font-extrabold leading-none">0</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">violations</div></div><div class="text-center sm:text-left"><div class="hero-num display-num text-4xl sm:text-5xl font-extrabold leading-none">76.95%</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">avg approval</div></div><div class="text-center sm:text-left"><div class="hero-num display-num text-4xl sm:text-5xl font-extrabold leading-none">2</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">granted patents</div></div><div class="text-center sm:text-left"><div class="hero-num display-num text-4xl sm:text-5xl font-extrabold leading-none">5</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">Fortune 500 citations</div></div></div></div><div class="mb-10"></div><div class="mb-8"><div class="section-eyebrow mb-3" style="color:#5eead4;">Why Now</div><h2 class="text-2xl sm:text-[2rem] font-extrabold tracking-tight leading-[1.1] text-white mb-3">The more powerful AI gets, the fewer people govern it.</h2></div><div class="card card-accent-red p-5 sm:p-6" style="border-left:3px solid #f87171;"><div class="card-title" style="color:#f87171;">The Scaling Law Problem</div><p class="text-sm text-slate-300 leading-[1.85] mb-3">Scaling laws describe how AI capability grows with compute and data. More compute means better models. Better models attract more users. More users generate more revenue. More revenue buys more compute. The loop closes and tightens.</p><p class="text-sm text-slate-300 leading-[1.85] mb-3">This is not a conspiracy. It is physics. The same Metcalfe's Law that produced Google from search, Facebook from social graphs, and Amazon from retail logistics is now running on AI infrastructure. Network value scales as n-squared. Concentration is the natural resting state of an unconstrained network.</p><p class="text-sm text-slate-300 leading-[1.85] mb-3">ChatGPT holds 53.9% of consumer AI traffic. Gemini holds 27.9%. Claude holds 9.2%. The top two together exceed the constitutional ceiling that The founders encoded it and Lamport proved it. No governance mechanism anywhere in the AI stack has triggered. No mechanism exists to trigger.</p></div><div class="mb-3"></div><div class="card card-accent-amber p-5 sm:p-6" style="border-left:3px solid #fbbf24;"><div class="card-title" style="color:#fbbf24;">The Coordination Problem</div><p class="text-sm text-slate-300 leading-[1.85] mb-3">Nation-states cannot coordinate on AI governance democratically. The EU AI Act requires self-reporting. NIST published a framework. The G7 issued principles. All of it describes what has already happened, after the concentration has set in and the network effects that make it sticky have already compounded.</p><p class="text-sm text-slate-300 leading-[1.85] mb-3">Legislation moves in years. AI moves in months. By the time a regulatory framework reaches a vote, the system it was designed to govern has already changed. This is not regulatory failure. It is a structural timing mismatch between the speed of democratic deliberation and the speed of machine learning.</p><p class="text-sm text-slate-300 leading-[1.85] mb-3">The CEOs of OpenAI, DeepMind, and Anthropic are now publicly calling for an independent governance body - FINRA-style, IAEA-style. They are describing an institution. Institutions require trust. Trust requires time. The models are not waiting.</p></div><div class="mb-3"></div><div class="card card-accent-teal p-5 sm:p-6" style="border-left:3px solid #5eead4;"><div class="card-title" style="color:#5eead4;">The Math Answer</div><p class="text-sm text-slate-300 leading-[1.85] mb-3">The only force capable of countering a mathematical inevitability is a stronger mathematical constraint. You cannot lobby gravity. You cannot regulate Metcalfe's Law. You can enforce Hamilton's Law at the layer where it cannot be bypassed: the database level, before any application decides anything.</p><p class="text-sm text-slate-300 leading-[1.85] mb-3">Hamilton's Law: max(Pc) &lt; 1/3 at every layer of the governed compute rail. The same threshold The American founders encoded it multiple times in 1787. The same threshold Lamport proved for distributed computing in 1982. STORE built the machine implementation. It has been running for zero constitutional violations since enrollment began.</p></div><div class="mb-3"></div><p class="statement-footer">The old model: trust the institution. The new model: trust the physics. <span style="color:#5eead4;">The physics has been running. The institution is still being proposed.</span></p>
 <div class="page-nav page-nav-inline">
   <button type="button" class="page-nav-btn" id="pnav-prev-inline" aria-label="Previous section" onclick="navStep(-1)">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
@@ -1285,7 +1264,7 @@ body::after {
       </div>
       <div class="rounded-xl p-4 sm:p-5 gap-3 sm:gap-5 items-center" style="background:linear-gradient(90deg,rgba(16,185,129,0.12),rgba(16,185,129,0.04)); border:1px solid rgba(16,185,129,0.3);">
         <div class="text-xs font-semibold tracking-widest uppercase mb-1" style="color:rgba(94,234,212,0.7);">The Moat</div>
-        <p class="text-xs text-slate-300 leading-[1.7]">Two granted U.S. patents. 85 families in development. 1,800 days of zero-violation history. You cannot replicate the record.</p>
+        <p class="text-xs text-slate-300 leading-[1.7]">Two patents granted. Research is being finalized on additional original patent filings. 1,800 days of zero-violation history. You cannot replicate the record.</p>
       </div>
     </div><div class="rounded-xl p-4 sm:p-5" style="background:rgba(139,92,246,0.15); border:1px solid rgba(139,92,246,0.3); border:1px solid rgba(16,185,129,0.3);"><p class="text-sm text-slate-200 leading-[1.7]">1 billion tokens authorized. Emission rate requires two-thirds of governors to change. No founder exemption. The ceiling applies from the first write. Token not yet publicly released. Nothing here is an offer to sell securities.</p></div>
 <div class="page-nav page-nav-inline">
@@ -1585,7 +1564,7 @@ body::after {
     <img src="https://cdn.prod.website-files.com/5f48a063be66ba845f0d598c/69d3593b6f4f5a69430ca25e_STORE_Logo_NewTagline_White.png" alt="STORE Research" style="max-width:125px; height:auto; margin:0 auto 20px; display:block;">
     <div class="section-eyebrow justify-center mb-2" style="color:#5eead4;">STORE Research Inc.</div>
     <p class="text-xs text-slate-500 leading-[1.7] max-w-[520px] mx-auto">
-      Constitutional mathematics for governed compute and AI &mdash; one theorem, enforced at the database layer.
+      L-zero governed cloud infrastructure. Democratic computing. Not a blockchain. Not a chain.
     </p>
     <p class="closing-meta mt-4">WhySTORE &middot; STORE Research Inc.</p>
   </div>
@@ -1625,30 +1604,21 @@ body::after {
     var idx = currentIndex();
     var atFirst = idx === 0;
     var atLast = idx === TABS.length - 1;
-
-    // 1. Update SEMUA tombol Prev di seluruh tab
     document.querySelectorAll('.page-nav-btn[aria-label="Previous section"]').forEach(function (b) {
       b.setAttribute('aria-disabled', atFirst ? 'true' : 'false');
     });
-
-    // 2. Update SEMUA tombol Next di seluruh tab
     document.querySelectorAll('.page-nav-btn[aria-label="Next section"]').forEach(function (b) {
       b.setAttribute('aria-disabled', atLast ? 'true' : 'false');
     });
-
-    // 3. Masukkan judul tab ke SEMUA label navigasi yang ada di antara panah
-    var labelText = TABS[idx][1]; // Ini akan mengambil judul, contoh: "Why STORE / Why Now"
+    var labelText = TABS[idx][1];
     
     document.querySelectorAll('.page-nav-label').forEach(function (l) {
       l.textContent = labelText;
     });
 
-    // 4. Update judul di footer (jika elemennya masih ada)
     var footerTitle = document.getElementById('footer-tab-title');
     if (footerTitle) footerTitle.textContent = TABS[idx][1];
-
-    // 5. Step-dot progress row (mobile dock) — one dot per section,
-    // current one wider/teal so position is legible at a glance.
+    
     var dotsWrap = document.getElementById('page-nav-dots');
     if (dotsWrap) {
       dotsWrap.innerHTML = TABS.map(function (t, i) {
@@ -1656,9 +1626,6 @@ body::after {
       }).join('');
     }
 
-    // 6. Jump-menu option list — rebuilt each time so the active row
-    // stays in sync; only the active state changes, so also just
-    // toggle classes when the menu already has the right length.
     var menu = document.getElementById('pnav-jump-menu');
     if (menu) {
       var existing = menu.querySelectorAll('.page-nav-jump-option');
@@ -1718,10 +1685,7 @@ body::after {
       s.classList.toggle('active', s.id === 'content-' + name);
     });
     updatePageNav();
-    // Land at the top of the newly active section's own content,
-    // not the page header/logo/masthead above it. The sticky tab
-    // bar (desktop only; static on mobile) is offset for so its
-    // first heading is never hidden underneath it.
+
     var target = document.getElementById('content-' + name);
     if (target) {
       var navBar = document.querySelector('.tab-nav-bar');
