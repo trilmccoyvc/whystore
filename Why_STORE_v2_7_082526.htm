@@ -1,0 +1,2128 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why STORE? · STORE Research Inc.</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { fontFamily: { sans: ['Montserrat', 'sans-serif'] } } } }
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   Why STORE? · Design System: "Editorial Command Center"
+   ============================================================ */
+:root {
+  --bg-primary: #050a18;
+  --bg-secondary: rgba(15, 23, 42, 0.7);
+  --bg-tertiary: rgba(15, 23, 42, 0.4);
+  --border-subtle: rgba(148, 163, 184, 0.08);
+  --border-default: rgba(148, 163, 184, 0.12);
+  --text-primary: #ffffff;
+  --text-secondary: #cbd5e1;
+  --text-tertiary: #94a3b8;
+  --text-quaternary: #64748b;
+  --accent-teal: #14b8a6;
+  --accent-emerald: #10b981;
+  --accent-cyan: #06b6d4;
+  --accent-amber: #f59e0b;
+  --accent-violet: #8b5cf6;
+  --accent-red: #ef4444;
+  --transition-fast: 180ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 240ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; padding: 0;
+  font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+  font-feature-settings: 'cv11', 'ss01', 'tnum';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  position: relative;
+}
+body::before {
+  content: ''; position: fixed; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(20, 184, 166, 0.08), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 100% 100%, rgba(99, 102, 241, 0.06), transparent 60%),
+    linear-gradient(180deg, #050a18 0%, #0a1628 50%, #050a18 100%);
+  z-index: -1; pointer-events: none;
+}
+body::after {
+  content: ''; position: fixed; inset: 0;
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.025) 1px, transparent 1px);
+  background-size: 64px 64px;
+  z-index: -1; pointer-events: none;
+  mask-image: radial-gradient(ellipse 100% 80% at 50% 30%, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 100% 80% at 50% 30%, black 30%, transparent 80%);
+}
+
+.eyebrow {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--text-tertiary);
+}
+.section-eyebrow {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.22em;
+  text-transform: uppercase; display: flex; align-items: center; gap: 8px;
+}
+.section-eyebrow::before {
+  content: ''; width: 18px; height: 1px; background: currentColor; opacity: 0.6;
+}
+.sub-kicker {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; margin-bottom: 8px; display: block;
+}
+.display-num {
+  font-variant-numeric: tabular-nums; font-feature-settings: 'tnum';
+  letter-spacing: -0.04em; line-height: 0.95;
+}
+.mono { font-family: 'Courier New', Courier, monospace; }
+
+.row-detail-inner p,
+.detail-block p,
+.leader-proposal,
+.leader-source + p {
+  font-size: 13px !important;
+  line-height: 1.75;
+}
+.text-\[11px\].text-slate-400 {
+  font-size: 12.5px !important;
+  line-height: 1.65 !important;
+}
+.text-\[10px\].text-slate-500:not(.mono) {
+  font-size: 11.5px !important;
+  line-height: 1.55 !important;
+}
+.text-slate-500 {
+  color: #8092a8;
+}
+.text-slate-500.mono,
+.mono.text-slate-500 {
+  color: #6b7d94;
+}
+
+.tab-content { display: none; }
+.tab-content.active { display: block; animation: tab-fade 320ms ease-out; }
+@keyframes tab-fade {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.card {
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.65), rgba(15, 23, 42, 0.4));
+  border: 1px solid var(--border-default);
+  border-radius: 20px; position: relative; overflow: hidden;
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+.card-accent-teal    { background: linear-gradient(180deg, rgba(15,23,42,0.7), rgba(20,184,166,0.04)); border-color: rgba(20,184,166,0.22); }
+.card-accent-emerald { background: linear-gradient(180deg, rgba(15,23,42,0.7), rgba(16,185,129,0.05)); border-color: rgba(16,185,129,0.25); }
+.card-accent-amber   { background: linear-gradient(180deg, rgba(15,23,42,0.7), rgba(245,158,11,0.05)); border-color: rgba(245,158,11,0.28); }
+.card-accent-blue    { background: linear-gradient(180deg, rgba(15,23,42,0.7), rgba(59,130,246,0.05)); border-color: rgba(59,130,246,0.25); }
+.card-accent-violet  { background: linear-gradient(180deg, rgba(15,23,42,0.7), rgba(139,92,246,0.05)); border-color: rgba(139,92,246,0.25); }
+.card-accent-red     { background: linear-gradient(180deg, rgba(15,23,42,0.75), rgba(239,68,68,0.05)); border-color: rgba(239,68,68,0.28); }
+.card-accent-cyan    { background: linear-gradient(180deg, rgba(15,23,42,0.7), rgba(6,182,212,0.05)); border-color: rgba(6,182,212,0.22); }
+.card-accent-slate   { background: linear-gradient(180deg, rgba(15,23,42,0.7), rgba(100,116,139,0.05)); border-color: rgba(100,116,139,0.25); }
+
+.bar-track {
+  height: 6px; background: rgba(148, 163, 184, 0.08);
+  border-radius: 999px; overflow: hidden; position: relative;
+}
+.bar-fill {
+  height: 100%; border-radius: 999px; transform-origin: left; transform: scaleX(0);
+  animation: bar-grow 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+.bar-fill-emerald { background: linear-gradient(90deg, #14b8a6, #10b981); }
+.bar-fill-amber   { background: linear-gradient(90deg, #f59e0b, #fb923c); }
+.bar-fill-red     { background: linear-gradient(90deg, #ef4444, #f87171); }
+.bar-fill-teal    { background: linear-gradient(90deg, #06b6d4, #14b8a6); }
+@keyframes bar-grow { to { transform: scaleX(1); } }
+
+.ceiling-mark {
+  position: absolute; top: 0; left: 33.33%; width: 2px; height: 100%;
+  background: rgba(20,184,166,0.75); z-index: 2;
+}
+
+.hero-num {
+  font-weight: 800; font-feature-settings: 'tnum'; font-variant-numeric: tabular-nums;
+  letter-spacing: -0.05em; line-height: 0.85;
+  background: linear-gradient(90deg, #2d5fa4 0%, #249ba8 100%);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  position: relative;
+}
+
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+
+.tab-nav-bar {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(5, 10, 24, 0.95);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+  overflow: visible;
+}
+@media (max-width: 640px) {
+  .tab-nav-bar { display: none; }
+}
+.tab-btn {
+  position: relative; padding: 16px 18px; font-size: 14px; font-weight: 600;
+  letter-spacing: 0.01em; color: var(--text-tertiary); background: transparent;
+  border: none; cursor: pointer; white-space: nowrap;
+  transition: color var(--transition-fast); flex-shrink: 0;
+}
+.tab-btn:hover { color: var(--text-secondary); }
+.tab-btn.active { color: #5eead4; }
+.tab-btn.active::after {
+  content: ''; position: absolute; bottom: -1px; left: 12px; right: 12px; height: 2px;
+  background: linear-gradient(90deg, transparent, #14b8a6 30%, #14b8a6 70%, transparent);
+  border-radius: 2px;
+}
+.tab-btn:focus-visible {
+  outline: 2px solid rgba(20,184,166,0.55); outline-offset: -2px;
+}
+.tab-nav-scroll {
+  display: flex; gap: 4px; overflow-x: auto; overflow-y: hidden;
+  -webkit-overflow-scrolling: touch; scroll-behavior: smooth;
+  scrollbar-width: none; -ms-overflow-style: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 20px, #000 calc(100% - 20px), transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 20px, #000 calc(100% - 20px), transparent 100%);
+}
+.tab-nav-scroll::-webkit-scrollbar { display: none; }
+@media (max-width: 640px) {
+  .tab-btn { padding: 14px 13px; font-size: 12.5px; }
+}
+.store-nav-link { padding: 12px; font-size: 15px; }
+  .store-nav-link .store-nav-logo { height: 17px; }
+
+/* ── Chips, pills, links ── */
+.anchor-rail { display: flex; gap: 8px; padding: 12px 0; flex-wrap: wrap; }
+.anchor-chip {
+  display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px;
+  border-radius: 999px; font-size: 12px; font-weight: 500;
+  background: rgba(148, 163, 184, 0.05); border: 1px solid rgba(148, 163, 184, 0.1);
+  color: var(--text-quaternary); white-space: nowrap; flex-shrink: 0;
+}
+.anchor-chip-dot { width: 5px; height: 5px; border-radius: 999px; background: currentColor; opacity: 0.5; }
+.badge {
+  display: inline-flex; align-items: center; gap: 6px; padding: 3px 9px; border-radius: 999px;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.badge-wrap {
+  white-space: normal; text-align: left; text-transform: none;
+  letter-spacing: 0.02em; line-height: 1.5; border-radius: 12px;
+  max-width: 100%; flex: 1 1 auto; min-width: 0;
+}
+.link-arrow { display: inline-flex; align-items: center; gap: 4px; transition: gap var(--transition-fast); }
+.link-arrow:hover { gap: 7px; }
+
+.status-shipped { background: rgba(16,185,129,0.10); color: #34d399; border: 1px solid rgba(16,185,129,0.30); }
+.status-active  { background: rgba(245,158,11,0.10); color: #fbbf24; border: 1px solid rgba(245,158,11,0.30); }
+.status-queued  { background: rgba(59,130,246,0.10); color: #60a5fa; border: 1px solid rgba(59,130,246,0.30); }
+.status-locked  { background: rgba(51,65,85,0.40);   color: #94a3b8; border: 1px solid rgba(71,85,105,0.50); }
+
+.dot {
+  flex-shrink: 0; width: 10px; height: 10px; border-radius: 999px; margin-top: 6px; position: relative;
+}
+.dot::after {
+  content: ''; position: absolute; inset: -3px; border-radius: 999px;
+  border: 1px solid currentColor; opacity: 0.3;
+}
+.dot-shipped { background: #10b981; color: #10b981; }
+.dot-active  { background: #f59e0b; color: #f59e0b; animation: dot-pulse 2.4s ease-in-out infinite; }
+.dot-queued  { background: #3b82f6; color: #3b82f6; }
+.dot-locked  { background: rgba(100,116,139,0.5); color: rgba(100,116,139,0.5); }
+@keyframes dot-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.4); }
+}
+
+/* ── Collapsible rows ── */
+.chev { transition: transform var(--transition-base); }
+.chev.open { transform: rotate(180deg); }
+.row-item { position: relative; transition: all var(--transition-fast); }
+.row-summary {
+  display: flex; align-items: flex-start; gap: 14px; padding: 14px 16px; width: 100%;
+  text-align: left; background: none; border: none; color: inherit; font-family: inherit;
+  cursor: pointer; border-radius: 12px; transition: background var(--transition-fast); user-select: none;
+}
+.row-summary:hover { background: rgba(148, 163, 184, 0.04); }
+.row-summary:focus-visible { outline: 2px solid rgba(20, 184, 166, 0.5); outline-offset: -2px; }
+.row-detail { max-height: 0; overflow: hidden; transition: max-height 420ms cubic-bezier(0.4, 0, 0.2, 1); }
+.row-detail.open { max-height: 2400px; }
+.row-detail-inner { padding: 0 16px 18px 50px; }
+.row-detail-inner > p:not(.layer-quote):not(.layer-context):not(.layer-note) {
+  font-size: 13px; line-height: 1.75; color: var(--text-secondary);
+  padding: 12px 14px; border-radius: 10px;
+  background: rgba(148, 163, 184, 0.035);
+  border: 1px solid var(--border-subtle);
+}
+.row-detail-inner > p:not(.layer-quote):not(.layer-context):not(.layer-note) + p:not(.layer-quote):not(.layer-context):not(.layer-note) { margin-top: 8px; }
+@media (max-width: 640px) {
+  .row-detail-inner { padding: 0 12px 16px 36px; }
+}
+
+/* ── Dependency chain ── */
+.dep-chain { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.dep-step { transition: border-color var(--transition-fast), background var(--transition-fast); }
+.dep-step:hover { border-color: rgba(139, 92, 246, 0.6); background: rgba(139, 92, 246, 0.06); }
+
+.seg-btn {
+  padding: 10px 16px; border-radius: 12px; font-size: 12px; font-weight: 600;
+  color: var(--text-tertiary); background: rgba(148, 163, 184, 0.05);
+  border: 1px solid rgba(148, 163, 184, 0.12); cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+}
+.seg-btn:hover { background: rgba(148, 163, 184, 0.12); color: var(--text-secondary); }
+.seg-btn.is-active {
+  background: rgba(20, 184, 166, 0.14); border-color: rgba(20, 184, 166, 0.4); color: #5eead4;
+}
+.seg-btn:focus-visible { outline: 2px solid rgba(20,184,166,0.5); outline-offset: 2px; }
+.seg-panel { display: none; }
+.seg-panel.is-active { display: block; animation: tab-fade 260ms ease-out; }
+
+.field {
+  width: 100%; background: rgba(255,255,255,0.05); border: 1px solid var(--border-default);
+  border-radius: 12px; padding: 12px 14px; font-size: 13px; color: #fff;
+  font-family: inherit; outline: none;
+}
+.field:focus { border-color: rgba(20,184,166,0.5); }
+.btn-primary {
+  background: linear-gradient(135deg, #5eead4 0%, #34d399 50%, #10b981 100%);
+  color: #042f2e; border: none; border-radius: 12px; padding: 12px 18px;
+  font-size: 13px; font-weight: 700; font-family: inherit; cursor: pointer;
+  transition: filter var(--transition-fast), transform var(--transition-fast);
+}
+.btn-primary:hover { filter: brightness(1.08); transform: translateY(-1px); }
+.btn-ghost {
+  background: transparent; color: var(--text-tertiary);
+  border: 1px solid var(--border-default); border-radius: 12px; padding: 10px 18px;
+  font-size: 12px; font-weight: 700; font-family: inherit; cursor: pointer;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+.btn-ghost:hover { color: #5eead4; border-color: rgba(20,184,166,0.4); }
+
+.store-nav { position: relative; flex-shrink: 0; z-index: 80; }
+.store-nav-toggle {
+  display: flex; align-items: center; justify-content: center; width: 44px; height: 44px;
+  margin-top: 6px; border-radius: 12px; background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(148, 163, 184, 0.15); color: #cbd5e1; cursor: pointer;
+  transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+  -webkit-tap-highlight-color: transparent;
+}
+.store-nav-toggle:hover { background: rgba(20,184,166,0.10); border-color: rgba(20,184,166,0.35); color: #5eead4; }
+.store-nav.open .store-nav-toggle { background: rgba(20,184,166,0.12); border-color: rgba(20,184,166,0.4); color: #5eead4; }
+.store-nav-toggle:focus-visible { outline: 2px solid rgba(20,184,166,0.55); outline-offset: 2px; }
+.store-nav-bars { position: relative; width: 18px; height: 14px; }
+.store-nav-bars span {
+  position: absolute; left: 0; width: 100%; height: 2px; border-radius: 2px;
+  background: currentColor; transition: transform var(--transition-base), opacity var(--transition-fast);
+}
+.store-nav-bars span:nth-child(1) { top: 0; }
+.store-nav-bars span:nth-child(2) { top: 6px; }
+.store-nav-bars span:nth-child(3) { top: 12px; }
+.store-nav.open .store-nav-bars span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.store-nav.open .store-nav-bars span:nth-child(2) { opacity: 0; }
+.store-nav.open .store-nav-bars span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+.store-nav-panel {
+  position: absolute; top: calc(100% + 10px); left: 0; width: 272px; padding: 8px;
+  border-radius: 16px; background: rgba(10, 17, 34, 0.97);
+  border: 1px solid rgba(148, 163, 184, 0.16); box-shadow: 0 20px 50px rgba(0,0,0,0.55);
+  backdrop-filter: blur(20px) saturate(140%); -webkit-backdrop-filter: blur(20px) saturate(140%);
+  opacity: 0; visibility: hidden; transform: translateY(-8px);
+  transition: opacity var(--transition-fast), transform var(--transition-base), visibility var(--transition-fast);
+  z-index: 90;
+}
+.store-nav.open .store-nav-panel { opacity: 1; visibility: visible; transform: translateY(0); }
+.store-nav-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--text-quaternary); padding: 8px 12px 6px;
+}
+.store-nav-link {
+  display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px;
+  font-size: 14px; font-weight: 600; color: #cbd5e1; text-decoration: none;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+.store-nav-link:hover { background: rgba(20,184,166,0.09); color: #ffffff; }
+.store-nav-link .store-nav-logo {
+  height: 16px;
+  width: auto;
+  max-width: 130px;
+  object-fit: contain;
+  display: block;
+  opacity: 0.85;
+  transition: opacity var(--transition-fast);
+}
+.store-nav-link:hover .store-nav-logo {
+  opacity: 1;
+}
+.store-nav-dot {
+  width: 5px; height: 5px; border-radius: 999px; background: rgba(94,234,212,0.45);
+  flex-shrink: 0; margin-left: 6px; margin-right: 7px;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+.store-nav-link:hover .store-nav-dot { background: #5eead4; transform: scale(1.4); }
+.store-nav-divider { height: 1px; margin: 8px 4px; background: rgba(148,163,184,0.12); }
+.store-nav-cta {
+  display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 14px;
+  border-radius: 12px; font-size: 13px; font-weight: 700; letter-spacing: 0.02em;
+  color: #042f2e; text-decoration: none;
+  background: linear-gradient(135deg, #5eead4 0%, #34d399 50%, #10b981 100%);
+  box-shadow: 0 6px 20px rgba(16,185,129,0.25);
+  transition: filter var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+.store-nav-cta:hover { filter: brightness(1.08); transform: translateY(-1px); box-shadow: 0 10px 26px rgba(16,185,129,0.35); }
+
+/* ── Tables ── */
+.data-table { width: 100%; border-collapse: collapse; }
+.data-table th {
+  text-align: left; padding: 10px 14px; font-size: 10px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase; background: rgba(0,0,0,0.3);
+}
+.data-table td {
+  padding: 12px 14px; font-size: 12px; line-height: 1.6; vertical-align: top;
+  border-top: 1px solid var(--border-subtle);
+}
+.data-table tbody tr:nth-child(even) { background: rgba(255,255,255,0.02); }
+
+.pull-quote {
+  font-style: italic; 
+  line-height: 2.0 !important; /* Memaksa line-height tetap 2.0 */
+  border-left: 2px solid rgba(20, 184, 166, 0.45); 
+  padding-left: 16px;
+}
+
+.card-title {
+  font-size: 17px; font-weight: 800; color: #fff;
+  letter-spacing: -0.01em; line-height: 1.3; margin-bottom: 10px;
+}
+.card-title.lg { font-size: 20px; }
+
+.statement-footer {
+  text-align: center; font-style: italic; font-weight: 600;
+  font-size: 14px; line-height: 1.7; color: var(--text-secondary);
+  max-width: 640px; margin: 0 auto; padding: 4px 8px;
+}
+
+.detail-block {
+  margin-top: 4px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: rgba(148, 163, 184, 0.035);
+  border: 1px solid var(--border-subtle);
+}
+.detail-block > p { margin: 0; }
+.detail-block > p + p { margin-top: 10px; }
+.detail-kicker {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--text-quaternary); margin-bottom: 8px; display: block;
+}
+.info-row {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 10px 12px; border-radius: 10px;
+  background: rgba(20, 184, 166, 0.045);
+  border: 1px solid rgba(20, 184, 166, 0.14);
+}
+.info-row + .info-row { margin-top: 6px; }
+.info-row-badge {
+  flex-shrink: 0; width: 22px; height: 22px; border-radius: 999px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 800; letter-spacing: 0.02em;
+  background: rgba(20, 184, 166, 0.16); color: #5eead4;
+  font-family: 'Courier New', Courier, monospace;
+}
+.info-row-body { min-width: 0; padding-top: 1px; }
+.info-row-label {
+  font-size: 11px; font-weight: 700; color: #5eead4;
+  letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 3px;
+}
+.info-row-value { font-size: 12px; color: var(--text-secondary); line-height: 1.55; }
+
+.rail-chip {
+  border-radius: 12px; padding: 10px 12px;
+  background: rgba(20, 184, 166, 0.06);
+  border: 1px solid rgba(20, 184, 166, 0.22);
+}
+.rail-chip-label {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em;
+  color: #5eead4; margin-bottom: 4px;
+}
+.rail-chip-desc { font-size: 11.5px; color: var(--text-tertiary); line-height: 1.5; }
+.content-card {
+  border-radius: 16px; padding: 24px 26px;
+  background: linear-gradient(180deg, rgba(15,23,42,0.65), rgba(15,23,42,0.4));
+  border: 1px solid var(--border-default);
+  border-left: 3px solid var(--content-accent, #5eead4);
+}
+.content-card-head {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 16px; padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.content-card-num {
+  flex-shrink: 0; width: 30px; height: 30px; border-radius: 999px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Courier New', Courier, monospace; font-size: 13px; font-weight: 800;
+  background: rgba(20, 184, 166, 0.14); color: var(--content-accent, #5eead4);
+}
+.content-card-title {
+  font-size: 19px; font-weight: 800; color: #fff;
+  letter-spacing: -0.015em; line-height: 1.2;
+}
+.content-card p {
+  font-size: 13px; color: var(--text-secondary); line-height: 1.8;
+}
+.content-card p + p { margin-top: 12px; }
+
+.layer-card {
+  border-radius: 16px; padding: 16px 18px;
+  background: linear-gradient(180deg, rgba(15,23,42,0.65), rgba(15,23,42,0.4));
+  border: 1px solid var(--border-default);
+  border-left: 3px solid var(--layer-accent, #5eead4);
+}
+.layer-card + .layer-card { margin-top: 8px; }
+.layer-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.layer-head-left { display: flex; align-items: flex-start; gap: 12px; min-width: 0; }
+.layer-num {
+  font-size: 22px; font-weight: 800; line-height: 1; flex-shrink: 0;
+  color: var(--layer-accent, #5eead4);
+  font-variant-numeric: tabular-nums;
+}
+.layer-title { font-size: 13.5px; font-weight: 700; color: var(--layer-accent, #5eead4); margin-bottom: 3px; }
+.layer-sub { font-size: 11.5px; color: var(--text-tertiary); font-style: italic; line-height: 1.4; }
+.layer-badges { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; flex-shrink: 0; }
+.layer-status {
+  font-family: 'Courier New', Courier, monospace; font-size: 10px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap;
+}
+.layer-points { display: flex; flex-direction: column; gap: 7px; }
+.layer-point { display: flex; align-items: flex-start; gap: 9px; }
+.layer-point-dot {
+  width: 4px; height: 4px; border-radius: 999px; flex-shrink: 0; margin-top: 7px;
+  background: var(--layer-accent, #5eead4);
+}
+.layer-point-text { font-size: 12.5px; color: var(--text-secondary); line-height: 1.6; }
+.layer-quote {
+  font-size: 13px; font-style: italic; line-height: 1.7; color: #e2e8f0;
+  border-left: 2px solid var(--layer-accent, #5eead4); padding-left: 12px;
+  margin-bottom: 14px;
+}
+.layer-proof {
+  font-size: 11.5px; font-family: 'Courier New', Courier, monospace;
+  padding: 8px 12px; border-radius: 8px; margin-bottom: 12px;
+  background: rgba(16,185,129,0.07); border: 1px solid rgba(16,185,129,0.22); color: #34d399;
+}
+.layer-context {
+  font-size: 12.5px; font-style: italic; line-height: 1.65; color: var(--text-secondary);
+  padding: 10px 12px; border-radius: 10px; margin-bottom: 12px;
+  background: rgba(148, 163, 184, 0.035); border: 1px solid var(--border-subtle);
+}
+.layer-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.layer-tag {
+  font-family: 'Courier New', Courier, monospace; font-size: 10px;
+  padding: 3px 8px; border-radius: 999px;
+  color: var(--layer-accent, #5eead4);
+  background: rgba(20, 184, 166, 0.14);
+}
+.layer-note { font-size: 11px; color: var(--text-quaternary); line-height: 1.6; }
+.layer-gate-divider {
+  text-align: center; margin: 10px 0; font-family: 'Courier New', Courier, monospace;
+  font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-quaternary);
+}
+.formula-card { 
+  padding: 16px 18px; 
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.formula-head {
+  display: flex; 
+  align-items: center; 
+  justify-content: flex-start; 
+  gap: 12px; 
+  flex-wrap: wrap; 
+  margin-bottom: 12px;
+  width: auto;
+}
+
+.formula-name-group { 
+  display: flex; 
+  align-items: center; 
+  gap: 10px; 
+  flex-wrap: wrap; 
+}
+
+.formula-name { 
+  font-size: 15px; 
+  font-weight: 800; 
+  color: #fff; 
+}
+
+.formula-eq {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 20px; 
+  font-weight: 800; 
+  color: #5eead4;
+  line-height: 1.4; 
+  letter-spacing: 0.01em;
+  padding: 16px 18px; 
+  border-radius: 12px; 
+  margin-bottom: 12px;
+  background: rgba(20, 184, 166, 0.09);
+  border: 1px solid rgba(20, 184, 166, 0.28);
+  overflow-x: auto;
+  width: fit-content;
+  max-width: 100%;
+}
+.formula-plain { font-size: 12.5px; color: var(--text-tertiary); line-height: 1.65; }
+@media (max-width: 480px) {
+  .formula-eq { font-size: 16px; }
+}
+.explainer-toggle {
+  display: flex; align-items: center; gap: 12px; width: 100%;
+  padding: 14px 16px; background: none; border: none; text-align: left;
+  color: inherit; font-family: inherit; cursor: pointer; border-radius: 14px;
+  transition: background var(--transition-fast);
+}
+.explainer-toggle:hover { background: rgba(148, 163, 184, 0.04); }
+.explainer-toggle:focus-visible { outline: 2px solid rgba(148, 163, 184, 0.4); outline-offset: -2px; }
+.explainer-icon {
+  flex-shrink: 0; width: 32px; height: 32px; border-radius: 999px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(148, 163, 184, 0.10); border: 1px solid rgba(148, 163, 184, 0.22);
+  color: #94a3b8;
+}
+.explainer-label { min-width: 0; }
+.explainer-title { font-size: 13px; font-weight: 700; color: #cbd5e1; margin-bottom: 2px; }
+.explainer-sub { font-size: 11px; color: var(--text-quaternary); }
+
+.story-flow { padding: 4px 6px 4px 20px; }
+.story-beat {
+  position: relative; padding: 0 0 18px 22px;
+  border-left: 1px solid rgba(148, 163, 184, 0.18);
+}
+.story-beat:last-child { padding-bottom: 0; border-left-color: transparent; }
+.story-beat::before {
+  content: ''; position: absolute; left: -4.5px; top: 3px;
+  width: 8px; height: 8px; border-radius: 999px;
+  background: #0a1628; border: 1.5px solid #5eead4;
+}
+.story-beat:first-child::before { background: #5eead4; }
+.story-beat-text { font-size: 12.5px; line-height: 1.7; color: var(--text-secondary); }
+.story-beat:first-child .story-beat-text { font-size: 13.5px; font-weight: 600; color: #e2e8f0; }
+.story-beat:last-child .story-beat-text { font-style: italic; color: #5eead4; }
+.leader-card {
+  border-radius: 14px; padding: 16px 18px;
+  background: rgba(148, 163, 184, 0.035);
+  border: 1px solid var(--border-subtle);
+  border-left: 2px solid rgba(20, 184, 166, 0.4);
+}
+.leader-name { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 2px; }
+.leader-role { font-size: 11px; color: #5eead4; margin-bottom: 10px; font-weight: 600; }
+.leader-proposal { font-size: 12.5px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 10px; }
+.leader-source {
+  font-size: 10px; color: var(--text-quaternary); font-family: 'Courier New', Courier, monospace;
+  padding-top: 8px; border-top: 1px solid var(--border-subtle);
+}
+.timeline-card {
+  border-radius: 20px; padding: 22px 22px 18px;
+  background: linear-gradient(180deg, rgba(15,23,42,0.65), rgba(15,23,42,0.4));
+  border: 1px solid var(--border-default);
+}
+.timeline-rail {
+  position: relative; padding-left: 26px;
+}
+.timeline-rail::before {
+  content: ''; position: absolute; left: 5px; top: 6px; bottom: 6px;
+  width: 1px; background: linear-gradient(180deg, rgba(20,184,166,0.5), rgba(20,184,166,0.08));
+}
+.timeline-entry { position: relative; padding-bottom: 22px; }
+.timeline-entry:last-child { padding-bottom: 0; }
+.timeline-ring {
+  position: absolute; left: -26px; top: 3px;
+  width: 11px; height: 11px; border-radius: 999px;
+  background: #5eead4; box-shadow: 0 0 0 1px rgba(5,10,24,1);
+}
+.timeline-ring::after {
+  content: ''; position: absolute; inset: -5px; border-radius: 999px;
+  border: 1px solid rgba(94, 234, 212, 0.4);
+}
+.timeline-year {
+  font-family: 'Courier New', Courier, monospace; font-size: 11px; font-weight: 700;
+  color: #5eead4; letter-spacing: 0.04em; margin-bottom: 3px;
+}
+.timeline-what { font-size: 15px; font-weight: 700; color: #f1f5f9; line-height: 1.4; }
+.timeline-note { font-size: 12px; color: var(--text-tertiary); line-height: 1.65; margin-top: 3px; }
+
+.closing-card {
+  border-radius: 24px; padding: 40px 28px;
+  background:
+    radial-gradient(ellipse 90% 70% at 50% -10%, rgba(20,184,166,0.10), transparent 65%),
+    linear-gradient(180deg, rgba(15,23,42,0.75), rgba(15,23,42,0.45));
+  border: 1px solid rgba(20,184,166,0.25);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+}
+.closing-meta {
+  font-size: 11px; color: var(--text-tertiary); font-family: 'Courier New', Courier, monospace;
+  letter-spacing: 0.04em;
+}
+.killswitch-table { overflow: hidden; }
+@media (max-width: 640px) {
+  .killswitch-table table,
+  .killswitch-table thead,
+  .killswitch-table tbody,
+  .killswitch-table th,
+  .killswitch-table td,
+  .killswitch-table tr { display: block; }
+  .killswitch-table thead { display: none; }
+  .killswitch-table tr {
+    padding: 14px 4px; border-bottom: 1px solid rgba(148,163,184,0.12);
+  }
+  .killswitch-table tr:last-child { border-bottom: none; }
+  .killswitch-table td {
+    padding: 4px 12px !important; background: transparent !important;
+  }
+  .killswitch-table td[data-label]::before {
+    content: attr(data-label);
+    display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--text-quaternary); margin-bottom: 2px;
+  }
+  .killswitch-table td[data-label="Feature"] {
+    font-size: 13px; color: #fff !important; padding-top: 10px !important;
+  }
+  .killswitch-table td[data-label="Feature"]::before { display: none; }
+}
+
+/* ── Masthead (page header) ── */
+.masthead {
+  display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: end;
+  padding-bottom: 22px; border-bottom: 1px solid var(--border-default);
+}
+.masthead-title {
+  font-size: clamp(2.4rem, 7vw, 4rem); font-weight: 800; letter-spacing: -0.045em;
+  line-height: 0.95; color: #fff; margin: 0 0 14px;
+}
+.masthead-sub {
+  font-size: clamp(1rem, 2.4vw, 1.35rem); font-weight: 300; line-height: 1.35;
+  color: var(--text-secondary); margin: 0; letter-spacing: -0.01em;
+}
+.masthead-stats {
+  display: grid; gap: 2px; min-width: 190px;
+  border-left: 1px solid var(--border-default); padding-left: 18px;
+}
+.stat-row {
+  display: flex; justify-content: space-between; gap: 16px;
+  font-family: 'Courier New', Courier, monospace; font-size: 11px;
+  padding: 3px 0;
+}
+.stat-key { color: var(--text-quaternary); letter-spacing: 0.14em; text-transform: uppercase; }
+.stat-val { color: #5eead4; font-weight: 700; font-variant-numeric: tabular-nums; }
+@media (max-width: 720px) {
+  .masthead { grid-template-columns: 1fr; gap: 22px; align-items: start; }
+  .masthead-stats {
+    border-left: none; padding-left: 0; padding-top: 16px;
+    border-top: 1px solid var(--border-default);
+    grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px 18px;
+  }
+}
+
+@media (max-width: 640px) {
+  body::after { background-size: 32px 32px; }
+  .row-summary { padding: 12px; gap: 10px; }
+  .row-detail-inner { padding: 0 12px 14px 36px; }
+  .card { padding: 14px !important; box-shadow: none !important; }
+  .dep-chain { flex-direction: column !important; align-items: stretch !important; gap: 6px !important; }
+  .dep-chain .dep-arrow { display: none; }
+  .data-table thead { display: none; }
+  .data-table tr { display: block; border-top: 1px solid var(--border-subtle); }
+  .data-table td { display: block; border-top: none; padding: 6px 12px; }
+  .data-table td:first-child {
+    font-weight: 700; color: #e2e8f0; padding-top: 12px;
+    font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
+  }
+
+  .px-4.sm\:px-8 { padding-left: 20px !important; padding-right: 20px !important; }
+  .py-8 { padding-top: 24px !important; padding-bottom: 24px !important; }
+  .py-10 { padding-top: 28px !important; padding-bottom: 28px !important; }
+  .content-card { padding: 18px 18px !important; }
+  .content-card-head { margin-bottom: 12px !important; padding-bottom: 10px !important; }
+  section > .mb-8, .mb-8 { margin-bottom: 28px !important; }
+  .mb-6 { margin-bottom: 22px !important; }
+  .mb-10 { margin-bottom: 32px !important; }
+  h2.text-2xl { margin-bottom: 14px !important; }
+  .content-card.mb-5 { margin-bottom: 12px !important; }
+  .timeline-card { padding: 16px 16px 14px !important; }
+  .closing-card { padding: 28px 20px !important; }
+}
+
+.page-nav {
+  position: relative;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; margin-top: 40px; padding-top: 16px;
+  border-top: 1px solid var(--border-subtle);
+}
+.page-nav-btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px; border-radius: 999px; flex-shrink: 0;
+  background: rgba(20, 184, 166, 0.08); border: 1px solid rgba(20, 184, 166, 0.25);
+  color: #5eead4; cursor: pointer; transition: background var(--transition-fast), opacity var(--transition-fast);
+  position: relative; z-index: 2;
+}
+.page-nav-btn:hover { background: rgba(20, 184, 166, 0.16); }
+.page-nav-btn[aria-disabled="true"] {
+  opacity: 0.25; cursor: default; pointer-events: none;
+}
+.page-nav-label {
+  position: absolute; left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 14px; 
+  font-weight: 700; 
+  color: #cbd5e1;
+  letter-spacing: 0.06em; text-align: center;
+  max-width: calc(100% - 112px);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  pointer-events: none;
+}
+
+.page-nav-dots {
+  display: flex; align-items: center; justify-content: center; gap: 5px;
+  padding: 6px 0 2px;
+}
+.page-nav-dot {
+  width: 5px; height: 5px; border-radius: 999px;
+  background: rgba(148, 163, 184, 0.3);
+  transition: background var(--transition-fast), transform var(--transition-fast), width var(--transition-fast);
+}
+.page-nav-dot.is-active {
+  background: #5eead4; width: 14px; border-radius: 999px;
+}
+.page-nav-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+}
+.page-nav-jump {
+  position: relative;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  flex: 1; min-width: 0; padding: 8px 10px; border-radius: 10px;
+  background: none; border: none; cursor: pointer;
+  transition: background var(--transition-fast);
+}
+.page-nav-jump:hover, .page-nav-jump[aria-expanded="true"] { background: rgba(148, 163, 184, 0.07); }
+.page-nav-jump .page-nav-label {
+  position: static; transform: none; pointer-events: auto;
+  display: block; width: 100%; max-width: none;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.page-nav-jump-chevron { flex-shrink: 0; color: var(--text-quaternary); transition: transform var(--transition-fast); }
+.page-nav-jump[aria-expanded="true"] .page-nav-jump-chevron { transform: rotate(180deg); }
+.page-nav-jump-menu {
+  position: absolute; left: 12px; right: 12px; bottom: calc(100% + 8px);
+  background: rgba(10, 17, 34, 0.97); border: 1px solid rgba(148, 163, 184, 0.16);
+  border-radius: 16px; padding: 6px; box-shadow: 0 20px 50px rgba(0,0,0,0.55);
+  backdrop-filter: blur(20px) saturate(140%); -webkit-backdrop-filter: blur(20px) saturate(140%);
+  max-height: 60vh; overflow-y: auto;
+  opacity: 0; visibility: hidden; transform: translateY(8px);
+  transition: opacity var(--transition-fast), transform var(--transition-base), visibility var(--transition-fast);
+}
+.page-nav-jump-menu.open { opacity: 1; visibility: visible; transform: translateY(0); }
+.page-nav-jump-option {
+  display: flex; align-items: center; gap: 10px; width: 100%; padding: 11px 12px;
+  border-radius: 10px; background: none; border: none; text-align: left; cursor: pointer;
+  font-size: 14px; font-weight: 600; color: #cbd5e1;
+}
+.page-nav-jump-option:hover { background: rgba(20,184,166,0.09); color: #fff; }
+.page-nav-jump-option.is-active { color: #5eead4; background: rgba(20,184,166,0.08); }
+.page-nav-jump-option-num {
+  flex-shrink: 0; width: 20px; font-family: 'Courier New', Courier, monospace;
+  font-size: 11px; color: var(--text-quaternary); text-align: right;
+}
+@media (min-width: 641px) {
+  .page-nav-dots, .page-nav-jump-menu { display: none; }
+}
+
+@media (max-width: 640px) {
+  .page-nav-inline { display: none !important; }
+  .page-nav-dock {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+    display: flex; flex-direction: column; align-items: stretch;
+    gap: 2px; padding: 8px 10px calc(8px + env(safe-area-inset-bottom));
+    background: rgba(5, 10, 24, 0.92);
+    backdrop-filter: blur(20px) saturate(140%); -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border-top: 1px solid rgba(148, 163, 184, 0.1);
+  }
+  .page-nav-btn { width: 34px; height: 34px; flex-shrink: 0; }
+  .page-nav-row { gap: 6px; }
+  .page-nav-jump { padding: 6px 4px; gap: 4px; }
+  .page-nav-jump .page-nav-label { font-size: 12px; letter-spacing: 0.03em; }
+  body { padding-bottom: 64px; }
+  .formula-name-group { flex-direction: column; align-items: flex-start !important; gap: 8px !important; }
+}
+@media (min-width: 641px) {
+  .page-nav-dock { display: none; }
+}
+
+@media print {
+  body::before, body::after { display: none; }
+  .tab-content { display: block !important; }
+  .store-nav, .tab-nav-bar, .page-nav-dock { display: none !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  .bar-fill { transform: scaleX(1); }
+  .dot-active { animation: none !important; }
+}
+</style>
+</head>
+<body>
+<div class="px-4 sm:px-8 pt-7 sm:pt-10 pb-7">
+  <header class="max-w-[1280px] mx-auto">
+
+    <div class="flex items-start gap-3 sm:gap-4 mb-8">
+    <div class="store-nav" id="store-nav">
+        <button type="button" class="store-nav-toggle" id="store-nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="store-nav-panel">
+            <span class="store-nav-bars"><span></span><span></span><span></span></span>
+        </button>
+
+        <div class="store-nav-panel" id="store-nav-panel" role="menu" aria-label="STORE main menu">
+            <p class="store-nav-label">Explore STORE</p>
+
+            <a class="store-nav-link" role="menuitem" href="https://storecloud.org/economy" target="_blank" rel="noopener noreferrer"><span class="store-nav-dot"></span>Economy</a>
+            <a class="store-nav-link" role="menuitem" href="https://storecloud.org/transactions" target="_blank" rel="noopener noreferrer"><span class="store-nav-dot"></span>Transaction</a>
+<a class="store-nav-link" role="menuitem" href="https://ai.storecloud.org/" target="_blank" rel="noopener noreferrer" aria-label="STORE AI">
+    <span class="store-nav-dot"></span>
+    <img class="store-nav-logo" src="https://cdn.prod.website-files.com/5f48a063be66ba845f0d598c/68524aef59f37f727f9203f3_PWB_STORE_Ai_Plug_WhiteText.svg" alt="AI">
+</a>
+
+            <a class="store-nav-link" role="menuitem" href="https://storecloud.org/infrastructure" target="_blank" rel="noopener noreferrer"><span class="store-nav-dot"></span>Infrastructure</a>
+            <a class="store-nav-link" role="menuitem" href="https://storecloud.org/monetary" target="_blank" rel="noopener noreferrer"><span class="store-nav-dot"></span>Monetary System</a>
+            <a class="store-nav-link" role="menuitem" href="https://storecloud.org/treasuries" target="_blank" rel="noopener noreferrer"><span class="store-nav-dot"></span>Treasuries</a>
+            <a class="store-nav-link" role="menuitem" href="https://storecloud.org/democracy" target="_blank" rel="noopener noreferrer"><span class="store-nav-dot"></span>BFT Democracy</a>
+            <a class="store-nav-link" role="menuitem" href="https://storecloud.org/news" target="_blank" rel="noopener noreferrer"><span class="store-nav-dot"></span>News</a>
+
+            <div class="store-nav-divider"></div>
+
+            <a class="store-nav-cta" role="menuitem" href="https://storecloud.org/buystore" target="_blank" rel="noopener noreferrer">
+                Request to Buy STORE
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+            </a>
+        </div>
+    </div>
+    <div class="flex items-start justify-between w-full mb-8">
+    <a href="https://storecloud.org/" target="_blank" rel="noopener noreferrer" class="store-logo-link" aria-label="STORE Cloud home">
+        <img src="https://cdn.prod.website-files.com/5f48a063be66ba845f0d598c/688242a02e83bccd730a7c79_STORE_White_New_Jul25_High.png" alt="STORE Cloud" class="h-14 sm:h-16 w-auto object-contain flex-shrink-0 mt-0.5">
+    </a>
+
+</div>
+</div>
+
+    <div class="masthead">
+      <div class="min-w-0">
+        <h1 class="masthead-title">Why STORE / Why Now</h1>
+        <p class="text-sm sm:text-base text-slate-400 mt-2">L-zero governed cloud infrastructure. Democratic computing. Not a blockchain. Not a chain.</p>
+      </div>
+    </div>
+
+  </header>
+</div>
+
+<nav class="tab-nav-bar" aria-label="Sections">
+  <div class="max-w-[900px] mx-auto px-4 sm:px-8">
+    <div class="tab-nav-scroll" role="tablist" id="tab-nav-scroll"><button id="tab-why" class="tab-btn active" role="tab" aria-selected="true" aria-controls="content-why" onclick="switchTab('why')">Why STORE / Why Now</button><button id="tab-vision" class="tab-btn" role="tab" aria-selected="false" aria-controls="content-vision" onclick="switchTab('vision')">The Vision</button><button id="tab-history" class="tab-btn" role="tab" aria-selected="false" aria-controls="content-history" onclick="switchTab('history')">History</button><button id="tab-math" class="tab-btn" role="tab" aria-selected="false" aria-controls="content-math" onclick="switchTab('math')">The Math</button><button id="tab-token" class="tab-btn" role="tab" aria-selected="false" aria-controls="content-token" onclick="switchTab('token')">The Token</button><button id="tab-roadmap" class="tab-btn" role="tab" aria-selected="false" aria-controls="content-roadmap" onclick="switchTab('roadmap')">Roadmap</button><button id="tab-launch" class="tab-btn" role="tab" aria-selected="false" aria-controls="content-launch" onclick="switchTab('launch')">Launch</button><button id="tab-join" class="tab-btn" role="tab" aria-selected="false" aria-controls="content-join" onclick="switchTab('join')">Join</button><button id="tab-who" class="tab-btn" role="tab" aria-selected="false" aria-controls="content-who" onclick="switchTab('who')">Who We Are</button></div>
+  </div>
+</nav>
+<div class="px-4 sm:px-8 py-8"><div class="max-w-[900px] mx-auto">
+
+<!-- ========== TAB WHY ========== -->
+<section id="content-why" class="tab-content active" role="tabpanel" aria-labelledby="tab-why">
+  <h2 class="text-2xl sm:text-[2rem] font-extrabold tracking-tight leading-[1.1] text-white mb-6">Why STORE</h2>
+
+  <!-- 01 The Problem -->
+  <div class="content-card mb-5" style="--content-accent:#5eead4;">
+    <div class="content-card-head">
+      <span class="content-card-num">01</span>
+      <span class="content-card-title">The Problem</span>
+    </div>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">Every major digital network in the last thirty years followed the same pattern: starts open, then concentrates. Search became Google. Cloud became Amazon, Microsoft, and Google. Now the same dynamic is playing out in AI.</p>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">The six leading AI labs already control the overwhelming majority of frontier capability. Two of them hold more than 80 % of usage. Decisions about safety, access, and pricing are made by a handful of executives. There is no structural check that prevents any single actor from crossing a meaningful threshold of control.</p>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">Regulators are trying. The problem is timing. AI capability compounds in months. Legislation moves in years. By the time a rule is written, the concentration has already hardened.</p>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">Metcalfe’s Law is not a trend. It is gravity. The value of a network grows as the square of its users. So does the power of whoever sits at its center. When that math runs on AI – on systems that set prices, write code, run logistics, and make medical decisions – concentration means one company sets the rules for everyone else. That is not a prediction. It is already happening.</p>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">The 20th century built laws for this. Antitrust. Regulation. Congressional hearings. None of it changed the physics. You cannot legislate a network effect into distributing its value.</p>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">Hamilton’s Law can. The same mathematical threshold that stabilized the Roman Republic, the Iroquois Confederacy, and the US Constitution – no single actor above one-third – was independently proved for distributed computing by Leslie Lamport in 1982. 206 years after Hamilton. Zero cross-citation.</p>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">STORE is the first machine that enforces it. The token is how the ceiling gets enforced economically – governance, payment, and denomination unified under one mathematical constraint. The United States is a 50-state democracy, bounded by geography and constitution. STORE is a mathematical protocol, not a nation-state. The protocol is the first user. Developers build on it. AI agents run on it. Their users participate under the constitutional ceiling. The math has no geographic ceiling. STORE is the first live constitutional compute-governance experiment of its kind. Hamilton’s Law scales.</p>
+  </div>
+
+  <!-- 02 The Discovery -->
+  <div class="content-card mb-5" style="--content-accent:#5eead4;">
+    <div class="content-card-head">
+      <span class="content-card-num">02</span>
+      <span class="content-card-title">The Discovery</span>
+    </div>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">2017. Chris McCoy was designing governance for a blockchain protocol. He noticed something.</p>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">206 years apart. Zero cross-citation. Neither man knew about the other. The math was older than both of them.</p>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">Ordinary people, given the right rules, self-govern better than experts expect. Ostrom proved it with fishing villages. STORE’s governors proved it with token pricing. When no actor can control more than one-third, cooperation is the rational strategy.</p>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">Hamilton’s Law is not a policy. It is a mathematical invariant. The difference matters: a policy can be waived, lobbied away, or ignored. An invariant cannot. When the ceiling is enforced at the database layer, a violation is not illegal – it is impossible. The write crashes. The state never changes. STORE is the first machine that enforces it this way.</p>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">From the founder setting the constitutional parameters alone, to the first ten governors in Q2 2020, to the first fifty, to the 126 across 30+ countries today – the threshold has never been crossed. Every new governor makes it harder to capture. The math makes cooperation the only rational strategy.</p>
+  </div>
+
+  <!-- 03 The Moment -->
+  <div class="content-card mb-5" style="--content-accent:#5eead4;">
+    <div class="content-card-head">
+      <span class="content-card-num">03</span>
+      <span class="content-card-title">The Moment</span>
+    </div>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">Congress wants a kill switch. Silicon Valley says that kills innovation. Both are right. Both are incomplete.</p>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">The real solution is not a button held by one person. It is a mathematical law held by the architecture itself.</p>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">The Kill Switch Act was introduced July 23, 2026 (bipartisan, publicly reported) – The EU AI Act reached full enforcement August 24, 2026. The CEOs of OpenAI, DeepMind, and Anthropic are publicly calling for independent governance. They are describing something that already exists.</p>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">126 governors. 30+ countries. Zero violations. The threshold has held for 1,800+ consecutive days.</p>
+    <p class="text-lg sm:text-lg font-extrabold my-4" style="color:#5eead4;">STORE was nine years early. It is now right on time.</p>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">Democratic AI. Democratic AI is computing infrastructure governed by an intelligence system (Hamilton AI and Triangle), which is governed by a constitutional democracy (126 governors, 30+ countries, zero violations in 1,800+ consecutive days), which is powered by the STORE token. The token funds the democracy. The democracy governs the intelligence. The intelligence governs the compute.</p>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">The token powers the democracy that governs the intelligence that governs the compute. Constitutional math is the TCP/IP for AI trust. The democracy governs the envelope. Hamilton AI fills it.</p>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">STORE Cloud is already live in five data centers. TREASURIES deposits fund the deployment of constitutionally governed data centers. TREASURIES deposits lock tokens, reducing circulating supply. The deflationary effect stabilizes the long-term monetary system.</p>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">Both TREASURIES rewards and the 25% protocol endowment are expected to be liquidated by the market. These are constitutionally mandated, known sell flows – priced in, not surprises. The deflationary effect of locked deposits offsets this sell pressure as the network scales. STORE tokens are paid to everyone who helps govern, grow, and secure the network. The more the network grows, the harder it is to capture. The question is not whether this gets built. The question is whether the people who understand it now are part of it.</p>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">STORE governs compute. Once Triangle launches, STORE governs AI. The era of democratic cloud computing begins with STORE. The era of democratic AI begins with Triangle. One math. Two eras. No geographic ceiling.</p>
+  </div>
+
+  <!-- 04 One Token -->
+  <div class="content-card mb-5" style="--content-accent:#5eead4;">
+    <div class="content-card-head">
+      <span class="content-card-num">04</span>
+      <span class="content-card-title">One Token</span>
+    </div>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">STORE is simultaneously a governance token, a utility token, and a payment token. One object. Four functions. One ceiling.</p>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">01 – GOVERNANCE: You vote with it. 02 – DENOMINATION: Every compute price is set in it. 03 – PAYMENT: Every transaction settles in it. 04 – DISTRIBUTION: Every reward pays in it.</p>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">No prior system unified all four functions under a hard mathematical ceiling on concentration. STORE does. See the TOKEN tab for the full economic case.</p>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">Nothing here is an offer to sell securities.</p>
+  </div>
+
+  <!-- Stats -->
+  <div class="card p-6 sm:p-8" style="">
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-8">
+      <div class="text-center sm:text-left"><div class="hero-num display-num text-4xl sm:text-5xl font-extrabold leading-none">126</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">governors</div></div>
+      <div class="text-center sm:text-left"><div class="hero-num display-num text-4xl sm:text-5xl font-extrabold leading-none">1,800+</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">days running</div></div>
+      <div class="text-center sm:text-left"><div class="hero-num display-num text-4xl sm:text-5xl font-extrabold leading-none">6</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">ballots</div></div>
+      <div class="text-center sm:text-left"><div class="hero-num display-num text-4xl sm:text-5xl font-extrabold leading-none">0</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">violations</div></div>
+      <div class="text-center sm:text-left"><div class="hero-num display-num text-4xl sm:text-5xl font-extrabold leading-none">84.0</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">stability score</div></div>
+      <div class="text-center sm:text-left"><div class="hero-num display-num text-4xl sm:text-5xl font-extrabold leading-none">76.95%</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">avg approval</div></div>
+      <div class="text-center sm:text-left"><div class="hero-num display-num text-4xl sm:text-5xl font-extrabold leading-none">2</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">granted patents</div></div>
+      <div class="text-center sm:text-left"><div class="hero-num display-num text-4xl sm:text-5xl font-extrabold leading-none">5</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">Fortune 500 citations</div></div>
+    </div>
+  </div>
+
+  <div class="mb-10"></div>
+
+  <!-- Why Now -->
+  <div class="mb-8">
+    <div class="section-eyebrow mb-3" style="color:#5eead4;">Why Now</div>
+    <h2 class="text-2xl sm:text-[2rem] font-extrabold tracking-tight leading-[1.1] text-white mb-3">The more powerful AI gets, the fewer people govern it.</h2>
+  </div>
+
+  <!-- Scaling Law Problem -->
+  <div class="card card-accent-red p-5 sm:p-6" style="border-left:3px solid #f87171;">
+    <div class="card-title" style="color:#f87171;">The Scaling Law Problem</div>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">Scaling laws describe how AI capability grows with compute and data. More compute means better models. Better models attract more users. More users generate more revenue. More revenue buys more compute. The loop closes and tightens.</p>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">This is not a conspiracy. It is physics. The same Metcalfe's Law that produced Google from search, Facebook from social graphs, and Amazon from retail logistics is now running on AI infrastructure. Network value scales as n-squared. Concentration is the natural resting state of an unconstrained network.</p>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">ChatGPT holds 53.9% of consumer AI traffic. Gemini holds 27.9%. Claude holds 9.2%. The top two together exceed the constitutional ceiling that The founders encoded it and Lamport proved it. No governance mechanism anywhere in the AI stack has triggered. No mechanism exists to trigger.</p>
+  </div>
+  <div class="mb-3"></div>
+
+  <!-- Coordination Problem -->
+  <div class="card card-accent-amber p-5 sm:p-6" style="border-left:3px solid #fbbf24;">
+    <div class="card-title" style="color:#fbbf24;">The Coordination Problem</div>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">Nation-states cannot coordinate on AI governance democratically. The EU AI Act requires self-reporting. NIST published a framework. The G7 issued principles. All of it describes what has already happened, after the concentration has set in and the network effects that make it sticky have already compounded.</p>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">Legislation moves in years. AI moves in months. By the time a regulatory framework reaches a vote, the system it was designed to govern has already changed. This is not regulatory failure. It is a structural timing mismatch between the speed of democratic deliberation and the speed of machine learning.</p>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">The CEOs of OpenAI, DeepMind, and Anthropic are now publicly calling for an independent governance body – FINRA-style, IAEA-style. They are describing an institution. Institutions require trust. Trust requires time. The models are not waiting.</p>
+  </div>
+  <div class="mb-3"></div>
+
+  <!-- Math Answer -->
+  <div class="card card-accent-teal p-5 sm:p-6" style="border-left:3px solid #5eead4;">
+    <div class="card-title" style="color:#5eead4;">The Math Answer</div>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">The only force capable of countering a mathematical inevitability is a stronger mathematical constraint. You cannot lobby gravity. You cannot regulate Metcalfe's Law. You can enforce Hamilton's Law at the layer where it cannot be bypassed: the database level, before any application decides anything.</p>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">Hamilton's Law: max(Pc) &lt; 1/3 at every layer of the governed compute rail. The same threshold The American founders encoded it multiple times in 1787. The same threshold Lamport proved for distributed computing in 1982. STORE built the machine implementation. It has been running for zero constitutional violations since enrollment began.</p>
+  </div>
+  <div class="mb-3"></div>
+
+  <p class="statement-footer">The old model: trust the institution. The new model: trust the physics. <span style="color:#5eead4;">The physics has been running. The institution is still being proposed.</span></p>
+
+  <div class="page-nav page-nav-inline">
+    <button type="button" class="page-nav-btn" id="pnav-prev-inline" aria-label="Previous section" onclick="navStep(-1)">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+    </button>
+    <span class="page-nav-label" id="pnav-label-inline"></span>
+    <button type="button" class="page-nav-btn" id="pnav-next-inline" aria-label="Next section" onclick="navStep(1)">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+    </button>
+  </div>
+</section>
+
+<!-- ========== TAB VISION ========== -->
+<section id="content-vision" class="tab-content" role="tabpanel" aria-labelledby="tab-vision">
+  <div class="mb-8">
+    <div class="section-eyebrow mb-3" style="color:#5eead4;">The Vision</div>
+    <h2 class="text-2xl sm:text-[2rem] font-extrabold tracking-tight leading-[1.1] text-white mb-3">A constitutional democracy—<br>for compute and AI—<br><span style="color:#5eead4;">one that pays its users.</span></h2>
+  </div>
+  <p class="text-sm text-slate-300 leading-[1.85] mb-3">Every user who helps govern, grow, and secure the network is paid by the protocol in STORE tokens. The more users participate, the harder the network is to capture. The harder it is to capture, the more valuable the constitutional guarantee becomes. Governance, growth, and security are the same activity—rewarded by the same token—under the same mathematical ceiling.</p>
+  <p class="text-sm text-slate-300 leading-[1.85] mb-3">AI advances. Compute scales. Humans remain ≥ 2/3 of governance weight, constitutionally guaranteed. The window to build this is 5–10 years. Without it, we lose the ability to stay in control as AI advances. With it, AI innovation and AI safety coexist—not as a compromise, but as a mathematical consequence.</p>
+  <div class="mb-6"></div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+    <div class="relative group overflow-hidden rounded-2xl p-6 bg-gradient-to-br from-slate-900/90 to-slate-800/40 border border-teal-500/40 shadow-[0_0_30px_rgba(20,184,166,0.08)] hover:shadow-[0_0_40px_rgba(20,184,166,0.18)] transition-all duration-500 flex flex-col h-full">
+      <div class="section-eyebrow mb-3" style="color:#5eead4;">Era 1 · Now</div>
+      <div class="text-lg sm:text-xl font-extrabold text-white tracking-tight mb-3">Democratic compute.</div>
+      <p class="text-sm text-slate-300 leading-[1.85] mb-3">STORE governs the compute rail. Every transaction carries a constitutional certificate. No single actor above one-third. Enforced at the database layer. Five data centers live today. The five Constitutional Data Centers maintain internal consistency via IPFS replication and Cloud ID architecture. STORE VERIFY — proofs anchored on Ethereum/Optimism — provides the external BFT enforcement layer and constitutional kill switch. BlockFinBFT among Constitutional Data Centers is reserved for future multi-node expansion and is not yet active.</p>
+    </div>
+    <div class="relative group overflow-hidden rounded-2xl p-6 bg-gradient-to-br from-slate-900/90 to-slate-800/40 border border-teal-500/40 shadow-[0_0_30px_rgba(20,184,166,0.08)] hover:shadow-[0_0_40px_rgba(20,184,166,0.18)] transition-all duration-500 flex flex-col h-full">
+      <div class="section-eyebrow mb-3" style="color:#5eead4;">Era 2 · Triangle</div>
+      <div class="text-lg sm:text-xl font-extrabold text-white tracking-tight mb-3">Democratic AI.</div>
+      <p class="text-sm text-slate-300 leading-[1.85] mb-3">Triangle governs AI inference. Every output carries a receipt proving it operated under constitutional limits. The same math. The next layer.</p>
+    </div>
+  </div>
+
+  <div class="card card-accent-teal p-5 sm:p-6" style="border-left:3px solid #5eead4;">
+    <div class="section-eyebrow mb-3" style="color:#5eead4;">The Virginia Proof · 1792</div>
+    <p class="text-sm font-bold text-white leading-[1.6] mb-3">When the math is right, cooperation beats extraction. Virginia proved it. STORE governors proved it again.</p>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">Virginia was the largest state in the new republic. Under strict proportional representation, Rhode Island citizens held 2.07× more voting power per person than Virginians. Virginia accepted less proportional power because a stable constitutional union was worth more long-term than maximum power in an unstable one. Cooperation was the dominant strategy. The math made it rational.</p>
+    <p class="text-sm mb-2 text-slate-300 leading-[1.85]">In January 2022, STORE governors voted to cut token prices by 49 %. Nobody told them to. They could have voted to extract more. They did not. The math made cooperation the rational choice—the same way it did in 1792.</p>
+    <p class="pull-quote text-xs sm:text-sm text-slate-300 mt-2 leading-[1.8]">Hamilton’s Law is not one equation. It is five mathematical constraints working simultaneously—named after Madison, Hamilton, Reynolds, Jefferson, and Lamport. Together they form Multi-Level Power Distribution: the math that makes cooperation the dominant strategy at any scale.</p>
+  </div>
+  <div class="mb-6"></div>
+
+  <div class="relative group overflow-hidden rounded-2xl p-6 bg-gradient-to-br from-slate-900/90 to-slate-800/40 border border-emerald-500/40 shadow-[0_0_30px_rgba(16,185,129,0.08)] hover:shadow-[0_0_40px_rgba(16,185,129,0.18)] transition-all duration-500 flex flex-col">
+    <div class="section-eyebrow mb-3" style="color:#5eead4;">Going Lower</div>
+    <p class="text-sm text-slate-300 leading-[1.85]">STORE currently enforces the math at the schema layer—the lowest layer of the database stack, where a violation becomes a type error before any application runs. The vision is to go lower: into compute itself, into energy, into hardware. Constitutional mathematics enforced at the physics of how power is allocated. The math does not change as the layer changes. The scope does.</p>
+  </div>
+  <div class="mb-8"></div>
+
+  <div class="rounded-xl p-5 sm:p-6 relative overflow-hidden" style="background:linear-gradient(135deg,rgba(6,78,59,0.4) 0%,rgba(15,23,42,0.85) 100%); border:1px solid rgba(16,185,129,0.35);">
+    <p class="text-sm font-semibold text-white">The United States bounded itself by geography. STORE is a mathematical protocol. The math has no geographic ceiling. STORE is the first live constitutional compute-governance experiment of its kind. This is not a political goal. It is where the math leads.</p>
+  </div>
+
+  <div class="page-nav page-nav-inline">
+    <button type="button" class="page-nav-btn" id="pnav-prev-inline" aria-label="Previous section" onclick="navStep(-1)">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+    </button>
+    <span class="page-nav-label" id="pnav-label-inline"></span>
+    <button type="button" class="page-nav-btn" id="pnav-next-inline" aria-label="Next section" onclick="navStep(1)">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+    </button>
+  </div>
+</section>
+
+<!-- ========== TAB HISTORY ========== -->
+<section id="content-history" class="tab-content" role="tabpanel" aria-labelledby="tab-history">
+  <div class="mb-8">
+    <div class="section-eyebrow mb-3" style="color:#5eead4;">History</div>
+    <h2 class="text-2xl sm:text-[2rem] font-extrabold tracking-tight leading-[1.1] text-white mb-3">The same number. Six times. 800 years apart. Nobody planned it.</h2>
+  </div>
+  <p class="text-sm text-slate-300 leading-[1.85] mb-3">The Haudenosaunee Confederacy discovered it around 1142 while designing a peace between five nations. The Roman Republic encoded it in 509 BCE. When Julius Caesar crossed it in 49 BCE, the Republic ended. Not because the law failed. Because one man exceeded the threshold.</p>
+  <p class="text-sm text-slate-300 leading-[1.85] mb-3">Twelve hundred years later, Hamilton encoded it multiple times in the US Constitution. 195 years after that, Leslie Lamport proved it is the tight mathematical bound for any distributed computer network. Zero cross-citation with 1787. He was solving a different problem. He got the same answer.</p>
+  <p class="text-sm text-slate-300 leading-[1.85] mb-3">In December 2017, a founder from Kelso, Washington noticed that the governance rule he was designing for a blockchain protocol was the same rule Hamilton had encoded and Lamport had proved. 206 years apart. Three traditions. Zero coordination. He did not invent this number. He recognized it. Then he built the first machine that enforces it.</p>
+  <div class="rounded-lg p-5 mb-8" style="background:rgba(6,182,212,0.07); border-left:3px solid rgba(6,182,212,0.55);">
+    <p class="text-sm font-semibold text-white leading-[1.8]">A discovery story. Not twenty-five years in the making. 880 years in the making. The machine is nine years old. The math is older than America.</p>
+  </div>
+
+  <div class="card-title lg mb-3">The Timeline</div>
+  <div class="card card-accent-emerald rounded-2xl mb-8 p-5 sm:p-6 overflow-hidden" style="background:rgba(15,23,42,0.7); border:1px solid rgba(16,185,129,0.3);">
+    <div class="timeline-rail">
+      <div class="timeline-entry"><div class="timeline-ring" aria-hidden="true"></div><div class="timeline-year">~509 BCE</div><div class="timeline-what">Roman Republic</div><div class="timeline-note">Dual consuls, Senate, tribunes – veto distributed across branches. Collapses 49 BCE when Caesar crosses the threshold. Not because the law fails. Because it is abandoned.</div></div>
+      <div class="timeline-entry"><div class="timeline-ring" aria-hidden="true"></div><div class="timeline-year">~1142</div><div class="timeline-what">Haudenosaunee Great Law of Peace</div><div class="timeline-note">No single nation governs the whole. The threshold held for 600 years.</div></div>
+      <div class="timeline-entry"><div class="timeline-ring" aria-hidden="true"></div><div class="timeline-year">1179</div><div class="timeline-what">Third Lateran Council</div><div class="timeline-note">Two-thirds required for papal elections. 847 unbroken years.</div></div>
+      <div class="timeline-entry"><div class="timeline-ring" aria-hidden="true"></div><div class="timeline-year">1744</div><div class="timeline-what">Canasatego addresses colonial delegates</div><div class="timeline-note">Haudenosaunee model cited directly to Franklin and Jefferson.</div></div>
+      <div class="timeline-entry"><div class="timeline-ring" aria-hidden="true"></div><div class="timeline-year">1787</div><div class="timeline-what">Hamilton · Constitutional Convention 1787</div><div class="timeline-note">Two-thirds threshold encoded multiple times by the American founders. The same threshold. Independent derivations.</div></div>
+      <div class="timeline-entry"><div class="timeline-ring" aria-hidden="true"></div><div class="timeline-year">1982</div><div class="timeline-what">Leslie Lamport</div><div class="timeline-note">Byzantine Fault Tolerance: f &lt; n/3 for distributed systems. 206 years after Hamilton. Zero cross-citation.</div></div>
+      <div class="timeline-entry"><div class="timeline-ring" aria-hidden="true"></div><div class="timeline-year">2017 Dec</div><div class="timeline-what">The recognition</div><div class="timeline-note">Chris McCoy notices BlockfinBFT governance rule = Hamilton’s Constitutional threshold. Same number. Different field.</div></div>
+      <div class="timeline-entry"><div class="timeline-ring" aria-hidden="true"></div><div class="timeline-year">2020</div><div class="timeline-what">First Governance live (FG.000)</div><div class="timeline-note">constitutional democracy operational. Constitutional mathematics in production since Q2 2020.</div></div>
+      <div class="timeline-entry"><div class="timeline-ring" aria-hidden="true"></div><div class="timeline-year">2021</div><div class="timeline-what">US Patent 11,082,206 B1 granted</div><div class="timeline-note">First machine implementation of constitutional governance at the database level.</div></div>
+      <div class="timeline-entry"><div class="timeline-ring" aria-hidden="true"></div><div class="timeline-year">2024 Jul 9</div><div class="timeline-what">Hilander Democracy</div><div class="timeline-note">60 voters. 97.22% ratification. Constitutional framework confirmed by independent vote.</div></div>
+      <div class="timeline-entry"><div class="timeline-ring" aria-hidden="true"></div><div class="timeline-year">2024 patent</div><div class="timeline-what">US Patent 12,165,142 B2 granted</div><div class="timeline-note">Second granted patent. Foundational IP confirmed.</div></div>
+      <div class="timeline-entry"><div class="timeline-ring" aria-hidden="true"></div><div class="timeline-year">2025</div><div class="timeline-what">Constitutional mathematics formalized</div><div class="timeline-note">Formal proofs completed. Physics of Trust papers drafted.</div></div>
+      <div class="timeline-entry"><div class="timeline-ring" aria-hidden="true"></div><div class="timeline-year">2026 Jul</div><div class="timeline-what">AISI: AI safety boundary failures</div><div class="timeline-note">AI agents took unsanctioned actions against real people on the live internet. 17 of 19 actions attributed to models from multiple leading labs.</div></div>
+    </div>
+  </div>
+
+  <div class="card card-accent-teal p-5 sm:p-6" style="border-left:3px solid #5eead4;">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
+      <div><div class="mono text-[10px] font-bold uppercase tracking-[0.15em] mb-2" style="color:#5eead4;">June 2017 – Google Brain</div><p class="text-base font-extrabold text-white tracking-tight">Attention Is All You Need</p><p class="text-[13px] text-slate-300 leading-[1.7] mt-2">Vaswani et al. arXiv:1706.03762. Every AI you have talked to runs on this architecture.</p></div>
+      <div><div class="mono text-[10px] font-bold uppercase tracking-[0.15em] mb-2" style="color:#fbbf24;">May 17, 2017 – Consensus NYC</div><p class="text-base font-extrabold text-white tracking-tight">Storecoin Inc. registered</p><p class="text-[13px] text-slate-300 leading-[1.7] mt-2">McCoy files before his plane lands. Building the governance infrastructure for everything that paper makes possible.</p></div>
+    </div>
+    <p class="text-[13px] text-slate-400 italic mt-5 pt-5 text-center sm:text-left" style="border-top:1px solid var(--border-subtle);">Same year. Two parallel tracks. Neither team knew about the other. Now converging.</p>
+  </div>
+
+  <div class="mb-6"></div>
+
+  <!-- Collapsible sections -->
+  <div class="row-item card card-accent-teal mb-2" style="border-left:3px solid #5eead4; border-radius:14px;">
+    <button type="button" class="row-summary" aria-expanded="false" aria-controls="row-1" onclick="toggleRow(this)">
+      <div class="flex-1 min-w-0"><span class="text-base font-bold" style="color:#5eead4;">The Rule That Kept Showing Up</span></div>
+      <svg class="chev row-chev flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="row-detail" id="row-1">
+        <p class="text-sm text-slate-300 leading-[1.85] mb-3 p-4">The story of STORE Research is the story of one mathematical rule appearing everywhere McCoy looked – in high school student government, in five centuries of constitutional history across three continents, in the most important proof in distributed computing, and finally in the infrastructure layer for AI.</p>
+        <p class="text-sm text-slate-300 leading-[1.85] mb-3 p-4">The rule is simple. No single actor above one-third of control. Decisions require two-thirds agreement. When the threshold holds, the system self-corrects. When it breaks, the system fails.</p>
+        <p class="text-sm text-slate-300 leading-[1.85] mb-3 p-4">Five independent traditions arrived at this answer without knowing about each other. The Haudenosaunee Confederacy. The Roman Republic. The Third Lateran Council of 1179. Hamilton and the Constitutional Convention of 1787, encoding it multiple times in the Constitution. And then, 206 years after the Declaration of Independence, Leslie Lamport proved that distributed computer networks require exactly the same threshold.</p>
+        <p class="text-sm text-slate-300 leading-[1.85] mb-3 p-4">Same number. Different field. Zero cross-citation. When two completely different traditions arrive at the same mathematics without knowing about each other, that is evidence the math is describing something real about how the world works – not a coincidence, not a choice, a structural discovery.</p>
+        <p class="text-sm text-slate-300 leading-[1.85] mb-3 p-4">McCoy's recognition in December 2017: this is not coincidence. Five traditions. 800 years. One answer.</p>
+        <p class="text-sm text-slate-300 leading-[1.85] mb-3 p-4">Hamilton's Law is the same discovery made three times in three independent domains: the Math of America (the American founders encoded it multiple times in 1787), the Math of Computing Security (Lamport proved it for distributed networks in 1982), and the Math of Democratization (the mechanism preventing any network from monopolizing). Three derivations. Zero cross-citation. One threshold.</p>
+    </div>
+  </div>
+
+  <div class="row-item card card-accent-teal mb-2" style="border-left:3px solid #5eead4; border-radius:14px;">
+    <button type="button" class="row-summary" aria-expanded="false" aria-controls="row-2" onclick="toggleRow(this)">
+      <div class="flex-1 min-w-0"><span class="text-base font-bold" style="color:#5eead4;">Hamilton’s Ceiling vs. Metcalfe’s Law</span></div>
+      <svg class="chev row-chev flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="row-detail" id="row-2">
+        <p class="text-sm text-slate-300 leading-[1.85] mb-3 p-4">Metcalfe's Law describes how networks grow. As a network gets larger, its value grows faster than its size. This is why Facebook is worth more than the sum of its users, why AI compute is concentrating into a handful of data centers, why the biggest platforms keep getting bigger. The math is neutral. It is simply what unconstrained networks do.</p>
+        <p class="text-sm text-slate-300 leading-[1.85] mb-3 p-4">Hamilton's Ceiling is the counter-pressure. It does not repeal Metcalfe's Law – networks still grow in value as they grow in size. What Hamilton's Ceiling does is raise the structural cost of concentration until cooperation becomes the only rational long-term strategy.</p>
+        <p class="text-sm text-slate-300 leading-[1.85] mb-3 p-4">Virginia was the largest state in 1787. Under Metcalfe's dynamics it should have captured the founding union. With Hamilton's Ceiling in place, cooperation offered more long-term value than domination. The union grew from 13 states to 50. At 13 states, a bad actor needed nine to dominate. At 50 states, they need 34. Democracy became 3.85 times harder to capture as it scaled – the mathematical inverse of what unconstrained networks do.</p>
+        <p class="text-sm text-slate-300 leading-[1.85] mb-3 p-4">ChatGPT commands the majority of consumer AI traffic. The top two AI systems together hold more than 80% of usage. No constitutional governance threshold exists anywhere in the AI stack. Metcalfe's Law, unconstrained.</p>
+        <p class="text-sm text-slate-300 leading-[1.85] mb-3 p-4">STORE is the first system to enforce Hamilton's Ceiling at the infrastructure layer. Not by policy. Not by training. By database constraint – before any application can decide anything.</p>
+        <p class="text-sm text-slate-300 leading-[1.85] mb-3 p-4">The AI concentration of 2026 is the same law running faster on better hardware. The scaling laws that explain why more compute produces better models are also Metcalfe's Law applied to compute infrastructure. The leaders of the labs building AI are beginning to say so publicly. They are right about the diagnosis. The answer is not to pace the frontier. It is to enforce Hamilton's Ceiling at the infrastructure layer – the only force capable of countering a mathematical inevitability.</p>
+        <p class="text-sm text-slate-300 leading-[1.85] mb-3 p-4">Think of a public road system. Under Metcalfe's Law, whoever builds the most popular highway eventually controls all transportation – raising tolls, blocking competitors, rewriting the rules. Under Hamilton's Law, the 1/3 ceiling is poured into the asphalt itself. You cannot build a road that breaks the limit. The system rejects it before the road can exist.</p>
+    </div>
+  </div>
+
+  <div class="row-item card card-accent-teal mb-2" style="border-left:3px solid #5eead4; border-radius:14px;">
+    <button type="button" class="row-summary" aria-expanded="false" aria-controls="row-3" onclick="toggleRow(this)">
+      <div class="flex-1 min-w-0"><span class="text-base font-bold" style="color:#5eead4;">How the Discovery Became Operational</span></div>
+      <svg class="chev row-chev flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="row-detail" id="row-3">
+        <p class="text-sm text-slate-300 leading-[1.85] mb-3 p-4">Constitutional mathematics as a field did not emerge from a single insight. It emerged from four convergence points across nine years.</p>
+        <p class="text-sm text-slate-300 leading-[1.85] mb-3 p-4">2017: THE RECOGNITION. Hamilton and Lamport independently derived the same numerical threshold – 206 years apart, zero cross-citation. McCoy connected them. Raghavendra Bhagavatha joined in January 2018, confirmed the convergence, and they filed the first patent.</p>
+        <p class="text-sm text-slate-300 leading-[1.85] mb-3 p-4">2019: THE INFRASTRUCTURE INSIGHT. STORE Research pivoted away from a direct consumer token and recognized the theorem applied lower in the stack than initially understood. You cannot govern AI without being able to govern the infrastructure it runs on. This is also the year the key insight crystallized: the same threshold must apply to AI actors, not just humans. The constitutional mathematics applied to machine actors as well as human ones.</p>
+        <p class="text-sm text-slate-300 leading-[1.85] mb-3 p-4">Q2 2020: FIRST GOVERNANCE LIVE. Twelve to fifteen human governors made the first constitutional AI governance structure operational. When COVID hit, the governance held. Two years later, in 2022, FTX collapsed. STORE's governors recorded zero constitutional violations the same month.</p>
+        <p class="text-sm text-slate-300 leading-[1.85] mb-3 p-4">2024-2025: THE COMMUNITY PROOF. Season 1 (July 2024): 60 voters, 223 votes, 97.22% constitutional ratification. Season 2 (2025): 187 voters, 1,137 votes, triple participation, ceremony February 7, 2026. Zero fraud. Zero disputes. The first constitutional democracy at community scale. Scale does not change the math. It validates it.</p>
+        <p class="text-sm text-slate-300 leading-[1.85] mb-3 p-4">2024-2025: FORMALIZATION. December 19, 2024: McCoy began the formal mathematical writing. "This is bigger than I thought." The formal mathematics have begun. Five derivations. 800 years. One answer.</p>
+    </div>
+  </div>
+
+  <div class="row-item card card-accent-teal mb-2" style="border-left:3px solid #5eead4; border-radius:14px;">
+    <button type="button" class="row-summary" aria-expanded="false" aria-controls="row-4" onclick="toggleRow(this)">
+      <div class="flex-1 min-w-0"><span class="text-base font-bold" style="color:#5eead4;">The Record: Hiding in Plain Sight</span></div>
+      <svg class="chev row-chev flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="row-detail" id="row-4">
+        <p class="text-sm text-slate-300 leading-[1.85] mb-3 p-4">Nine years after registering the company. $10,825,020 in fundraising 2017-2025. 126 governors in 30 countries. 1,800+ consecutive days · 6 ballots · zero constitutional violations – per STORE governance records at storecloud.org.</p>
+        <p class="text-sm text-slate-300 leading-[1.85] mb-3 p-4">Three times during that run, the governors voted to voluntarily cut the token price – by 49%, then 9%, then 11% – when they had the power to profit instead. In most governance systems, the people in power use that power to benefit themselves. The governors of STORE could have voted to raise prices. They voted to lower them. Three times. That is what it looks like when the architecture makes cooperation the rational choice.</p>
+        <p class="text-sm text-slate-300 leading-[1.85] mb-3 p-4">The governors had real financial skin in the game. In January 2022, a vote to raise the token price by 41% barely scraped through at 52.94% – the governors who would have benefited were fighting each other over extraction. Within the same month, the reversal passed at 89.47%. They voted to make their own holdings worth less. Not once – three times across January and June 2022. Each time the cooperation rate was higher than the extraction attempt. The Nash equilibrium is not a theory at STORE. It is a voting record. This is not a DAO. DAOs let token holders vote to extract value. STORE governors voted three times to make their own holdings worth less.</p>
+        <p class="text-sm text-slate-300 leading-[1.85] mb-3 p-4">Any controlling coalition requires at least three independent actors – formally proved. At the governors, capture requires corrupting 43. At 1,000 governors, 334. As more governors join, capture requires corrupting more of them. Democracy scales against concentration. This is the mathematical inverse of Metcalfe's Law.</p>
+        <p class="text-sm text-slate-300 leading-[1.85] mb-3 p-4">Two patents granted. Research is being finalized on additional original patent filings. Across every layer of the architecture.</p>
+        <p class="text-sm text-slate-300 leading-[1.85] mb-3 p-4">The operational record is directional evidence. The formal mathematics are in peer review. The threshold, if it continues to hold, is not.</p>
+        <p class="text-sm text-slate-300 leading-[1.85] mb-3 p-4">The lab was incorporated as Storecoin Inc. in 2017 at the Consensus conference in New York. Renamed STORE Research Inc. – same entity. Building a democratic AI frontier research lab while most of Silicon Valley was building AI wrappers. Not hiding. Building.</p>
+    </div>
+  </div>
+
+  <div class="mb-8"></div>
+
+  <div class="card p-6 sm:p-8 relative overflow-hidden" style="
+  background: linear-gradient(145deg, rgba(15,23,42,0.92), rgba(5,10,24,0.6));
+  border-color: rgba(245,158,11,0.25);
+  border-width: 1px;
+  box-shadow: 0 20px 50px -12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(245,158,11,0.08);
+  backdrop-filter: blur(4px);
+">
+  <!-- Subtle glow accent -->
+  <div class="absolute -top-20 -right-20 w-64 h-64 rounded-full" style="
+    background: radial-gradient(circle, rgba(245,158,11,0.08), transparent 70%);
+    pointer-events: none;
+  "></div>
+  <div class="absolute -bottom-16 -left-16 w-48 h-48 rounded-full" style="
+    background: radial-gradient(circle, rgba(20,184,166,0.06), transparent 70%);
+    pointer-events: none;
+  "></div>
+
+  <!-- Quote with decorative icon -->
+  <div class="relative flex items-start gap-3 mb-6">
+    <span class="text-3xl leading-none font-serif" style="color: rgba(251,191,36,0.3);">“</span>
+    <blockquote class="text-sm sm:text-base font-semibold italic leading-[1.8] text-amber-200/90" style="border-left: 3px solid #fbbf24; padding-left: 16px;">
+      "One theorem. 800 years of independent derivation. First machine implementation. He kept going for nine years because the math kept being right."
+    </blockquote>
+  </div>
+
+  <!-- Body text -->
+  <div class="space-y-3 pt-4">
+    <p class="text-xs sm:text-[13px] text-slate-200/80 font-medium leading-[1.7] tracking-wide">
+      The discovery is the story. The token is the mechanism.
+    </p>
+    <p class="text-[11px] sm:text-xs text-slate-400/80 leading-[1.8] tracking-wide">
+      This document is the canonical STORE Research origin history for journalistic and research purposes. It is not investment advice. It does not constitute an offer or solicitation to buy or sell any security or digital asset. Past operational performance does not guarantee future results. All forward-looking statements are based on current expectations and subject to change. Patent families described as "in preparation" have not yet been filed or granted.
+    </p>
+  </div>
+
+  <!-- Footer with refined layout -->
+  <div class="mono text-[10px] tracking-[0.12em] uppercase text-slate-400/70 mt-6 pt-4 flex flex-wrap items-center justify-between gap-3" style="border-top: 1px solid rgba(148,163,184,0.08);">
+    <span class="flex items-center gap-1.5">
+      <span class="w-1.5 h-1.5 rounded-full" style="background: #fbbf24;"></span>
+      STORE Research Inc.
+    </span>
+    <span class="flex items-center gap-1.5">
+      <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg>
+      San Francisco
+    </span>
+    <span class="flex items-center gap-1.5">
+      <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5"/></svg>
+      Founded May 17, 2017
+    </span>
+  </div>
+</div>
+
+  <div class="page-nav page-nav-inline">
+    <button type="button" class="page-nav-btn" id="pnav-prev-inline" aria-label="Previous section" onclick="navStep(-1)">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+    </button>
+    <span class="page-nav-label" id="pnav-label-inline"></span>
+    <button type="button" class="page-nav-btn" id="pnav-next-inline" aria-label="Next section" onclick="navStep(1)">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+    </button>
+  </div>
+</section>
+
+<!-- ========== TAB MATH ========== -->
+<section id="content-math" class="tab-content" role="tabpanel" aria-labelledby="tab-math">
+  <div class="mb-8">
+    <div class="section-eyebrow mb-3" style="color:#5eead4;">The Math</div>
+    <h2 class="text-2xl sm:text-[2rem] font-extrabold tracking-tight leading-[1.1] text-white mb-3">The vision is not a hope.<br><span style="color:#5eead4;">These are the equations that make it a theorem.</span></h2>
+    <p class="text-sm sm:text-base text-slate-400 leading-relaxed max-w-[760px] mb-6">Hamilton’s Law is not one equation. It is five mathematical constraints working simultaneously – each one named for a builder of constitutional systems. Together they form Multi-Level Power Distribution: the math that makes cooperation the dominant strategy at any scale. Virginia proved it in 1792. STORE has been proving it for 1,800+ days.</p>
+  </div>
+
+  <div class="section-eyebrow mb-3" style="color:#94a3b8;">Act 1 · Two Laws in Conflict</div>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+    <div class="card card-accent-red p-5 sm:p-6" style="border-left:3px solid #f87171;">
+      <div class="mono text-[10px] font-bold tracking-[0.12em] mb-3" style="color:#f87171;">METCALFE’S LAW</div>
+      <div class="mono text-xl sm:text-2xl font-black text-white mb-3">V(N) = k × N²</div>
+      <p class="text-xs sm:text-sm text-slate-400 leading-[1.8]">Value flows to the center. The bigger the network, the stronger the concentration. This is why Google, Meta, and two AI labs hold dominant positions. The math demands it.</p>
+    </div>
+    <div class="card card-accent-teal p-5 sm:p-6" style="border-left:3px solid #5eead4;">
+      <div class="mono text-[10px] font-bold tracking-[0.12em] mb-3" style="color:#5eead4;">HAMILTON’S LAW</div>
+      <div class="mono text-xl sm:text-2xl font-black text-white mb-3">Σ = N × (1 − max Pᶜ)</div>
+      <p class="text-xs sm:text-sm text-slate-300 leading-[1.8]">Stability grows as concentration falls. The bigger the network, the harder it is to capture. The math makes cooperation the rational choice. Opposite of Metcalfe. Same starting point.</p>
+    </div>
+  </div>
+
+  <div class="section-eyebrow mb-3" style="color:#94a3b8;">Act 2 · Five Constraints · One System</div>
+  <p class="text-xs sm:text-sm text-slate-400 leading-[1.75] mb-5">Each constraint prevents a specific failure mode. All five operate simultaneously. Remove any one and the system can be captured.</p>
+
+  <div class="formula-card card card-accent-teal mb-3" style="border-left:3px solid #5eead4;">
+    <div class="formula-head">
+      <div class="formula-name-group">
+        <span class="formula-name">1 · Madison’s Distribution</span><span class="badge badge-wrap" style="background:rgba(20,184,166,0.14); color:#5eead4; border:1px solid rgba(20,184,166,0.30);">Prevents power concentration at entry.</span>
+      </div>
+    </div>
+    <div class="formula-eq">Pᵢ = 1/N</div>
+    <p class="formula-plain">Prevents power concentration at entry.</p>
+    <div class="row-detail-inner" style="padding:14px 4px 4px;"><p class="text-xs sm:text-sm text-slate-400 leading-[1.8]">Every participant starts with equal base power. One governor, one vote. No one can buy a larger share of governance weight. Economic stake determines entry; it does not determine votes.</p></div>
+  </div>
+
+  <div class="formula-card card card-accent-teal mb-3" style="border-left:3px solid #5eead4;">
+    <div class="formula-head">
+      <div class="formula-name-group">
+        <span class="formula-name">2 · Hamilton’s Ratio</span><span class="badge badge-wrap" style="background:rgba(20,184,166,0.14); color:#5eead4; border:1px solid rgba(20,184,166,0.30);">Prevents any single actor from controlling the system.</span>
+      </div>
+    </div>
+    <div class="formula-eq">max(Pᶜ) ≤ 1/3</div>
+    <p class="formula-plain">Prevents any single actor from controlling the system.</p>
+    <div class="row-detail-inner" style="padding:14px 4px 4px;"><p class="text-xs sm:text-sm text-slate-400 leading-[1.8]">No single entity can hold more than one-third of governance weight. The American founders encoded this multiple times in the Constitution in 1787 – in the ratification threshold, treaty ratification, impeachment conviction, veto override, amendment process, and more. Lamport proved it necessary for distributed computing in 1982. STORE enforces it at the database layer – a type error, not a policy.</p></div>
+  </div>
+
+  <div class="formula-card card card-accent-teal mb-3" style="border-left:3px solid #5eead4;">
+    <div class="formula-head">
+      <div class="formula-name-group">
+        <span class="formula-name">3 · Reynolds Equality</span><span class="badge badge-wrap" style="background:rgba(20,184,166,0.14); color:#5eead4; border:1px solid rgba(20,184,166,0.30);">Prevents money from converting to votes.</span>
+      </div>
+    </div>
+    <div class="formula-eq">Pᵢ = Pⱼ ∀ i,j ∈ V</div>
+    <p class="formula-plain">Prevents money from converting to votes.</p>
+    <div class="row-detail-inner" style="padding:14px 4px 4px;"><p class="text-xs sm:text-sm text-slate-400 leading-[1.8]">Every verified participant holds equal governance power regardless of economic stake. Reynolds v. Sims (1964) completed the political layer. STORE carries it into compute.</p></div>
+  </div>
+
+  <div class="formula-card card card-accent-teal mb-3" style="border-left:3px solid #5eead4;">
+    <div class="formula-head">
+      <div class="formula-name-group">
+        <span class="formula-name">4 · Jefferson’s Separation</span><span class="badge badge-wrap" style="background:rgba(20,184,166,0.14); color:#5eead4; border:1px solid rgba(20,184,166,0.30);">Prevents governance from being captured by economic interest.</span>
+      </div>
+    </div>
+    <div class="formula-eq">Gov(x) ∩ Ec(x) = ∅</div>
+    <p class="formula-plain">Prevents governance from being captured by economic interest.</p>
+    <div class="row-detail-inner" style="padding:14px 4px 4px;"><p class="text-xs sm:text-sm text-slate-400 leading-[1.8]">The governance system and the economic system are mathematically separated. A governor cannot use economic position to override constitutional parameters. The two systems interact through the token – they do not merge.</p></div>
+  </div>
+
+  <div class="formula-card card card-accent-teal mb-3" style="border-left:3px solid #5eead4;">
+    <div class="formula-head">
+      <div class="formula-name-group">
+        <span class="formula-name">5 · Lamport’s Proof</span><span class="badge badge-wrap" style="background:rgba(20,184,166,0.14); color:#5eead4; border:1px solid rgba(20,184,166,0.30);">Prevents a coordinated minority from capturing the network.</span>
+      </div>
+    </div>
+    <div class="formula-eq">f &lt; n/3</div>
+    <p class="formula-plain">Prevents a coordinated minority from capturing the network.</p>
+    <div class="row-detail-inner" style="padding:14px 4px 4px;"><p class="text-xs sm:text-sm text-slate-400 leading-[1.8]">Byzantine Fault Tolerance: a distributed system tolerates up to one-third faulty or adversarial actors. Lamport proved this in 1982. It is the machine implementation of what Hamilton intuited in 1787. STORE is the first governance system to enforce both simultaneously.</p></div>
+  </div>
+
+  <div class="mb-8"></div>
+
+  <div class="card-title lg mb-1">The Scaling Inversion</div>
+  <p class="text-xs sm:text-sm text-slate-400 leading-[1.75] mb-5">The five constraints have held in production for 1,800+ consecutive days across 126 governors in 30+ countries. The evidence is public.</p>
+  <div class="card p-5 sm:p-6" style="">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+      <div class="rounded-xl px-4 py-6 text-center" style="background:rgba(20,184,166,0.06); border:1px solid rgba(20,184,166,0.22);"><div class="hero-num display-num text-4xl sm:text-5xl font-extrabold leading-none">126</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">governors now</div><div class="w-8 h-px mx-auto my-3" style="background:rgba(248,113,113,0.35);"></div><div class="text-[12px] font-bold" style="color:#f87171;">corrupt 42 to capture</div></div>
+      <div class="rounded-xl px-4 py-6 text-center" style="background:rgba(20,184,166,0.06); border:1px solid rgba(20,184,166,0.22);"><div class="hero-num display-num text-4xl sm:text-5xl font-extrabold leading-none">1,000</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">governors</div><div class="w-8 h-px mx-auto my-3" style="background:rgba(248,113,113,0.35);"></div><div class="text-[12px] font-bold" style="color:#f87171;">corrupt 334 to capture</div></div>
+      <div class="rounded-xl px-4 py-6 text-center" style="background:rgba(20,184,166,0.06); border:1px solid rgba(20,184,166,0.22);"><div class="hero-num display-num text-4xl sm:text-5xl font-extrabold leading-none">10,000</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">governors</div><div class="w-8 h-px mx-auto my-3" style="background:rgba(248,113,113,0.35);"></div><div class="text-[12px] font-bold" style="color:#f87171;">corrupt 3,334 to capture</div></div>
+    </div>
+    <p class="text-xs sm:text-sm text-slate-400 leading-[1.75]">No prior network has this property. Metcalfe’s Law makes systems easier to capture at scale. Hamilton’s Law makes them harder.</p>
+  </div>
+
+  <div class="mb-6"></div>
+
+  <div class="closing-card" style="padding:28px 24px;">
+    <div class="text-center">
+      <div class="text-[11px] uppercase tracking-[0.18em] mb-3" style="color:#5eead4;">STORE Record</div>
+      <div class="hero-num display-num text-6xl sm:text-7xl font-extrabold leading-none mb-2">0.8%</div>
+      <p class="text-xs text-slate-400">max concentration ever recorded · ceiling 33.3%</p>
+    </div>
+  </div>
+
+  <div class="mb-4"></div>
+  <p class="statement-footer">Ordinary people, given the right rules, self-govern better than experts expect. <span style="color:#5eead4;">Governors voted to cut prices 49 %. Nobody told them to.</span></p>
+
+  <div class="page-nav page-nav-inline">
+    <button type="button" class="page-nav-btn" id="pnav-prev-inline" aria-label="Previous section" onclick="navStep(-1)">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+    </button>
+    <span class="page-nav-label" id="pnav-label-inline"></span>
+    <button type="button" class="page-nav-btn" id="pnav-next-inline" aria-label="Next section" onclick="navStep(1)">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+    </button>
+  </div>
+</section>
+
+<!-- ========== TAB TOKEN ========== -->
+<section id="content-token" class="tab-content" role="tabpanel" aria-labelledby="tab-token">
+  <div class="mb-8">
+    <div class="section-eyebrow mb-3" style="color:#5eead4;">The Token</div>
+    <h2 class="text-2xl sm:text-[2rem] font-extrabold tracking-tight leading-[1.1] text-white mb-3">One token.<br>Four functions.<br><span style="color:#5eead4;">One constitutional ceiling.</span></h2>
+    <p class="text-sm sm:text-base text-slate-400 leading-relaxed max-w-[760px] mb-6">STORE is simultaneously a governance token, a utility token, and a payment token. The same token denominates every compute price, pays every infrastructure bill, governs the protocol’s intelligence system, and distributes every reward. No prior system unified all three under a hard mathematical ceiling on concentration.</p>
+  </div>
+
+  <div class="card card-accent-teal p-5 sm:p-6" style="border-left:3px solid #5eead4;">
+    <div class="section-eyebrow mb-3" style="color:#5eead4;">The Key Insight</div>
+    <p class="text-base font-bold text-white leading-[1.7] mb-3">Monetary policy is governed. Two-thirds required to change anything.</p>
+    <p class="text-sm text-slate-300 leading-[1.85]">Emission rates. Pricing parameters. Distribution weights. Every monetary variable in the protocol can evolve — but only with two-thirds of governor consensus. No central bank. No unilateral rate change. No founder override. The governance system can evolve the monetary system. The monetary system cannot evolve without the governance system. That is the moat.</p>
+  </div>
+  <div class="mb-6"></div>
+
+  <div class="card p-5 sm:p-6" style="">
+    <div class="section-eyebrow mb-3" style="color:#94a3b8;">Autonomous Token Economies · The Builder Paradigm</div>
+    <p class="text-base font-extrabold text-white leading-[1.5] mb-3">Your token. Your compute. Your intelligence. Governed by the same constitutional ceiling.</p>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">Builders can use their own crypto asset to pay for compute and intelligence on the STORE rail. STORE accepts any token as currency at the infrastructure layer and converts it into governed compute. The builder gets their workload run, their AI inference governed, and a constitutional certificate proving it — all paid in their own token.</p>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">This changes the paradigm. On Ethereum and Solana, miners and validators are paid only in the native currency. Builders have no monetary sovereignty. STORE is different: the governed rail accepts your token, prices compute in STORE tokens, settles constitutionally, and returns a Governed AI Certificate. Your economy participates in the democratic compute economy without surrendering its own monetary unit.</p>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">This is the monetary premium. The value of holding the infrastructure layer’s settlement currency when every autonomous token economy in the governed compute stack must route through it.</p>
+    <div class="relative rounded-2xl p-6 sm:p-8" style="
+  background: rgba(15,23,42,0.5);
+  border: 1px solid rgba(20,184,166,0.15);
+  backdrop-filter: blur(4px);
+">
+  <!-- Judul yang lebih prominen -->
+  <div class="flex items-center gap-3 mb-6">
+    <span class="w-1 h-6 rounded-full" style="background: linear-gradient(180deg, #5eead4, #14b8a6);"></span>
+    <h3 class="text-sm sm:text-base font-bold tracking-wide uppercase" style="color: #5eead4; letter-spacing: 0.12em;">
+      How STORE Pulls This Off
+    </h3>
+  </div>
+
+  <!-- Step tanpa garis vertikal -->
+  <div class="space-y-5">
+    
+    <!-- Step 01 -->
+    <div class="flex items-start gap-4">
+      <div class="flex items-center justify-center w-6 h-6 rounded-full text-[10px] font-bold font-mono flex-shrink-0" style="
+        background: rgba(20,184,166,0.12);
+        border: 1px solid rgba(20,184,166,0.25);
+        color: #5eead4;
+      ">1</div>
+      <p class="text-sm sm:text-sm text-slate-300 leading-[1.7]">
+        Go to the infrastructure layer — <span class="text-slate-400 font-mono text-xs">Layer 0</span> — where compute itself is governed.
+      </p>
+    </div>
+
+    <!-- Step 02 -->
+    <div class="flex items-start gap-4">
+      <div class="flex items-center justify-center w-6 h-6 rounded-full text-[10px] font-bold font-mono flex-shrink-0" style="
+        background: rgba(20,184,166,0.12);
+        border: 1px solid rgba(20,184,166,0.25);
+        color: #5eead4;
+      ">2</div>
+      <p class="text-sm sm:text-sm text-slate-300 leading-[1.7]">
+        Build <span class="font-semibold text-slate-200">Hamilton AI</span> underneath to coordinate it.
+      </p>
+    </div>
+
+    <!-- Step 03 -->
+    <div class="flex items-start gap-4">
+      <div class="flex items-center justify-center w-6 h-6 rounded-full text-[10px] font-bold font-mono flex-shrink-0" style="
+        background: rgba(20,184,166,0.12);
+        border: 1px solid rgba(20,184,166,0.25);
+        color: #5eead4;
+      ">3</div>
+      <p class="text-sm sm:text-sm text-slate-300 leading-[1.7]">
+        Form a constitutional democracy to govern Hamilton.
+      </p>
+    </div>
+  </div>
+
+  <!-- Penutup yang tegas dengan garis pemisah -->
+  <div class="mt-6 pt-5" style="border-top: 1px solid rgba(20,184,166,0.12);">
+    <p class="text-sm sm:text-base font-bold tracking-wide" style="color: #5eead4;">
+      That makes STORE the first constitutionally governed AI compute protocol on the planet.
+    </p>
+  </div>
+</div>
+  </div>
+
+  <div class="mb-6"></div>
+
+  <div class="card card-accent-teal p-5 sm:p-6" style="border-left:3px solid #5eead4;">
+    <div class="section-eyebrow mb-3" style="color:#5eead4;">The Business Model · One Paragraph</div>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">Developers and enterprises pay protocol fees to run workloads on the governed compute rail. A portion of every fee flows to governors, builders, and the treasury in STORE tokens. What makes demand durable rather than speculative: the constitutional ceiling is enforced at the database layer.</p>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">Any system that needs a verifiable Governed AI Certificate—proof that no single actor controlled more than one-third during that inference—must route through STORE. The certificate cannot be produced any other way. The ceiling cannot be lobbied away.</p>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">As AI regulation tightens and enterprise AI procurement requires provable governance, the certificate becomes non-optional. The floor is structural.</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
+      <div class="rounded-xl p-4 sm:p-5 gap-3 sm:gap-5 items-center" style="background:linear-gradient(90deg,rgba(16,185,129,0.12),rgba(16,185,129,0.04)); border:1px solid rgba(16,185,129,0.3);">
+        <div class="text-xs font-semibold tracking-widest uppercase mb-1" style="color:rgba(94,234,212,0.7);">Who pays</div>
+        <p class="text-[11px] text-slate-400 leading-[1.6]">Developers and enterprises who need their AI systems to carry a constitutional certificate. Legacy AI rails cannot produce this certificate. STORE is the only source.</p>
+      </div>
+      <div class="rounded-xl p-4 sm:p-5 gap-3 sm:gap-5 items-center" style="background:linear-gradient(90deg,rgba(16,185,129,0.12),rgba(16,185,129,0.04)); border:1px solid rgba(16,185,129,0.3);">
+        <div class="text-xs font-semibold tracking-widest uppercase mb-1" style="color:rgba(94,234,212,0.7);">Why it holds</div>
+        <p class="text-[11px] text-slate-400 leading-[1.6]">The ceiling is enforced at the database layer — a type error, not a policy. You cannot route around it. Demand scales with the governed compute economy. Every new governor makes the network harder to capture.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-6"></div>
+
+  <div class="section-eyebrow mb-3" style="color:#94a3b8;">Four Things It Does</div>
+  <div class="card p-4 mb-2">
+    <div class="flex gap-3 mb-2"><span class="mono text-sm font-black" style="color:#5eead4;">01</span><div><div class="mono text-[10px] uppercase tracking-[0.1em] mb-1" style="color:#5eead4;">GOVERNANCE</div><div class="text-base font-bold text-white">You vote with it.</div></div></div>
+    <p class="text-xs text-slate-400 leading-[1.7] pl-8">Every change to the protocol – compute pricing, emission rates, constitutional parameters – requires a two-thirds governor vote. Governors vote with STORE. No token, no vote. No vote, no change.</p>
+  </div>
+  <div class="card p-4 mb-2">
+    <div class="flex gap-3 mb-2"><span class="mono text-sm font-black" style="color:#5eead4;">02</span><div><div class="mono text-[10px] uppercase tracking-[0.1em] mb-1" style="color:#5eead4;">DENOMINATION</div><div class="text-base font-bold text-white">Every compute price is set in it.</div></div></div>
+    <p class="text-xs text-slate-400 leading-[1.7] pl-8">Every compute price on the governed compute rail is denominated in STORE tokens. Not ETH. Bits. This is the unit of account for the entire democratic compute economy.</p>
+  </div>
+  <div class="card p-4 mb-2">
+    <div class="flex gap-3 mb-2"><span class="mono text-sm font-black" style="color:#5eead4;">03</span><div><div class="mono text-[10px] uppercase tracking-[0.1em] mb-1" style="color:#5eead4;">PAYMENT</div><div class="text-base font-bold text-white">Every transaction settles in it.</div></div></div>
+    <p class="text-xs text-slate-400 leading-[1.7] pl-8">Multi-currency in. STORE-only out. Whatever enters the rail, settlement happens in STORE tokens. The token is the settlement currency of the governed compute economy.</p>
+  </div>
+  <div class="card p-4 mb-2">
+    <div class="flex gap-3 mb-2"><span class="mono text-sm font-black" style="color:#5eead4;">04</span><div><div class="mono text-[10px] uppercase tracking-[0.1em] mb-1" style="color:#5eead4;">DISTRIBUTION</div><div class="text-base font-bold text-white">Every reward pays in it.</div></div></div>
+    <p class="text-xs text-slate-400 leading-[1.7] pl-8">Protocol fees flow to governors, builders, and the treasury in STORE tokens. The constitutional ceiling applies to distribution weight as it applies to governance weight. You cannot concentrate rewards any more than you can concentrate votes.</p>
+  </div>
+
+  <div class="mb-6"></div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+    <div class="rounded-xl p-4 sm:p-5 gap-3 sm:gap-5 items-center" style="background:linear-gradient(90deg,rgba(16,185,129,0.12),rgba(16,185,129,0.04)); border:1px solid rgba(16,185,129,0.3);">
+      <div class="text-xs font-semibold tracking-widest uppercase mb-1" style="color:rgba(94,234,212,0.7);">The Record</div>
+      <p class="text-xs text-slate-300 leading-[1.7]">1,800+ consecutive days. 126 governors. Zero violations. 0.8 % max concentration. Three voluntary price cuts.</p>
+    </div>
+    <div class="rounded-xl p-4 sm:p-5 gap-3 sm:gap-5 items-center" style="background:linear-gradient(90deg,rgba(16,185,129,0.12),rgba(16,185,129,0.04)); border:1px solid rgba(16,185,129,0.3);">
+      <div class="text-xs font-semibold tracking-widest uppercase mb-1" style="color:rgba(94,234,212,0.7);">The Moat</div>
+      <p class="text-xs text-slate-300 leading-[1.7]">Two patents granted. Research is being finalized on additional original patent filings. 1,800 days of zero-violation history. You cannot replicate the record.</p>
+    </div>
+  </div>
+
+  <div class="rounded-xl p-4 sm:p-5" style="background:rgba(139,92,246,0.15); border:1px solid rgba(139,92,246,0.3); border:1px solid rgba(16,185,129,0.3);">
+    <p class="text-sm text-slate-200 leading-[1.7]">1 billion tokens authorized. Emission rate requires two-thirds of governors to change. No founder exemption. The ceiling applies from the first write. Token not yet publicly released. Nothing here is an offer to sell securities.</p>
+  </div>
+
+  <div class="page-nav page-nav-inline">
+    <button type="button" class="page-nav-btn" id="pnav-prev-inline" aria-label="Previous section" onclick="navStep(-1)">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+    </button>
+    <span class="page-nav-label" id="pnav-label-inline"></span>
+    <button type="button" class="page-nav-btn" id="pnav-next-inline" aria-label="Next section" onclick="navStep(1)">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+    </button>
+  </div>
+</section>
+
+<!-- ========== TAB ROADMAP ========== -->
+<section id="content-roadmap" class="tab-content" role="tabpanel" aria-labelledby="tab-roadmap">
+  <div class="mb-8">
+    <div class="section-eyebrow mb-3" style="color:#5eead4;">The Roadmap</div>
+    <h2 class="text-2xl sm:text-[2rem] font-extrabold tracking-tight leading-[1.1] text-white mb-3">Seven stages.<br>One theorem.<br><span style="color:#5eead4;">No geographic ceiling.</span></h2>
+    <p class="text-sm sm:text-base text-slate-400 leading-relaxed max-w-[760px] mb-6">Each stage named for a builder of constitutional systems – from the American founders to Alan Turing, the first theorist of machine intelligence. The math does not change. The scale does.</p>
+  </div>
+
+  <!-- Stage 1: Hamilton -->
+  <div class="row-item layer-card mb-2" style="--layer-accent:#5eead4;">
+    <button type="button" class="row-summary" style="padding:16px 18px;" aria-expanded="false" aria-controls="row-5" onclick="toggleRow(this)">
+      <div class="flex-1 min-w-0"><div class="layer-head"><div class="layer-head-left"><div class="layer-num">1</div><div><div class="layer-title">Hamilton</div><div class="layer-sub">Hamilton AI is the intelligence layer. Building now.</div></div></div><div class="layer-badges"><span class="layer-status" style="color:#5eead4;">NOW – BUILDING</span></div></div></div>
+      <svg class="chev row-chev flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="row-detail" id="row-5">
+      <p class="text-sm text-slate-300 leading-[1.85] mb-3 p-4">Hamilton AI is being built now. It is the intelligence layer for all STORE core economies: payments (STORE Pay), outgoing distributions (STORE Send), financial accounting (STORE Account), and all 11 sub-economies. Hamilton is the AI that governs the protocol before Armstrong launches. It makes pricing decisions, reads the governance oracle, and executes the calculations that power every sub-economy.</p>
+      <p class="layer-context">You cannot launch a democratic compute protocol without a governed intelligence layer. Hamilton is that layer. Armstrong only launches when Hamilton is running.</p>
+    </div>
+  </div>
+
+  <!-- Stage 2: Armstrong -->
+  <div class="row-item layer-card mb-2" style="--layer-accent:#5eead4;">
+    <button type="button" class="row-summary" style="padding:16px 18px;" aria-expanded="false" aria-controls="row-6" onclick="toggleRow(this)">
+      <div class="flex-1 min-w-0"><div class="layer-head"><div class="layer-head-left"><div class="layer-num">2</div><div><div class="layer-title">Armstrong</div><div class="layer-sub">STORE launches. Hamilton is running. The governed compute rail goes live.</div></div></div><div class="layer-badges"><span class="layer-status" style="color:#5eead4;">LAUNCH</span></div></div></div>
+      <svg class="chev row-chev flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="row-detail" id="row-6">
+      <p class="text-sm text-slate-300 leading-[1.85] mb-3 p-4">Armstrong is the public launch of STORE. By this point Hamilton AI is operational, the three payment primitives (STORE Pay, STORE Send, STORE Account) are live, and the constitutional rail is open to developers. The first governed compute transactions clear publicly. Hamilton’s Law is enforced at the database layer at scale.</p>
+      <p class="layer-context">Armstrong is not the beginning. It is the moment the work becomes public. Hamilton runs before Armstrong launches. That is the design.</p>
+    </div>
+  </div>
+
+  <!-- Stage 3: Adams -->
+  <div class="row-item layer-card mb-2" style="--layer-accent:#5eead4;">
+    <button type="button" class="row-summary" style="padding:16px 18px;" aria-expanded="false" aria-controls="row-7" onclick="toggleRow(this)">
+      <div class="flex-1 min-w-0"><div class="layer-head"><div class="layer-head-left"><div class="layer-num">3</div><div><div class="layer-title">Adams</div><div class="layer-sub">Democracy as a Service (DaaS) goes live.</div></div></div><div class="layer-badges"><span class="layer-status" style="color:#5eead4;">YEAR 1-2</span></div></div></div>
+      <svg class="chev row-chev flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="row-detail" id="row-7">
+      <p class="text-sm text-slate-300 leading-[1.85] mb-3 p-4">Democracy as a Service (DaaS) becomes the layer other systems build on. Any network, any organization, any AI system can access constitutional governance as a service. STORE provides the governance rail. Others plug in. The governed compute economy begins to expand.</p>
+      <p class="layer-context">DaaS is the business model made operational. Once the rail exists, others pay to ride it.</p>
+    </div>
+  </div>
+
+  <!-- Stage 4: Jefferson -->
+  <div class="row-item layer-card mb-2" style="--layer-accent:#5eead4;">
+    <button type="button" class="row-summary" style="padding:16px 18px;" aria-expanded="false" aria-controls="row-8" onclick="toggleRow(this)">
+      <div class="flex-1 min-w-0"><div class="layer-head"><div class="layer-head-left"><div class="layer-num">4</div><div><div class="layer-title">Jefferson</div><div class="layer-sub">Triangle deploys. Every AI inference gets a certificate proving no single actor controlled more than one-third.</div></div></div><div class="layer-badges"><span class="layer-status" style="color:#5eead4;">YEAR 2-3</span></div></div></div>
+      <svg class="chev row-chev flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="row-detail" id="row-8">
+      <p class="text-sm text-slate-300 leading-[1.85] mb-3 p-4">Triangle sits on top of DaaS. Governed inference goes live. Every output from a Triangle-governed AI model returns a certificate proving it operated under the one-third ceiling – no single actor in control. Verifiable. Permanently recorded. No single actor above one-third. Enforced. Verifiable. Democratic AI.</p>
+      <p class="layer-context">Triangle is the AI layer of the democratic compute economy. DaaS makes it possible. Jefferson is when it becomes real.</p>
+    </div>
+  </div>
+
+  <!-- Stage 5: Washington -->
+  <div class="row-item layer-card mb-2" style="--layer-accent:#5eead4;">
+    <button type="button" class="row-summary" style="padding:16px 18px;" aria-expanded="false" aria-controls="row-9" onclick="toggleRow(this)">
+      <div class="flex-1 min-w-0"><div class="layer-head"><div class="layer-head-left"><div class="layer-num">5</div><div><div class="layer-title">Washington</div><div class="layer-sub">Planetary scale. The math governs compute at scale.</div></div></div><div class="layer-badges"><span class="layer-status" style="color:#5eead4;">YEAR 3-5</span></div></div></div>
+      <svg class="chev row-chev flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="row-detail" id="row-9">
+      <p class="text-sm text-slate-300 leading-[1.85] mb-3 p-4">STORE governs compute transactions for millions of users through developers and agents on the governed rail. Democratic cloud computing – infrastructure constitutionally constrained rather than corporately controlled. The 50-state limit does not apply. The math has no geographic ceiling. STORE is the first live constitutional compute-governance experiment of its kind.</p>
+      <p class="layer-context">At Washington scale, the Scaling Inversion is fully visible: the more governors, the harder to capture. No prior network has this property.</p>
+    </div>
+  </div>
+
+  <!-- Stage 6: Madison / Franklin -->
+  <div class="row-item layer-card mb-2" style="--layer-accent:#5eead4;">
+    <button type="button" class="row-summary" style="padding:16px 18px;" aria-expanded="false" aria-controls="row-10" onclick="toggleRow(this)">
+      <div class="flex-1 min-w-0"><div class="layer-head"><div class="layer-head-left"><div class="layer-num">6</div><div><div class="layer-title">Madison / Franklin</div><div class="layer-sub">Autonomous computing. AI agents on the democratic rail.</div></div></div><div class="layer-badges"><span class="layer-status" style="color:#5eead4;">YEAR 5-10</span></div></div></div>
+      <svg class="chev row-chev flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="row-detail" id="row-10">
+      <p class="text-sm text-slate-300 leading-[1.85] mb-3 p-4">AI agents participate in the governed compute economy directly. Builders deploy their own token economies on the STORE rail — paying for compute and intelligence in their own crypto asset. STORE accepts any token as currency at the infrastructure layer, governs the workload constitutionally, and returns a Governed AI Certificate. Physical AI is next — robotics, autonomous systems, anything that runs on governed compute. The same constitutional ceiling that prevents faction capture of a cloud protocol prevents faction capture of a robot fleet. Autonomous Token Economy paradigm: your token, your compute, your intelligence — governed by the same constitutional ceiling. Humans remain ≥ 2/3 of governors by mandate. AI participates. It cannot control.</p>
+      <p class="layer-context">This is the paradigm shift from L1 protocols where miners are paid only in native currency. STORE builders pay in their own token and receive governed compute + constitutional certificates in return. The monetary premium: every autonomous token economy routes through the STORE constitutional rail. The infrastructure layer’s settlement currency accrues the value of everything built on top of it.</p>
+    </div>
+  </div>
+
+  <!-- Stage 7: Turing -->
+  <div class="row-item layer-card mb-2" style="--layer-accent:#5eead4;">
+    <button type="button" class="row-summary" style="padding:16px 18px;" aria-expanded="false" aria-controls="row-11" onclick="toggleRow(this)">
+      <div class="flex-1 min-w-0"><div class="layer-head"><div class="layer-head-left"><div class="layer-num">7</div><div><div class="layer-title">Turing</div><div class="layer-sub">mID. AI earns a seat. Humanity holds ≥ 2/3.</div></div></div><div class="layer-badges"><span class="layer-status" style="color:#5eead4;">YEAR 10-20</span></div></div></div>
+      <svg class="chev row-chev flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="row-detail" id="row-11">
+      <p class="text-sm text-slate-300 leading-[1.85] mb-3 p-4">Machine Identity (mID) activates. AI governors can be enrolled by network consensus – up to one-third of the total. For the first time, human and AI governors co-govern a constitutional system. Humans always hold two-thirds. The math guarantees it. The democracy decides when AI has earned its seat.</p>
+      <p class="layer-context">Not engineers. Not the AI. The democracy decides.</p>
+    </div>
+  </div>
+
+  <div class="rounded-xl p-4 sm:p-5 mt-3" style="background:rgba(139,92,246,0.15); border:1px solid rgba(139,92,246,0.3); border:1px solid rgba(16,185,129,0.3);">
+    <p class="text-sm text-slate-200 leading-[1.7]">Not on a schedule. The math earns each stage. The experiment is small. The math, if the record continues to hold, is not.</p>
+  </div>
+
+  <div class="page-nav page-nav-inline">
+    <button type="button" class="page-nav-btn" id="pnav-prev-inline" aria-label="Previous section" onclick="navStep(-1)">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+    </button>
+    <span class="page-nav-label" id="pnav-label-inline"></span>
+    <button type="button" class="page-nav-btn" id="pnav-next-inline" aria-label="Next section" onclick="navStep(1)">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+    </button>
+  </div>
+</section>
+
+<!-- ========== TAB LAUNCH ========== -->
+<section id="content-launch" class="tab-content" role="tabpanel" aria-labelledby="tab-launch">
+  <div class="mb-8">
+    <div class="section-eyebrow mb-3" style="color:#5eead4;">Launch Status</div>
+    <h2 class="text-2xl sm:text-[2rem] font-extrabold tracking-tight leading-[1.1] text-white mb-3">Four Gates to Launch</h2>
+    <p class="text-sm sm:text-base text-slate-400 leading-relaxed max-w-[760px] mb-6">The protocol launches when all four gates clear – not on a date. Two gates are controlled internally. Two depend on external Swiss authorities. The math is published so anyone can check it.</p>
+  </div>
+
+  <p class="mono text-[10px] text-slate-500 mb-6">Four gates. Sequential. All four must clear before Armstrong launches. The aggregate is published publicly. Each gate advances the next.</p>
+
+  <div class="card p-5 sm:p-6 mb-6 flex items-center justify-between gap-4" style="border-left:4px solid #5eead4;">
+    <div>
+      <div class="text-[10px] uppercase tracking-[0.15em] text-slate-200 mb-2">Weighted Aggregate</div>
+      <div class="hero-num display-num text-5xl sm:text-6xl">63%</div>
+      <div class="text-xs text-slate-500 mt-2">Updated August 2026</div>
+    </div>
+    <svg width="88" height="88" viewBox="0 0 72 72" aria-hidden="true">
+      <circle cx="36" cy="36" r="30" fill="none" stroke="rgba(148,163,184,0.12)" stroke-width="6"/>
+      <circle cx="36" cy="36" r="30" fill="none" stroke="#5eead4" stroke-width="6"
+        stroke-dasharray="118.75 188.50" stroke-dashoffset="47.12" stroke-linecap="round"
+        style="transform:rotate(-90deg); transform-origin:36px 36px;"/>
+      <text x="36" y="40" text-anchor="middle" fill="#5eead4" font-size="13" font-weight="700" font-family="monospace">63%</text>
+    </svg>
+  </div>
+
+  <!-- Gate 1: Technical -->
+  <div class="card p-5 mb-3" style="border-left:3px solid #5eead4;">
+    <div class="flex justify-between items-start gap-3 flex-wrap mb-3">
+      <div>
+        <div class="flex items-center gap-2 flex-wrap mb-1"><span class="text-sm font-bold text-white">Technical: The governed compute rail is built and verified.</span><span class="badge" style="background:rgba(16,185,129,0.14); color:#34d399; border:1px solid rgba(16,185,129,0.30);">WE CONTROL</span></div>
+        <div class="text-[10px] text-slate-500">40% of total weight</div>
+      </div>
+      <div class="text-right"><div class="display-num text-2xl font-extrabold" style="color:#5eead4;">75%</div><div class="mono text-[10px] text-slate-500 mt-0.5">IN PROGRESS</div></div>
+    </div>
+    <div class="bar-track" style="height:5px;" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"><div class="bar-fill bar-fill-teal" style="width:75%; animation-delay:0.1s;"></div></div>
+    <p class="text-xs text-slate-400 leading-[1.6] mt-3 mb-3">SEND, ACCOUNT, and payment infrastructure. Constitutional compute rail. payment verification integration.</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div><div class="mono text-[10px] uppercase tracking-[0.1em] font-bold mb-1.5" style="color:#34d399; padding-left:8px; border-left:2px solid rgba(52,211,153,0.4);">What moved</div><p class="text-[11px] text-slate-400 leading-[1.55]">Payment infrastructure architecture complete. SEND protocol spec locked.</p></div>
+      <div><div class="mono text-[10px] uppercase tracking-[0.1em] font-bold mb-1.5" style="color:#fbbf24; padding-left:8px; border-left:2px solid rgba(251,191,36,0.4);">What clears it</div><p class="text-[11px] text-slate-400 leading-[1.55]">Full integration test. Internal verification protocol. End-to-end payment flow.</p></div>
+    </div>
+  </div>
+
+  <!-- Gate 2: Funding -->
+  <div class="card p-5 mb-3" style="border-left:3px solid #5eead4;">
+    <div class="flex justify-between items-start gap-3 flex-wrap mb-3">
+      <div>
+        <div class="flex items-center gap-2 flex-wrap mb-1"><span class="text-sm font-bold text-white">Funding: The runway exists to complete the work.</span><span class="badge" style="background:rgba(16,185,129,0.14); color:#34d399; border:1px solid rgba(16,185,129,0.30);">WE CONTROL</span></div>
+        <div class="text-[10px] text-slate-500">30% of total weight</div>
+      </div>
+      <div class="text-right"><div class="display-num text-2xl font-extrabold" style="color:#5eead4;">35%</div><div class="mono text-[10px] text-slate-500 mt-0.5">IN PROGRESS</div></div>
+    </div>
+    <div class="bar-track" style="height:5px;" role="progressbar" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"><div class="bar-fill bar-fill-teal" style="width:35%; animation-delay:0.1s;"></div></div>
+    <p class="text-xs text-slate-400 leading-[1.6] mt-3 mb-3">First funding milestone ($2.67M) reached. Provides runway for remaining technical and legal work.</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div><div class="mono text-[10px] uppercase tracking-[0.1em] font-bold mb-1.5" style="color:#34d399; padding-left:8px; border-left:2px solid rgba(52,211,153,0.4);">What moved</div><p class="text-[11px] text-slate-400 leading-[1.55]">Community round closed. Lead investor conversations active.</p></div>
+      <div><div class="mono text-[10px] uppercase tracking-[0.1em] font-bold mb-1.5" style="color:#fbbf24; padding-left:8px; border-left:2px solid rgba(251,191,36,0.4);">What clears it</div><p class="text-[11px] text-slate-400 leading-[1.55]">First funding milestone close.</p></div>
+    </div>
+  </div>
+
+  <!-- Gate 3: MME Sign-off -->
+  <div class="card p-5 mb-3" style="border-left:3px solid #5eead4;">
+    <div class="flex justify-between items-start gap-3 flex-wrap mb-3">
+      <div>
+        <div class="flex items-center gap-2 flex-wrap mb-1"><span class="text-sm font-bold text-white">MME Sign-off</span><span class="badge" style="background:rgba(245,158,11,0.14); color:#fbbf24; border:1px solid rgba(245,158,11,0.30);">EXTERNAL</span></div>
+        <div class="text-[10px] text-slate-500">20% of total weight</div>
+      </div>
+      <div class="text-right"><div class="display-num text-2xl font-extrabold" style="color:#5eead4;">75%</div><div class="mono text-[10px] text-slate-500 mt-0.5">PENDING</div></div>
+    </div>
+    <div class="bar-track" style="height:5px;" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"><div class="bar-fill bar-fill-teal" style="width:75%; animation-delay:0.1s;"></div></div>
+    <p class="text-xs text-slate-400 leading-[1.6] mt-3 mb-3">Swiss financial regulator (MME) confirms STORE payment flows do not constitute exchange activity under Swiss law.</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div><div class="mono text-[10px] uppercase tracking-[0.1em] font-bold mb-1.5" style="color:#34d399; padding-left:8px; border-left:2px solid rgba(52,211,153,0.4);">What moved</div><p class="text-[11px] text-slate-400 leading-[1.55]">Submission prepared. Swiss counsel engaged. Initial review underway.</p></div>
+      <div><div class="mono text-[10px] uppercase tracking-[0.1em] font-bold mb-1.5" style="color:#fbbf24; padding-left:8px; border-left:2px solid rgba(251,191,36,0.4);">What clears it</div><p class="text-[11px] text-slate-400 leading-[1.55]">Awaiting Swiss regulatory ruling.</p></div>
+    </div>
+  </div>
+
+  <!-- Gate 4: Tax Ruling -->
+  <div class="card p-5 mb-3" style="border-left:3px solid #5eead4;">
+    <div class="flex justify-between items-start gap-3 flex-wrap mb-3">
+      <div>
+        <div class="flex items-center gap-2 flex-wrap mb-1"><span class="text-sm font-bold text-white">Tax Ruling</span><span class="badge" style="background:rgba(245,158,11,0.14); color:#fbbf24; border:1px solid rgba(245,158,11,0.30);">EXTERNAL</span></div>
+        <div class="text-[10px] text-slate-500">10% of total weight</div>
+      </div>
+      <div class="text-right"><div class="display-num text-2xl font-extrabold" style="color:#5eead4;">75%</div><div class="mono text-[10px] text-slate-500 mt-0.5">PENDING</div></div>
+    </div>
+    <div class="bar-track" style="height:5px;" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"><div class="bar-fill bar-fill-teal" style="width:75%; animation-delay:0.1s;"></div></div>
+    <p class="text-xs text-slate-400 leading-[1.6] mt-3 mb-3">Favorable ruling on asset transfer to Switzerland. Clears $6M liability risk.</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div><div class="mono text-[10px] uppercase tracking-[0.1em] font-bold mb-1.5" style="color:#34d399; padding-left:8px; border-left:2px solid rgba(52,211,153,0.4);">What moved</div><p class="text-[11px] text-slate-400 leading-[1.55]">Documentation prepared. Tax counsel engaged.</p></div>
+      <div><div class="mono text-[10px] uppercase tracking-[0.1em] font-bold mb-1.5" style="color:#fbbf24; padding-left:8px; border-left:2px solid rgba(251,191,36,0.4);">What clears it</div><p class="text-[11px] text-slate-400 leading-[1.55]">Swiss tax authority ruling. External dependency.</p></div>
+    </div>
+  </div>
+
+  <div class="card p-5 sm:p-6" style="">
+    <div class="section-eyebrow mb-3" style="color:#5eead4;">How We Get There</div>
+    <p class="text-xs sm:text-sm text-slate-400 leading-[1.8]">Every 30–60 days, we run micro test networks with our community and Telegram governors to fortify the technology. Each cycle advances the aggregate gate score. This continues until all four gates clear and Armstrong launches. The math is public. Anyone can track it.</p>
+  </div>
+  <div class="mb-3"></div>
+
+  <div class="rounded-xl p-4 sm:p-5" style="background:rgba(139,92,246,0.15); border:1px solid rgba(139,92,246,0.3); border:1px solid rgba(16,185,129,0.3);">
+    <p class="text-sm text-slate-200 leading-[1.7]">63% of the way there. All four gates must clear before Armstrong launches. That is the protocol. We will not launch before the math is ready.</p>
+  </div>
+
+  <div class="page-nav page-nav-inline">
+    <button type="button" class="page-nav-btn" id="pnav-prev-inline" aria-label="Previous section" onclick="navStep(-1)">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+    </button>
+    <span class="page-nav-label" id="pnav-label-inline"></span>
+    <button type="button" class="page-nav-btn" id="pnav-next-inline" aria-label="Next section" onclick="navStep(1)">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+    </button>
+  </div>
+</section>
+
+<!-- ========== TAB JOIN ========== -->
+<section id="content-join" class="tab-content" role="tabpanel" aria-labelledby="tab-join">
+  <div class="mb-8">
+    <div class="section-eyebrow mb-3" style="color:#5eead4;">Join</div>
+    <h2 class="text-2xl sm:text-[2rem] font-extrabold tracking-tight leading-[1.1] text-white mb-3">Three ways in.<br><span style="color:#5eead4;">One network.</span></h2>
+    <p class="text-sm sm:text-base text-slate-400 leading-relaxed max-w-[760px] mb-6">STORE is in active development. Peer review is open now. Token purchase and Treasuries open at Armstrong launch. 1,800+ consecutive days. 126 governors. Zero violations.</p>
+  </div>
+
+  <!-- 01 Peer Review -->
+  <div class="card card-accent-teal p-6" style="border-left:3px solid #5eead4;">
+    <div class="flex justify-between items-start gap-3 flex-wrap mb-2">
+      <div><div class="mono text-[10px] uppercase tracking-[0.14em] mb-2" style="color:#5eead4;">01 · Peer Review</div><div class="text-lg font-extrabold text-white">Review the research. Challenge the math.</div></div>
+      <span class="badge" style="background:rgba(20,184,166,0.14); color:#5eead4; border:1px solid rgba(20,184,166,0.30);">OPEN NOW</span>
+    </div>
+    <p class="text-xs sm:text-sm text-slate-400 leading-[1.8] mb-4">The Physics of Trust papers, the Democratic AI Stack, and nine years of governance data are publicly available. If the math is wrong, we want to know. If it holds, you’ll be glad you read it first.</p>
+    <div class="flex flex-wrap gap-2">
+      <span class="badge" style="background:rgba(20,184,166,0.12); color:#5eead4; border:1px solid rgba(20,184,166,0.28);">Physics of Trust · Computing →</span>
+      <span class="badge" style="background:rgba(20,184,166,0.12); color:#5eead4; border:1px solid rgba(20,184,166,0.28);">Physics of Trust · America →</span>
+      <span class="badge" style="background:rgba(20,184,166,0.12); color:#5eead4; border:1px solid rgba(20,184,166,0.28);">Democratic AI Stack →</span>
+    </div>
+  </div>
+  <div class="mb-3"></div>
+
+  <!-- 02 First Governance -->
+  <div class="card p-5 sm:p-6" style="">
+    <div class="flex justify-between items-start gap-3 flex-wrap mb-2">
+      <div><div class="mono text-[10px] uppercase tracking-[0.14em] text-slate-100 mb-2">02 · First Governance</div><div class="text-lg font-extrabold text-white">One $10,000 purchase. One vote.</div></div>
+      <span class="badge" style="background:rgba(100,116,139,0.14); color:#94a3b8; border:1px solid rgba(100,116,139,0.30);">AT LAUNCH</span>
+    </div>
+    <p class="text-xs sm:text-sm text-slate-400 leading-[1.8] mb-4">First Governance participants purchase $10,000 of STORE tokens and receive one vote in the protocol’s constitutional democracy. Governors ratify every price, every parameter change, every governance decision by two-thirds majority. One governor, one vote. No concentration above 0.8 %. Governors earn STORE token rewards relative to the security they provide to the protocol, with a bonus for active governance participation.</p>
+    <p class="text-xs text-slate-300 leading-[1.75] rounded-lg p-3 mb-4" style="background:rgba(20,184,166,0.05); border:1px solid rgba(20,184,166,0.18);">No governor register page yet — for now, request to buy STORE tokens and note your interest in governance. We will reach out before launch.</p>
+    <a href="https://storecloud.org/buystore" class="btn-primary" style="display:inline-flex; align-items:center; gap:8px; text-decoration:none; width:100%; justify-content:center; box-sizing:border-box;">Request to buy STORE <span aria-hidden="true">→</span></a>
+  </div>
+  <div class="mb-3"></div>
+
+  <!-- 03 Treasuries -->
+  <div class="card p-5 sm:p-6" style="">
+    <div class="flex justify-between items-start gap-3 flex-wrap mb-2">
+      <div><div class="mono text-[10px] uppercase tracking-[0.14em] text-slate-100 mb-2">03 · Treasuries</div><div class="text-lg font-extrabold text-white">Learn how STORE Treasuries secure the monetary system.</div></div>
+      <span class="badge" style="background:rgba(100,116,139,0.14); color:#94a3b8; border:1px solid rgba(100,116,139,0.30);">AT LAUNCH</span>
+    </div>
+    <p class="text-xs sm:text-sm text-slate-400 leading-[1.8] mb-3">Once you own STORE tokens, you can deposit them into STORE Treasuries. Treasuries are long-term token commitments that secure the protocol’s monetary system and earn rewards from protocol usage fees. Two-thirds of governors must agree to change any Treasury parameter.</p>
+    <span class="mono text-[11px]" style="color:#5eead4;">Learn about Treasuries → storecloud.org/treasuries</span>
+  </div>
+
+  <div class="mt-8 pt-6">
+    <div class="card p-5 sm:p-6" style="background: linear-gradient(180deg, rgba(15,23,42,0.6), rgba(15,23,42,0.35)); border-color: rgba(20,184,166,0.22);">
+      <p class="text-xs sm:text-[13px] text-slate-300 leading-[1.8] mb-3">Franklin Templeton projects $3–5T in agentic commerce by 2030. Every agent operating on STORE Cloud carries a constitutional certificate. The democratic compute economy is being built now.</p>
+      <p class="text-[11px] text-slate-500 italic">Nothing here is an offer to sell securities.</p>
+    </div>
+  </div>
+
+  <div class="page-nav page-nav-inline">
+    <button type="button" class="page-nav-btn" id="pnav-prev-inline" aria-label="Previous section" onclick="navStep(-1)">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+    </button>
+    <span class="page-nav-label" id="pnav-label-inline"></span>
+    <button type="button" class="page-nav-btn" id="pnav-next-inline" aria-label="Next section" onclick="navStep(1)">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+    </button>
+  </div>
+</section>
+
+<!-- ========== TAB WHO WE ARE ========== -->
+<section id="content-who" class="tab-content" role="tabpanel" aria-labelledby="tab-who">
+  <div class="card card-accent-amber p-6 sm:p-8" style="border-left:3px solid #fbbf24;">
+    <div class="card-title lg" style="color:#fbbf24;">The Founding Recognition</div>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">In December 2017, working alone in San Francisco, Chris McCoy noticed something. The two-thirds signature requirement in BlockFinBFT – the consensus architecture he was building – was the same fraction Hamilton had encoded into the US Constitution multiple times. Which was the same threshold Leslie Lamport had derived in 1982 while solving the adversarial Generals Problem in distributed computing. Which was the same structural principle Elinor Ostrom had documented in durable self-governing communities.</p>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">Three intellectual traditions. Zero cross-citation. The same number. Independently.</p>
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">The recognition was not a discovery in the conventional sense. It was the moment when a mathematical law that had always been true became visible to someone who was looking for it. Chris did not invent Hamilton's Ceiling. He recognized the convergence – and built the first continuous implementation.</p>
+    <div class="mt-5 pt-5" style="border-top:1px solid rgba(251,191,36,0.25);"><p class="text-lg sm:text-xl font-extrabold italic text-center leading-[1.4]" style="color:#fbbf24;">&ldquo;He kept going for nine years because the math kept being right.&rdquo;</p></div>
+  </div>
+
+  <div class="mb-8"></div>
+
+  <div class="section-eyebrow mb-3" style="color:#94a3b8;">Nine Years</div>
+  <div class="card p-4 mb-3 flex gap-4" style="border-left:3px solid #fbbf24;">
+    <div class="mono display-num text-base font-black flex-shrink-0" style="color:#fbbf24; min-width:44px;">2014</div>
+    <p class="text-xs sm:text-sm text-slate-300 leading-[1.75]">Data4America founded. Research into distressed community economics. Kelso, Washington becomes the design standard: if it works for Kelso, it works for America.</p>
+  </div>
+  <div class="card p-4 mb-3 flex gap-4" style="border-left:3px solid #fbbf24;">
+    <div class="mono display-num text-base font-black flex-shrink-0" style="color:#fbbf24; min-width:44px;">2017</div>
+    <p class="text-xs sm:text-sm text-slate-300 leading-[1.75]">May 17 – STORE Research Inc. registered. The recognition happens at Consensus 2017 in New York. McCoy flies home knowing what he has to build.</p>
+  </div>
+  <div class="card p-4 mb-3 flex gap-4" style="border-left:3px solid #5eead4;">
+    <div class="mono display-num text-base font-black flex-shrink-0" style="color:#5eead4; min-width:44px;">2018</div>
+    <p class="text-xs sm:text-sm text-slate-300 leading-[1.75]">Rag Bhagavatha joins as founding technologist. BlockFinBFT architecture begins. First governor onboarding.</p>
+  </div>
+  <div class="card p-4 mb-3 flex gap-4" style="border-left:3px solid #34d399;">
+    <div class="mono display-num text-base font-black flex-shrink-0" style="color:#34d399; min-width:44px;">2020</div>
+    <p class="text-xs sm:text-sm text-slate-300 leading-[1.75]">Constitutional governance experiment begins. It will run for five years without a single violation.</p>
+  </div>
+  <div class="card p-4 mb-3 flex gap-4" style="border-left:3px solid #fbbf24;">
+    <div class="mono display-num text-base font-black flex-shrink-0" style="color:#fbbf24; min-width:44px;">2022</div>
+    <p class="text-xs sm:text-sm text-slate-300 leading-[1.75]">Two granted patents. Four Fortune 500 companies cite them. Three voluntary price-cut votes. The governors could have extracted. They didn’t.</p>
+  </div>
+  <div class="card p-4 mb-3 flex gap-4" style="border-left:3px solid #5eead4;">
+    <div class="mono display-num text-base font-black flex-shrink-0" style="color:#5eead4; min-width:44px;">2024</div>
+    <p class="text-xs sm:text-sm text-slate-300 leading-[1.75]">Season 1: the first constitutional democracy at community scale. 60 voters. 97.22% ratification. The constitutional governance mechanism scales beyond compute.</p>
+  </div>
+  <div class="card p-4 mb-3 flex gap-4" style="border-left:3px solid #a78bfa;">
+    <div class="mono display-num text-base font-black flex-shrink-0" style="color:#a78bfa; min-width:44px;">2026</div>
+    <p class="text-xs sm:text-sm text-slate-300 leading-[1.75]">AI Kill Switch Act introduced July 23, 2026 (publicly reported) – bipartisan. ChatGPT at 53.9% of consumer AI traffic, above Hamilton’s Ceiling with no governance mechanism anywhere in the stack. STORE was nine years early. It is now right on time.</p>
+  </div>
+
+  <div class="mb-8"></div>
+
+  <div class="section-eyebrow mb-3" style="color:#94a3b8;">The Team</div>
+  <div class="leader-card" style="border-left-color:#5eead4;"><div class="leader-name">Chris McCoy</div><div class="leader-role" style="color:#5eead4;">Founder &amp; CEO · STORE Research Inc.</div><p class="leader-proposal">National DECA President 2001-2002. Data4America 2014. STORE Research 2017. Architect of constitutional mathematics and the Controlled Collision Engine.</p></div>
+  <div class="mb-2"></div>
+  <div class="leader-card" style="border-left-color:#5eead4;"><div class="leader-name">Sohaib Ahsan</div><div class="leader-role" style="color:#5eead4;">Director of Engineering</div><p class="leader-proposal">Lead engineer on the STORE Protocol stack. Co-inventor on STORE Pay. Building the governed compute rail.</p></div>
+  <div class="mb-2"></div>
+  <div class="leader-card" style="border-left-color:#5eead4;"><div class="leader-name">Raghavendra Bhagavatha (Rag)</div><div class="leader-role" style="color:#5eead4;">Founding Technologist</div><p class="leader-proposal">PRIMARY inventor on BlockFinBFT. Returning to lead Furmy and distributed systems. Built the consensus architecture that earned the first two granted patents.</p></div>
+  <div class="mb-2"></div>
+  <div class="leader-card" style="border-left-color:#5eead4;"><div class="leader-name">Matt Sherry</div><div class="leader-role" style="color:#5eead4;">Product Manager / Chief of Staff</div><p class="leader-proposal">Co-inventor on the Detection Proof patent. Executes on Chris’s behalf.</p></div>
+  <div class="mb-2"></div>
+  <div class="leader-card" style="border-left-color:#5eead4;"><div class="leader-name">Josh Lawler</div><div class="leader-role" style="color:#5eead4;">Securities Counsel · Zuber Lawler</div><p class="leader-proposal">Lead securities and blockchain counsel. First Governor. Leads the Emerging Technologies Group. Prior Skadden Arps.</p></div>
+  <div class="mb-2"></div>
+  <div class="leader-card" style="border-left-color:#5eead4;"><div class="leader-name">Bassil Eid</div><div class="leader-role" style="color:#5eead4;">Swiss Legal Counsel · DETOF</div><p class="leader-proposal">Co-inventor on the Monetary Proof patent (Washington Economic Consensus). Swiss Association formation. Canton Zug.</p></div>
+
+  <div class="mb-6"></div>
+
+  <div class="card card-accent-violet p-5 sm:p-6" style="border-left:3px solid #a78bfa;">
+    <div class="card-title" style="color:#a78bfa;">The Research Program</div>
+    <div class="space-y-2.5">
+      <div class="rounded-lg p-3" style="background:rgba(167,139,250,0.06); border:1px solid rgba(167,139,250,0.2);">
+        <div class="text-sm font-bold mb-1" style="color:#a78bfa;">Constitutional technology portfolio</div>
+        <div class="text-xs text-slate-400 leading-[1.6]">Two granted patents · multi-year filing program · four Fortune 500 citations</div>
+      </div>
+      <div class="rounded-lg p-3" style="background:rgba(167,139,250,0.06); border:1px solid rgba(167,139,250,0.2);">
+        <div class="text-sm font-bold mb-1" style="color:#a78bfa;">Three research papers</div>
+        <div class="text-xs text-slate-400 leading-[1.6]">Physics of Trust for Computing · Physics of Trust for America · Extending Ostrom</div>
+      </div>
+      <div class="rounded-lg p-3" style="background:rgba(167,139,250,0.06); border:1px solid rgba(167,139,250,0.2);">
+        <div class="text-sm font-bold mb-1" style="color:#a78bfa;">The Kelso Experiment</div>
+        <div class="text-xs text-slate-400 leading-[1.6]">Season 1 (July 2024) · 60 voters · 97.22% ratification · Season 2 (2025) · 187 voters</div>
+      </div>
+      <div class="rounded-lg p-3" style="background:rgba(167,139,250,0.06); border:1px solid rgba(167,139,250,0.2);">
+        <div class="text-sm font-bold mb-1" style="color:#a78bfa;">Open questions</div>
+        <div class="text-xs text-slate-400 leading-[1.6]">Formal mathematical proof in preparation · Production adversarial validation</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center py-10">
+    <div class="w-10 h-px mx-auto mb-5" style="background:rgba(94,234,212,0.4);"></div>
+    <p class="text-xl sm:text-2xl font-extrabold text-slate-200 leading-[1.3] mb-1">STORE was nine years early.</p>
+    <p class="text-xl sm:text-2xl font-extrabold leading-[1.3]" style="color:#5eead4;">It is now right on time.</p>
+  </div>
+
+  <div class="closing-card" style="padding:28px 24px; margin-bottom:16px;">
+    <p class="text-sm sm:text-base font-semibold text-white text-center leading-[1.7] italic">&ldquo;STORE is the first production system that makes any concentration of control above one-third a type error at the database layer, enforced for 1,800+ consecutive days by 126 governors across 30+ countries with zero constitutional violations.&rdquo;</p>
+  </div>
+
+  <div class="text-center mb-4"><p class="text-xs sm:text-sm font-bold" style="color:#5eead4;">Patent Zero – is Patent Zero</p><p class="text-xs text-slate-400 italic mt-1">&ldquo;The Nobel was for the theory. The Controlled Collision Engine is the first machine implementation.&rdquo;</p></div>
+  <p class="text-center closing-meta">STORE Research Inc. · Founded May 17, 2017 · San Francisco, California</p>
+
+  <div class="page-nav page-nav-inline">
+    <button type="button" class="page-nav-btn" id="pnav-prev-inline" aria-label="Previous section" onclick="navStep(-1)">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+    </button>
+    <span class="page-nav-label" id="pnav-label-inline"></span>
+    <button type="button" class="page-nav-btn" id="pnav-next-inline" aria-label="Next section" onclick="navStep(1)">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+    </button>
+  </div>
+</section>
+
+</div></div>
+
+<footer class="px-4 sm:px-8 py-10" style="border-top:1px solid rgba(148,163,184,0.1);">
+  <div class="max-w-[900px] mx-auto text-center">
+    <img src="https://cdn.prod.website-files.com/5f48a063be66ba845f0d598c/69d3593b6f4f5a69430ca25e_STORE_Logo_NewTagline_White.png" alt="STORE Research" style="max-width:125px; height:auto; margin:0 auto 20px; display:block;">
+    <div class="section-eyebrow justify-center mb-2" style="color:#5eead4;">STORE Research Inc.</div>
+    <p class="text-xs text-slate-500 leading-[1.7] max-w-[520px] mx-auto">L-zero governed cloud infrastructure. Democratic computing. Not a blockchain. Not a chain.</p>
+    <p class="closing-meta mt-4">WhySTORE · STORE Research Inc.</p>
+  </div>
+</footer>
+
+<div class="page-nav-dock" role="navigation" aria-label="Section navigation">
+  <div class="page-nav-dots" id="page-nav-dots" aria-hidden="true"></div>
+  <div class="page-nav-row">
+    <button type="button" class="page-nav-btn" id="pnav-prev-dock" aria-label="Previous section" onclick="navStep(-1)">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+    </button>
+    <button type="button" class="page-nav-jump" id="pnav-jump-toggle" aria-haspopup="true" aria-expanded="false" aria-controls="pnav-jump-menu" onclick="toggleJumpMenu()">
+      <span class="page-nav-label font-bold" id="pnav-label-dock">Why STORE / Why Now</span>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="page-nav-jump-chevron"><polyline points="18 15 12 9 6 15"/></svg>
+    </button>
+    <button type="button" class="page-nav-btn" id="pnav-next-dock" aria-label="Next section" onclick="navStep(1)">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+    </button>
+  </div>
+  <div class="page-nav-jump-menu" id="pnav-jump-menu" role="menu"></div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var TABS = [["why","Why STORE / Why Now"],["vision","The Vision"],["history","History"],["math","The Math"],["token","The Token"],["roadmap","Roadmap"],["launch","Launch"],["join","Join"],["who","Who We Are"]];
+
+  function currentIndex() {
+    for (var i = 0; i < TABS.length; i++) {
+      var el = document.getElementById('content-' + TABS[i][0]);
+      if (el && el.classList.contains('active')) return i;
+    }
+    return 0;
+  }
+
+  function updatePageNav() {
+    var idx = currentIndex();
+    var atFirst = idx === 0;
+    var atLast = idx === TABS.length - 1;
+
+    document.querySelectorAll('.page-nav-btn[aria-label="Previous section"]').forEach(function (b) {
+      b.setAttribute('aria-disabled', atFirst ? 'true' : 'false');
+    });
+
+    document.querySelectorAll('.page-nav-btn[aria-label="Next section"]').forEach(function (b) {
+      b.setAttribute('aria-disabled', atLast ? 'true' : 'false');
+    });
+
+    var labelText = TABS[idx][1]; 
+    document.querySelectorAll('.page-nav-label').forEach(function (l) {
+      l.textContent = labelText;
+    });
+
+    var footerTitle = document.getElementById('footer-tab-title');
+    if (footerTitle) footerTitle.textContent = TABS[idx][1];
+
+    var dotsWrap = document.getElementById('page-nav-dots');
+    if (dotsWrap) {
+      dotsWrap.innerHTML = TABS.map(function (t, i) {
+        return '<span class="page-nav-dot' + (i === idx ? ' is-active' : '') + '"></span>';
+      }).join('');
+    }
+
+    var menu = document.getElementById('pnav-jump-menu');
+    if (menu) {
+      var existing = menu.querySelectorAll('.page-nav-jump-option');
+      if (existing.length === TABS.length) {
+        existing.forEach(function (opt, i) {
+          opt.classList.toggle('is-active', i === idx);
+          opt.setAttribute('aria-current', i === idx ? 'true' : 'false');
+        });
+      } else {
+        menu.innerHTML = TABS.map(function (t, i) {
+          return '<button type="button" class="page-nav-jump-option' + (i === idx ? ' is-active' : '') +
+            '" role="menuitem" aria-current="' + (i === idx ? 'true' : 'false') + '" onclick="jumpToTab(\'' + t[0] + '\')">' +
+            '<span class="page-nav-jump-option-num">' + (i + 1) + '</span><span>' + t[1] + '</span></button>';
+        }).join('');
+      }
+    }
+  }
+
+  function closeJumpMenu() {
+    var menu = document.getElementById('pnav-jump-menu');
+    var toggle = document.getElementById('pnav-jump-toggle');
+    if (menu) menu.classList.remove('open');
+    if (toggle) toggle.setAttribute('aria-expanded', 'false');
+  }
+
+  window.toggleJumpMenu = function () {
+    var menu = document.getElementById('pnav-jump-menu');
+    var toggle = document.getElementById('pnav-jump-toggle');
+    if (!menu || !toggle) return;
+    var open = menu.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  };
+
+  window.jumpToTab = function (name) {
+    closeJumpMenu();
+    window.switchTab(name);
+  };
+
+  document.addEventListener('click', function (e) {
+    var dock = document.querySelector('.page-nav-dock');
+    if (dock && !dock.contains(e.target)) closeJumpMenu();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeJumpMenu();
+  });
+
+  window.switchTab = function (name) {
+    document.querySelectorAll('.tab-btn').forEach(function (b) {
+      var on = b.id === 'tab-' + name;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-selected', on ? 'true' : 'false');
+      if (on) {
+        b.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      }
+    });
+    document.querySelectorAll('.tab-content').forEach(function (s) {
+      s.classList.toggle('active', s.id === 'content-' + name);
+    });
+    updatePageNav();
+    var target = document.getElementById('content-' + name);
+    if (target) {
+      var navBar = document.querySelector('.tab-nav-bar');
+      var offset = navBar ? navBar.getBoundingClientRect().height : 0;
+      var top = target.getBoundingClientRect().top + window.pageYOffset - offset - 12;
+      window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  window.navStep = function (delta) {
+    var idx = currentIndex();
+    var next = idx + delta;
+    if (next < 0 || next >= TABS.length) return;
+    window.switchTab(TABS[next][0]);
+  };
+
+  var nav = document.getElementById('store-nav');
+  var navToggle = document.getElementById('store-nav-toggle');
+  if (nav && navToggle) {
+    navToggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var open = nav.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        nav.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  window.toggleRow = function (btn) {
+    var detail = btn.nextElementSibling;
+    var chev = btn.querySelector('.row-chev');
+    if (!detail) return;
+    var open = detail.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (chev) chev.classList.toggle('open', open);
+  };
+
+  updatePageNav();
+})();
+</script>
+</body>
+</html>
