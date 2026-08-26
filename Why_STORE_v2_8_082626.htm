@@ -401,9 +401,10 @@ body::after {
 
 .pull-quote {
   font-style: italic;
-  line-height: 2.0 !important; /* Memaksa line-height tetap 2.0 */
+  line-height: 1.55 !important;
   border-left: 2px solid rgba(20, 184, 166, 0.45);
   padding-left: 16px;
+  background-color: rgba(20, 184, 166, 0.08);
 }
 
 .card-title {
@@ -507,8 +508,32 @@ body::after {
 .layer-sub { font-size: 11.5px; color: var(--text-tertiary); font-style: italic; line-height: 1.4; }
 .layer-badges { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; flex-shrink: 0; }
 .layer-status {
-  font-family: 'Courier New', Courier, monospace; font-size: 10px; font-weight: 700;
-  letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap;
+  font-family: 'Courier New', Courier, monospace; 
+  font-size: 10px; 
+  font-weight: 700;
+  letter-spacing: 0.08em; 
+  text-transform: uppercase; 
+  white-space: nowrap;
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 9999px;
+
+  /* Tambahkan 3 baris ini untuk mengonsumsi variabelnya */
+  background-color: var(--badge-bg);
+  color: var(--badge-color);
+  border: 1px solid var(--badge-border);
+}
+
+.layer-status.status-now {
+  --badge-bg: rgba(20, 184, 166, 0.15);
+  --badge-color: #0d9488;
+  --badge-border: rgba(20, 184, 166, 0.3);
+}
+
+.layer-status.status-future {
+  --badge-bg: rgba(147, 51, 234, 0.15);
+  --badge-color: #7e22ce;                   
+  --badge-border: rgba(147, 51, 234, 0.3);  
 }
 .layer-points { display: flex; flex-direction: column; gap: 7px; }
 .layer-point { display: flex; align-items: flex-start; gap: 9px; }
@@ -1078,11 +1103,14 @@ body::after {
   <p class="text-sm text-slate-300 leading-[1.85] mb-3">AI advances. Compute scales. Humans remain ≥ 2/3 of governance weight, constitutionally guaranteed. The window to build this is 5–10 years. Without it, we lose the ability to stay in control as AI advances. With it, AI innovation and AI safety coexist—not as a compromise, but as a mathematical consequence.</p>
   <div class="mb-6"></div>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+  <div class="grid grid-cols-1 sm:grid-cols-1 gap-4 mb-8">
     <div class="relative group overflow-hidden rounded-2xl p-6 bg-gradient-to-br from-slate-900/90 to-slate-800/40 border border-teal-500/40 shadow-[0_0_30px_rgba(20,184,166,0.08)] hover:shadow-[0_0_40px_rgba(20,184,166,0.18)] transition-all duration-500 flex flex-col h-full">
       <div class="section-eyebrow mb-3" style="color:#5eead4;">Era 1 · Now</div>
       <div class="text-lg sm:text-xl font-extrabold text-white tracking-tight mb-3">Democratic compute.</div>
       <p class="text-sm text-slate-300 leading-[1.85] mb-3">STORE governs the compute rail. Every transaction carries a constitutional certificate. No single actor above one-third. Enforced at the database layer. Five data centers live today. The five Constitutional Data Centers maintain internal consistency via IPFS replication and Cloud ID architecture. STORE VERIFY — proofs anchored on Ethereum/Optimism — provides the external BFT enforcement layer and constitutional kill switch. BlockFinBFT among Constitutional Data Centers is reserved for future multi-node expansion and is not yet active.</p>
+      <div class="text-xs text-slate-300 italic leading-[1.7] mt-2 p-2 border-t border-slate-700/30 bg-teal-400/20 px-3 py-3 rounded-xl">
+        Anthropic trained principles into AI. STORE trained mathematics — the same mathematics the American Founders encoded in 1787, proved necessary by Lamport in 1982, and implemented at the database layer since 2017. Principles can be overridden. Type errors cannot.
+      </div>
     </div>
     <div class="relative group overflow-hidden rounded-2xl p-6 bg-gradient-to-br from-slate-900/90 to-slate-800/40 border border-teal-500/40 shadow-[0_0_30px_rgba(20,184,166,0.08)] hover:shadow-[0_0_40px_rgba(20,184,166,0.18)] transition-all duration-500 flex flex-col h-full">
       <div class="section-eyebrow mb-3" style="color:#5eead4;">Era 2 · Triangle</div>
@@ -1093,10 +1121,10 @@ body::after {
 
   <div class="card card-accent-teal p-5 sm:p-6" style="border-left:3px solid #5eead4;">
     <div class="section-eyebrow mb-3" style="color:#5eead4;">The Virginia Proof · 1792</div>
-    <p class="text-base font-bold text-white leading-[1.6] mb-3">When the math is right, cooperation beats extraction. Virginia proved it. STORE governors proved it again.</p>
+    <p class="text-sm font-bold text-white leading-[1.6] mb-3">When the math is right, cooperation beats extraction. Virginia proved it. STORE governors proved it again.</p>
     <p class="text-sm text-slate-300 leading-[1.85] mb-3">Virginia was the largest state in the new republic. Under strict proportional representation, Rhode Island citizens held 2.07× more voting power per person than Virginians. Virginia accepted less proportional power because a stable constitutional union was worth more long-term than maximum power in an unstable one. Cooperation was the dominant strategy. The math made it rational.</p>
     <p class="text-sm mb-2 text-slate-300 leading-[1.85]">In January 2022, STORE governors voted to cut token prices by 49 %. Nobody told them to. They could have voted to extract more. They did not. The math made cooperation the rational choice—the same way it did in 1792.</p>
-    <p class="pull-quote text-xs sm:text-sm text-slate-300 mt-2 leading-[1.8]">Hamilton’s Law is not one equation. It is five mathematical constraints working simultaneously—named after Madison, Hamilton, Reynolds, Jefferson, and Lamport. Together they form Multi-Level Power Distribution: the math that makes cooperation the dominant strategy at any scale.</p>
+    <p class="pull-quote text-xs sm:text-sm text-slate-300 mt-4 leading-[1.25] p-3">Hamilton’s Law is not one equation. It is five mathematical constraints working simultaneously—named after Madison, Hamilton, Reynolds, Jefferson, and Lamport. Together they form Multi-Level Power Distribution: the math that makes cooperation the dominant strategy at any scale.</p>
   </div>
   <div class="mb-6"></div>
 
@@ -1385,6 +1413,30 @@ body::after {
     <p class="text-xs sm:text-sm text-slate-400 leading-[1.75]">No prior network has this property. Metcalfe’s Law makes systems easier to capture at scale. Hamilton’s Law makes them harder.</p>
   </div>
 
+  <!-- Attack Cost -->
+  <div class="mb-6"></div>
+  <div class="card p-5 sm:p-6" style="border-left:3px solid #5eead4;">
+    <div class="section-eyebrow mb-3" style="color:#5eead4;">Attack Cost · Illustrative at Current Token Price</div>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+      <div class="rounded-xl p-4 text-center" style="background:rgba(20,184,166,0.06); border:1px solid rgba(20,184,166,0.22);">
+        <div class="text-xs text-slate-400">126 governors</div>
+        <div class="text-lg font-extrabold text-white">$420,000</div>
+        <div class="text-[10px] text-slate-400 leading-[1.5]">corrupt 42 actors</div>
+      </div>
+      <div class="rounded-xl p-4 text-center" style="background:rgba(20,184,166,0.06); border:1px solid rgba(20,184,166,0.22);">
+        <div class="text-xs text-slate-400">1,000 governors</div>
+        <div class="text-lg font-extrabold text-white">$3.34M</div>
+        <div class="text-[10px] text-slate-400 leading-[1.5]">corrupt 334 actors</div>
+      </div>
+      <div class="rounded-xl p-4 text-center" style="background:rgba(20,184,166,0.06); border:1px solid rgba(20,184,166,0.22);">
+        <div class="text-xs text-slate-400">10,000 governors</div>
+        <div class="text-lg font-extrabold text-white">$33.34M</div>
+        <div class="text-[10px] text-slate-400 leading-[1.5]">corrupt 3,334 actors</div>
+      </div>
+    </div>
+    <p class="text-xs text-slate-400 leading-[1.7] mt-3">Illustrative cost at current token price. As the network grows, attack cost grows linearly with governor count. This is the mathematical inverse of Metcalfe's Law.</p>
+  </div>
+
   <!-- Voting Thresholds -->
   <div class="mb-6"></div>
   <div class="card p-5 sm:p-6" style="border-left:3px solid #5eead4;">
@@ -1393,29 +1445,32 @@ body::after {
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
       <div class="rounded-xl p-4" style="background:rgba(20,184,166,0.06); border:1px solid rgba(20,184,166,0.22);">
         <div class="text-xs font-bold" style="color:#5eead4;">Super</div>
-        <div class="text-xl font-extrabold text-white">≥75%</div>
+        <div class="text-lg font-extrabold text-white">≥75%</div>
         <div class="text-[10px] text-slate-400 leading-[1.5]">Constitutional amendments, kill switch activation</div>
       </div>
       <div class="rounded-xl p-4" style="background:rgba(20,184,166,0.06); border:1px solid rgba(20,184,166,0.22);">
         <div class="text-xs font-bold" style="color:#5eead4;">Qualified</div>
-        <div class="text-xl font-extrabold text-white">≥67%</div>
+        <div class="text-lg font-extrabold text-white">≥67%</div>
         <div class="text-[10px] text-slate-400 leading-[1.5]">Monetary policy changes, price reparameterization</div>
       </div>
       <div class="rounded-xl p-4" style="background:rgba(20,184,166,0.06); border:1px solid rgba(20,184,166,0.22);">
         <div class="text-xs font-bold" style="color:#5eead4;">Simple</div>
-        <div class="text-xl font-extrabold text-white">≥51%</div>
+        <div class="text-lg font-extrabold text-white">≥51%</div>
         <div class="text-[10px] text-slate-400 leading-[1.5]">Routine protocol updates, non-constitutional parameters</div>
       </div>
       <div class="rounded-xl p-4" style="background:rgba(20,184,166,0.06); border:1px solid rgba(20,184,166,0.22);">
         <div class="text-xs font-bold" style="color:#5eead4;">Soft</div>
-        <div class="text-xl font-extrabold text-white">=33%</div>
+        <div class="text-lg font-extrabold text-white">=33%</div>
         <div class="text-[10px] text-slate-400 leading-[1.5]">Constitutional ceiling – maximum concentration allowed</div>
       </div>
       <div class="rounded-xl p-4 sm:col-span-2" style="background:rgba(20,184,166,0.06); border:1px solid rgba(20,184,166,0.22);">
         <div class="text-xs font-bold" style="color:#5eead4;">Recognition</div>
-        <div class="text-xl font-extrabold text-white">≥10%</div>
+        <div class="text-lg font-extrabold text-white">≥10%</div>
         <div class="text-[10px] text-slate-400 leading-[1.5]">Agenda setting, proposal submission, threshold to force a vote</div>
       </div>
+    </div>
+    <div class="text-xs text-slate-400 leading-[1.6] mt-3 pt-3 border-t border-slate-700/30">
+      Quorum: 33%+1 (42 governors minimum at 126 total). Confirmed by FG.006 operational reality.
     </div>
   </div>
 
@@ -1424,7 +1479,7 @@ body::after {
   <div class="closing-card" style="padding:28px 24px;">
     <div class="text-center">
       <div class="text-[11px] uppercase tracking-[0.18em] mb-3" style="color:#5eead4;">STORE Record</div>
-      <div class="hero-num display-num text-5xl sm:text-6xl font-extrabold leading-none mb-2">0.8%</div>
+      <div class="hero-num display-num text-6xl sm:text-7xl font-extrabold leading-none mb-2">0.8%</div>
       <p class="text-xs text-slate-400">max concentration ever recorded · ceiling 33.3%</p>
     </div>
   </div>
@@ -1463,8 +1518,8 @@ body::after {
     <p class="text-base font-extrabold text-white leading-[1.5] mb-3">Your token. Your compute. Your intelligence. Governed by the same constitutional ceiling.</p>
     <p class="text-sm text-slate-300 leading-[1.85] mb-3">Builders can use their own crypto asset to pay for compute and intelligence on the STORE rail. STORE accepts any token as currency at the infrastructure layer and converts it into governed compute. The builder gets their workload run, their AI inference governed, and a constitutional certificate proving it — all paid in their own token.</p>
     <p class="text-sm text-slate-300 leading-[1.85] mb-3">This changes the paradigm. On Ethereum and Solana, miners and validators are paid only in the native currency. Builders have no monetary sovereignty. STORE is different: the governed rail accepts your token, prices compute in STORE tokens, settles constitutionally, and returns a Governed AI Certificate. Your economy participates in the democratic compute economy without surrendering its own monetary unit.</p>
-    <p class="text-sm text-slate-300 leading-[1.85] mb-3">This is the monetary premium. The value of holding the infrastructure layer’s settlement currency when every autonomous token economy in the governed compute stack must route through it.</p>
-    <div class="relative rounded-2xl p-6 sm:p-8" style="
+    <p class="text-sm text-slate-300 leading-[1.85] mb-3">This is the monetary premium. The value of holding the infrastructure layer’s settlement currency when every autonomous token economy in the governed compute stack must route through it.</p></div>
+    <div class="relative rounded-2xl p-6 sm:p-8 mt-6" style="
   background: rgba(15,23,42,0.5);
   border: 1px solid rgba(20,184,166,0.15);
   backdrop-filter: blur(4px);
@@ -1524,7 +1579,6 @@ body::after {
     </p>
   </div>
 </div>
-  </div>
 
   <div class="mb-6"></div>
 
@@ -1533,7 +1587,7 @@ body::after {
     <p class="text-sm text-slate-300 leading-[1.85] mb-3">Developers and enterprises pay protocol fees to run workloads on the governed compute rail. A portion of every fee flows to governors, builders, and the treasury in STORE tokens. What makes demand durable rather than speculative: the constitutional ceiling is enforced at the database layer.</p>
     <p class="text-sm text-slate-300 leading-[1.85] mb-3">Any system that needs a verifiable Governed AI Certificate—proof that no single actor controlled more than one-third during that inference—must route through STORE. The certificate cannot be produced any other way. The ceiling cannot be lobbied away.</p>
     <p class="text-sm text-slate-300 leading-[1.85] mb-3">As AI regulation tightens and enterprise AI procurement requires provable governance, the certificate becomes non-optional. The floor is structural.</p>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
       <div class="rounded-xl p-4 sm:p-5 gap-3 sm:gap-5 items-center" style="background:linear-gradient(90deg,rgba(16,185,129,0.12),rgba(16,185,129,0.04)); border:1px solid rgba(16,185,129,0.3);">
         <div class="text-xs font-semibold tracking-widest uppercase mb-1" style="color:rgba(94,234,212,0.7);">Who pays</div>
         <p class="text-[11px] text-slate-200 leading-[1.6]">Developers and enterprises who need their AI systems to carry a constitutional certificate. Legacy AI rails cannot produce this certificate. STORE is the only source.</p>
@@ -1597,14 +1651,14 @@ body::after {
 <section id="content-roadmap" class="tab-content" role="tabpanel" aria-labelledby="tab-roadmap">
   <div class="mb-8">
     <div class="section-eyebrow mb-3" style="color:#5eead4;">The Roadmap</div>
-    <h2 class="text-2xl sm:text-[2rem] font-extrabold tracking-tight leading-[1.1] text-white mb-3">Seven stages.<br>One theorem.<br><span style="color:#5eead4;">No geographic ceiling.</span></h2>
+    <h2 class="text-2xl sm:text-[2rem] font-extrabold tracking-tight leading-[1.1] text-white mb-3">Eight live layers. Two on the horizon.<br><span style="color:#5eead4;">One theorem. No geographic ceiling.</span></h2>
     <p class="text-sm sm:text-base text-slate-400 leading-relaxed max-w-[760px] mb-6">Each stage named for a builder of constitutional systems – from the American founders to Alan Turing, the first theorist of machine intelligence. The math does not change. The scale does.</p>
   </div>
 
   <!-- Stage 1: Hamilton -->
   <div class="row-item layer-card mb-2" style="--layer-accent:#5eead4;">
-    <button type="button" class="row-summary" style="padding:16px 18px;" aria-expanded="false" aria-controls="row-5" onclick="toggleRow(this)">
-      <div class="flex-1 min-w-0"><div class="layer-head"><div class="layer-head-left"><div class="layer-num">1</div><div><div class="layer-title">Hamilton</div><div class="layer-sub">Hamilton AI is the intelligence layer. Building now.</div></div></div><div class="layer-badges"><span class="layer-status" style="color:#5eead4;">NOW – BUILDING</span></div></div></div>
+    <button type="button" class="row-summary" style="padding:12px;" aria-expanded="false" aria-controls="row-5" onclick="toggleRow(this)">
+      <div class="flex-1 min-w-0"><div class="layer-head"><div class="layer-head-left"><div class="layer-num">1</div><div><div class="layer-title">Hamilton</div><div class="layer-sub">Hamilton AI is the intelligence layer. Building now.</div></div></div><div class="layer-badges"><span class="layer-status status-now" style="color:#5eead4;">NOW – BUILDING</span></div></div></div>
       <svg class="chev row-chev flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
     </button>
     <div class="row-detail" id="row-5">
@@ -1616,7 +1670,7 @@ body::after {
   <!-- Stage 2: Armstrong -->
   <div class="row-item layer-card mb-2" style="--layer-accent:#5eead4;">
     <button type="button" class="row-summary" style="padding:16px 18px;" aria-expanded="false" aria-controls="row-6" onclick="toggleRow(this)">
-      <div class="flex-1 min-w-0"><div class="layer-head"><div class="layer-head-left"><div class="layer-num">2</div><div><div class="layer-title">Armstrong</div><div class="layer-sub">STORE launches. Hamilton is running. The governed compute rail goes live.</div></div></div><div class="layer-badges"><span class="layer-status" style="color:#5eead4;">LAUNCH</span></div></div></div>
+      <div class="flex-1 min-w-0"><div class="layer-head"><div class="layer-head-left"><div class="layer-num">2</div><div><div class="layer-title">Armstrong</div><div class="layer-sub">STORE launches. Hamilton is running. The governed compute rail goes live.</div></div></div><div class="layer-badges"><span class="layer-status status-now" style="color:#5eead4;">LAUNCH</span></div></div></div>
       <svg class="chev row-chev flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
     </button>
     <div class="row-detail" id="row-6">
@@ -1628,7 +1682,7 @@ body::after {
   <!-- Stage 3: Adams -->
   <div class="row-item layer-card mb-2" style="--layer-accent:#5eead4;">
     <button type="button" class="row-summary" style="padding:16px 18px;" aria-expanded="false" aria-controls="row-7" onclick="toggleRow(this)">
-      <div class="flex-1 min-w-0"><div class="layer-head"><div class="layer-head-left"><div class="layer-num">3</div><div><div class="layer-title">Adams</div><div class="layer-sub">Democracy as a Service (DaaS) goes live.</div></div></div><div class="layer-badges"><span class="layer-status" style="color:#5eead4;">YEAR 1-2</span></div></div></div>
+      <div class="flex-1 min-w-0"><div class="layer-head"><div class="layer-head-left"><div class="layer-num">3</div><div><div class="layer-title">Adams</div><div class="layer-sub">Democracy as a Service (DaaS) goes live.</div></div></div><div class="layer-badges"><span class="layer-status status-now" style="color:#5eead4;">YEAR 1-2</span></div></div></div>
       <svg class="chev row-chev flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
     </button>
     <div class="row-detail" id="row-7">
@@ -1640,7 +1694,7 @@ body::after {
   <!-- Stage 4: Jefferson -->
   <div class="row-item layer-card mb-2" style="--layer-accent:#5eead4;">
     <button type="button" class="row-summary" style="padding:16px 18px;" aria-expanded="false" aria-controls="row-8" onclick="toggleRow(this)">
-      <div class="flex-1 min-w-0"><div class="layer-head"><div class="layer-head-left"><div class="layer-num">4</div><div><div class="layer-title">Jefferson</div><div class="layer-sub">Triangle deploys. Every AI inference gets a certificate proving no single actor controlled more than one-third.</div></div></div><div class="layer-badges"><span class="layer-status" style="color:#5eead4;">YEAR 2-3</span></div></div></div>
+      <div class="flex-1 min-w-0"><div class="layer-head"><div class="layer-head-left"><div class="layer-num">4</div><div><div class="layer-title">Jefferson</div><div class="layer-sub">Triangle deploys. Every AI inference gets a certificate proving no single actor controlled more than one-third.</div></div></div><div class="layer-badges"><span class="layer-status status-now" style="color:#5eead4;">YEAR 2-3</span></div></div></div>
       <svg class="chev row-chev flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
     </button>
     <div class="row-detail" id="row-8">
@@ -1652,7 +1706,7 @@ body::after {
   <!-- Stage 5: Washington -->
   <div class="row-item layer-card mb-2" style="--layer-accent:#5eead4;">
     <button type="button" class="row-summary" style="padding:16px 18px;" aria-expanded="false" aria-controls="row-9" onclick="toggleRow(this)">
-      <div class="flex-1 min-w-0"><div class="layer-head"><div class="layer-head-left"><div class="layer-num">5</div><div><div class="layer-title">Washington</div><div class="layer-sub">Planetary scale. The math governs compute at scale.</div></div></div><div class="layer-badges"><span class="layer-status" style="color:#5eead4;">YEAR 3-5</span></div></div></div>
+      <div class="flex-1 min-w-0"><div class="layer-head"><div class="layer-head-left"><div class="layer-num">5</div><div><div class="layer-title">Washington</div><div class="layer-sub">Planetary scale. The math governs compute at scale.</div></div></div><div class="layer-badges"><span class="layer-status status-now" style="color:#5eead4;">YEAR 3-5</span></div></div></div>
       <svg class="chev row-chev flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
     </button>
     <div class="row-detail" id="row-9">
@@ -1664,7 +1718,7 @@ body::after {
   <!-- Stage 6: Madison / Franklin -->
   <div class="row-item layer-card mb-2" style="--layer-accent:#5eead4;">
     <button type="button" class="row-summary" style="padding:16px 18px;" aria-expanded="false" aria-controls="row-10" onclick="toggleRow(this)">
-      <div class="flex-1 min-w-0"><div class="layer-head"><div class="layer-head-left"><div class="layer-num">6</div><div><div class="layer-title">Madison / Franklin</div><div class="layer-sub">Autonomous computing. AI agents on the democratic rail.</div></div></div><div class="layer-badges"><span class="layer-status" style="color:#5eead4;">YEAR 5-10</span></div></div></div>
+      <div class="flex-1 min-w-0"><div class="layer-head"><div class="layer-head-left"><div class="layer-num">6</div><div><div class="layer-title">Madison / Franklin</div><div class="layer-sub">Autonomous computing. AI agents on the democratic rail.</div></div></div><div class="layer-badges"><span class="layer-status status-now" style="color:#5eead4;">YEAR 5-10</span></div></div></div>
       <svg class="chev row-chev flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
     </button>
     <div class="row-detail" id="row-10">
@@ -1676,7 +1730,7 @@ body::after {
   <!-- Stage 7: Turing -->
   <div class="row-item layer-card mb-2" style="--layer-accent:#5eead4;">
     <button type="button" class="row-summary" style="padding:16px 18px;" aria-expanded="false" aria-controls="row-11" onclick="toggleRow(this)">
-      <div class="flex-1 min-w-0"><div class="layer-head"><div class="layer-head-left"><div class="layer-num">7</div><div><div class="layer-title">Turing</div><div class="layer-sub">mID. AI earns a seat. Humanity holds ≥ 2/3.</div></div></div><div class="layer-badges"><span class="layer-status" style="color:#5eead4;">YEAR 10-20</span></div></div></div>
+      <div class="flex-1 min-w-0"><div class="layer-head"><div class="layer-head-left"><div class="layer-num">7</div><div><div class="layer-title">Turing</div><div class="layer-sub">mID. AI earns a seat. Humanity holds ≥ 2/3.</div></div></div><div class="layer-badges"><span class="layer-status status-now" style="color:#5eead4;">YEAR 10-20</span></div></div></div>
       <svg class="chev row-chev flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
     </button>
     <div class="row-detail" id="row-11">
@@ -1685,32 +1739,40 @@ body::after {
     </div>
   </div>
 
+  <!-- CONSTITUTIONAL FUTURE SEPARATOR -->
+  <div class="layer-gate-divider my-4">— The Constitutional Future —</div>
+
   <!-- Layer 8: Democratic Edge Protocol (VISION) -->
   <div class="row-item layer-card mb-2" style="--layer-accent:#a78bfa;">
     <button type="button" class="row-summary" style="padding:16px 18px;" aria-expanded="false" aria-controls="row-12" onclick="toggleRow(this)">
-      <div class="flex-1 min-w-0"><div class="layer-head"><div class="layer-head-left"><div class="layer-num">8</div><div><div class="layer-title">Democratic Edge Protocol</div><div class="layer-sub">Anyone with GPU/phone serves constitutional inference. Hyperscalers buy wholesale.</div></div></div><div class="layer-badges"><span class="layer-status" style="color:#a78bfa;">VISION</span></div></div></div>
+      <div class="flex-1 min-w-0"><div class="layer-head"><div class="layer-head-left"><div class="layer-num">8</div><div><div class="layer-title">Democratic Edge Protocol</div><div class="layer-sub">Anyone with a GPU or phone will serve constitutional inference and earn STORE. Hyperscalers buy wholesale. No single provider controls more than one-third.</div></div></div><div class="layer-badges"><span class="layer-status status-future" style="color:#a78bfa;">VISION</span></div></div></div>
       <svg class="chev row-chev flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
     </button>
     <div class="row-detail" id="row-12">
-      <p class="text-sm text-slate-300 leading-[1.85] mb-3 p-4">LINCOLN ceiling on providers AND buyers. At 10M phones: ungameable at AGI scale. NOT a current product. Constitutional future. VISION badge.</p>
+      <p class="text-sm text-slate-300 leading-[1.85] mb-3 p-4">The democracy is open. Anyone will be able to compute for it. LINCOLN ceiling on providers AND buyers. At 10M phones: ungameable at AGI scale. NOT a current product. Constitutional future. VISION badge.</p>
       <p class="layer-context">Future tense only. No enrollment language. This is a vision layer, not a product.</p>
     </div>
   </div>
 
-  <!-- Layer 9: Physical AI + Quantum (VISION) -->
-  <div class="row-item layer-card mb-2" style="--layer-accent:#a78bfa;">
+  <!-- Layer 9: Physical AI + Quantum (RESEARCH BEING FINALIZED) -->
+  <div class="row-item layer-card mb-2" style="--layer-accent:#8b5cf6;">
     <button type="button" class="row-summary" style="padding:16px 18px;" aria-expanded="false" aria-controls="row-13" onclick="toggleRow(this)">
-      <div class="flex-1 min-w-0"><div class="layer-head"><div class="layer-head-left"><div class="layer-num">9</div><div><div class="layer-title">Physical AI + Quantum</div><div class="layer-sub">Robot fleets, orbital infrastructure, energy grids, quantum computing.</div></div></div><div class="layer-badges"><span class="layer-status" style="color:#a78bfa;">VISION</span></div></div></div>
+      <div class="flex-1 min-w-0"><div class="layer-head"><div class="layer-head-left"><div class="layer-num">9</div><div><div class="layer-title">Physical AI + Quantum</div><div class="layer-sub">The same one-third ceiling governs robot fleets, orbital infrastructure, energy grids, and quantum computing. One theorem. Every substrate.</div></div></div><div class="layer-badges"><span class="layer-status status-future" style="color:#8b5cf6;">RESEARCH BEING FINALIZED</span></div></div></div>
       <svg class="chev row-chev flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
     </button>
     <div class="row-detail" id="row-13">
-      <p class="text-sm text-slate-300 leading-[1.85] mb-3 p-4">Same one-third ceiling. Every substrate. RESEARCH BEING FINALIZED badge.</p>
+      <p class="text-sm text-slate-300 leading-[1.85] mb-3 p-4">The math has no substrate preference. Same one-third ceiling. Every substrate. RESEARCH BEING FINALIZED badge.</p>
       <p class="layer-context">Future tense only. No enrollment language. This is a vision layer, not a product.</p>
     </div>
   </div>
 
-  <div class="rounded-xl p-4 sm:p-5 mt-3" style="background:rgba(139,92,246,0.15); border:1px solid rgba(139,92,246,0.3); border:1px solid rgba(16,185,129,0.3);">
+  <div class="rounded-xl p-4 sm:p-5 mt-6" style="background:rgba(139,92,246,0.15); border:1px solid rgba(139,92,246,0.3); border:1px solid rgba(16,185,129,0.3);">
     <p class="text-sm text-slate-200 leading-[1.7]">Not on a schedule. The math earns each stage. The experiment is small. The math, if the record continues to hold, is not.</p>
+  </div>
+
+  <!-- Tagline moved to absolute bottom -->
+  <div class="text-center mt-8 pt-6 border-t border-slate-700/30">
+    <p class="text-sm sm:text-base font-bold text-white tracking-wide">First Verifiable Framework for Human Control In The Age of AI</p>
   </div>
 
   <div class="page-nav page-nav-inline">
@@ -1886,7 +1948,7 @@ body::after {
   <div class="mt-8 pt-6">
     <div class="card p-5 sm:p-6" style="background: linear-gradient(180deg, rgba(15,23,42,0.6), rgba(15,23,42,0.35)); border-color: rgba(20,184,166,0.22);">
       <p class="text-xs sm:text-[13px] text-slate-300 leading-[1.8] mb-3">Franklin Templeton projects $3–5T in agentic commerce by 2030. Every agent operating on STORE Cloud carries a constitutional certificate. The democratic compute economy is being built now.</p>
-      <p class="text-[11px] text-slate-500 italic">Nothing here is an offer to sell securities.</p>
+      <p class="text-[11px] text-slate-400 italic">Nothing here is an offer to sell securities.</p>
     </div>
   </div>
 
