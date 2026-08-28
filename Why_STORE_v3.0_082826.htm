@@ -684,6 +684,13 @@ body::after {
   width: 11px; height: 11px; border-radius: 999px;
   background: #5eead4; box-shadow: 0 0 0 1px rgba(5,10,24,1);
 }
+.timeline-entry-new .timeline-ring {
+  background: #fbbf24;
+  box-shadow: 0 0 0 1px rgba(5, 10, 24, 1);
+}
+.timeline-entry-new .timeline-ring::after {
+  border-color: rgba(251, 191, 36, 0.4);
+}
 .timeline-ring::after {
   content: ''; position: absolute; inset: -5px; border-radius: 999px;
   border: 1px solid rgba(94, 234, 212, 0.4);
@@ -1034,18 +1041,22 @@ body::after {
   </div>
 
   <!-- Stats -->
-  <div class="card p-6 sm:p-8" style="">
-    <div class="grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-4">
-      <div class="text-center sm:text-left"><div class="hero-num display-num text-4xl sm:text-4xl font-extrabold leading-none">126</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">Governors</div></div>
-      <div class="text-center sm:text-left"><div class="hero-num display-num text-4xl sm:text-4xl font-extrabold leading-none">1,800+</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">Days Running</div></div>
-      <div class="text-center sm:text-left"><div class="hero-num display-num text-4xl sm:text-4xl font-extrabold leading-none">7</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">Ballots</div></div>
-      <div class="text-center sm:text-left"><div class="hero-num display-num text-4xl sm:text-4xl font-extrabold leading-none">0</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">Violations</div></div>
-      <div class="text-center sm:text-left"><div class="hero-num display-num text-4xl sm:text-4xl font-extrabold leading-none">84.0</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">Stability Score</div></div>
-      <div class="text-center sm:text-left"><div class="hero-num display-num text-4xl sm:text-4xl font-extrabold leading-none">76.95%</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">Avg Approval</div></div>
-      <div class="text-center sm:text-left"><div class="hero-num display-num text-4xl sm:text-4xl font-extrabold leading-none">2</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">Granted Patents</div></div>
-      <div class="text-center sm:text-left"><div class="hero-num display-num text-4xl sm:text-4xl font-extrabold leading-none">5</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">Fortune 500 Citations</div></div>
-    </div>
+<div class="card p-6 sm:p-8" style="">
+  <div class="grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-4">
+    <div class="text-center sm:text-left"><div class="hero-num display-num text-4xl sm:text-4xl font-extrabold leading-none">126</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">Governors</div></div>
+    <div class="text-center sm:text-left"><div class="hero-num display-num text-4xl sm:text-4xl font-extrabold leading-none">1,800+</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">Days Running</div></div>
+    <div class="text-center sm:text-left"><div class="hero-num display-num text-4xl sm:text-4xl font-extrabold leading-none">7</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">Ballots</div></div>
+    <div class="text-center sm:text-left"><div class="hero-num display-num text-4xl sm:text-4xl font-extrabold leading-none">0</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">Violations</div></div>
+    <div class="text-center sm:text-left"><div class="hero-num display-num text-4xl sm:text-4xl font-extrabold leading-none">84.0</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">Stability Score</div></div>
+    <div class="text-center sm:text-left"><div class="hero-num display-num text-4xl sm:text-4xl font-extrabold leading-none">76.95%</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">Avg Approval</div></div>
+    <div class="text-center sm:text-left"><div class="hero-num display-num text-4xl sm:text-4xl font-extrabold leading-none">2</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">Granted Patents</div></div>
+    <div class="text-center sm:text-left"><div class="hero-num display-num text-4xl sm:text-4xl font-extrabold leading-none">5</div><div class="text-[11px] text-slate-400 tracking-[0.1em] uppercase mt-2 font-semibold">Fortune 500 Citations</div></div>
   </div>
+</div>
+
+<div class="mt-4 text-center text-xs text-slate-400/80 italic leading-relaxed">
+  These companies have cited STORE Research patents in their own patent filings — not an endorsement or partnership.
+</div>
 
   <div class="mb-10"></div>
 
@@ -1138,7 +1149,7 @@ body::after {
 
   <div class="relative group overflow-hidden rounded-2xl p-6 bg-gradient-to-br from-slate-900/90 to-slate-800/40 border border-emerald-500/40 shadow-[0_0_30px_rgba(16,185,129,0.08)] hover:shadow-[0_0_40px_rgba(16,185,129,0.18)] transition-all duration-500 flex flex-col">
     <div class="section-eyebrow mb-3" style="color:#5eead4;">Going Lower</div>
-    <p class="text-sm text-slate-300 leading-[1.85]">STORE currently enforces the math at the schema layer—the lowest layer of the database stack, where a violation becomes a type error before any application runs. The vision is to go lower: into compute itself, into energy, into hardware. Constitutional mathematics enforced at the physics of how power is allocated. The math does not change as the layer changes. The scope does.</p>
+    <p class="text-sm text-slate-300 leading-[1.85]">STORE currently enforces the math at the schema layer—the lowest layer of the database stack, where a violation becomes a type error before any application runs. The vision is to go lower: into compute itself, into energy, into hardware. Constitutional mathematics enforced at the mechanics of how power is allocated. The math does not change as the layer changes. The scope does.</p>
   </div>
   <div class="mb-8"></div>
 
@@ -1666,6 +1677,71 @@ body::after {
     <h2 class="text-2xl sm:text-[2rem] font-extrabold tracking-tight leading-[1.1] text-white mb-3">Ten layers. Eight live. Two on the horizon.<br><span style="color:#5eead4;">One theorem. No geographic ceiling.</span></h2>
     <p class="text-sm sm:text-base text-slate-400 leading-relaxed max-w-[760px] mb-6">Each stage named for a builder of constitutional systems – from the American founders to Alan Turing, the first theorist of machine intelligence. The math does not change. The scale does.</p>
   </div>
+<!-- THRESHOLD ROADMAP · Circulating Supply Milestones (Timeline Style) -->
+<div class="card card-accent-teal p-5 sm:p-6 mb-6" style="border-left: 3px solid #5eead4; background: rgba(15,23,42,0.7);">
+  <div class="section-eyebrow mb-4" style="color: #5eead4;">Threshold Roadmap · Circulating Supply Milestones</div>
+  <div class="timeline-rail">
+
+    <!-- 1 · Launch -->
+    <div class="timeline-entry">
+      <div class="timeline-ring" aria-hidden="true"></div>
+      <div class="timeline-year">Launch</div>
+      <div class="timeline-what">Five Constitutional Data Centers · CLEAR · STORE Pay · STORE Account</div>
+    </div>
+
+    <!-- 2 · Launch + Regulatory -->
+    <div class="timeline-entry">
+      <div class="timeline-ring" aria-hidden="true"></div>
+      <div class="timeline-year">Launch + regulatory</div>
+      <div class="timeline-what">Sixth data center</div>
+      <div class="timeline-note">Switzerland</div>
+    </div>
+
+    <!-- 3 · $50M -->
+<div class="timeline-entry timeline-entry-new">
+  <div class="timeline-ring" aria-hidden="true"></div>
+  <div class="timeline-year" style="color:#fbbf24;">$50M circulating supply · 6 months</div>
+  <div class="timeline-what">Treasury Branch established <span class="badge" style="background:rgba(245,158,11,0.14); color:#fbbf24; border:1px solid rgba(245,158,11,0.30); margin-left:8px; font-size:9px; vertical-align:middle;">NEW</span></div>
+</div>
+
+    <!-- 4 · $100M -->
+    <div class="timeline-entry">
+      <div class="timeline-ring" aria-hidden="true"></div>
+      <div class="timeline-year">$100M circulating supply · 6 months</div>
+      <div class="timeline-what">TREASURIES protocol launches</div>
+    </div>
+
+    <!-- 5 · $250M -->
+    <div class="timeline-entry">
+      <div class="timeline-ring" aria-hidden="true"></div>
+      <div class="timeline-year">$250M circulating supply · 6 months</div>
+      <div class="timeline-what">Seventh data center (GROVES, f=2)</div>
+      <div class="timeline-note">Sovereign partner</div>
+    </div>
+
+    <!-- 6 · $500M -->
+    <div class="timeline-entry">
+      <div class="timeline-ring" aria-hidden="true"></div>
+      <div class="timeline-year">$500M circulating supply · 6 months</div>
+      <div class="timeline-what">Security Branch established</div>
+    </div>
+
+    <!-- 7 · $750M -->
+<div class="timeline-entry timeline-entry-new">
+  <div class="timeline-ring" aria-hidden="true"></div>
+  <div class="timeline-year" style="color:#fbbf24;">$750M circulating supply · 6 months</div>
+  <div class="timeline-what">Second Governance transition <span class="badge" style="background:rgba(245,158,11,0.14); color:#fbbf24; border:1px solid rgba(245,158,11,0.30); margin-left:8px; font-size:9px; vertical-align:middle;">NEW</span></div>
+</div>
+
+    <!-- 8 · $1B+ -->
+    <div class="timeline-entry">
+      <div class="timeline-ring" aria-hidden="true"></div>
+      <div class="timeline-year">$1B+ circulating supply · 6 months</div>
+      <div class="timeline-what">Democratic edge cloud · Treasury Trades</div>
+    </div>
+
+  </div>
+</div>
 
   <!-- Layer 0: Constitutional Core -->
   <div class="row-item layer-card mb-2" style="--layer-accent:#5eead4;">
@@ -2016,9 +2092,13 @@ body::after {
     <p class="text-xs sm:text-sm text-slate-300 leading-[1.75]">Constitutional governance experiment begins. It will run for five years without a single violation.</p>
   </div>
   <div class="card p-4 mb-3 flex gap-4" style="border-left:3px solid #fbbf24;">
-    <div class="mono display-num text-base font-black flex-shrink-0" style="color:#fbbf24; min-width:44px;">2022</div>
-    <p class="text-xs sm:text-sm text-slate-300 leading-[1.75]">Two granted patents. Four Fortune 500 companies cite them. Three voluntary price-cut votes. The governors could have extracted. They didn’t.</p>
+  <div class="mono display-num text-base font-black flex-shrink-0" style="color:#fbbf24; min-width:44px;">2022</div>
+  <div>
+    <p class="text-xs sm:text-sm text-slate-300 leading-[1.75]">Two granted patents. Five Fortune 500 companies cite them. Three voluntary price-cut votes. The governors could have extracted. They didn’t.</p>
+    <!-- ⬇️ DISCLAIMER BARU (subdued, gaya footnote) ⬇️ -->
+    <p class="text-[10px] sm:text-[11px] text-slate-500/70 italic leading-relaxed mt-1.5">These companies have cited STORE Research patents in their own patent filings — not an endorsement or partnership.</p>
   </div>
+</div>
   <div class="card p-4 mb-3 flex gap-4" style="border-left:3px solid #5eead4;">
     <div class="mono display-num text-base font-black flex-shrink-0" style="color:#5eead4; min-width:44px;">2024</div>
     <p class="text-xs sm:text-sm text-slate-300 leading-[1.75]">Season 1: the first constitutional democracy at community scale. 60 voters. 97.22% ratification. The constitutional governance mechanism scales beyond compute.</p>
@@ -2097,10 +2177,16 @@ body::after {
 </div></div>
 
 <footer class="px-4 sm:px-8 py-10" style="border-top:1px solid rgba(148,163,184,0.1);">
-  <div class="max-w-[900px] mx-auto text-center">
+  <div class="max-w-[960px] mx-auto text-center">
     <img src="https://cdn.prod.website-files.com/5f48a063be66ba845f0d598c/69d3593b6f4f5a69430ca25e_STORE_Logo_NewTagline_White.png" alt="STORE Research" style="max-width:125px; height:auto; margin:0 auto 20px; display:block;">
     <div class="section-eyebrow justify-center mb-2" style="color:#5eead4;">STORE Research Inc.</div>
-    <p class="text-xs text-slate-500 leading-[1.7] max-w-[520px] mx-auto">L-zero governed cloud infrastructure. Democratic computing. Not a blockchain. Not a chain.</p>
+    <p class="text-xs text-slate-500 leading-[1.7] max-w-[640px] mx-auto">L-zero governed cloud infrastructure. Democratic computing. Not a blockchain. Not a chain.</p>
+    <p class="text-xs text-slate-500 mt-4">
+  <a href="https://storecloud.org/" target="_blank" rel="noopener noreferrer" 
+     class="text-teal-400 hover:text-teal-300 transition-colors duration-200 underline-offset-2 hover:underline">
+    storecloud.org
+  </a>
+</p>
     <p class="closing-meta mt-4">WhySTORE · STORE Research Inc.</p>
   </div>
 </footer>
